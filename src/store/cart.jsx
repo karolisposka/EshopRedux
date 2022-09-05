@@ -13,6 +13,10 @@ const Slice = createSlice({
                 state.cart.push({ ...action.payload, id: action.payload, quantity: 1 })
             }
         },
+        productRemovedFromCart: (state, action) => {
+            const itemToRemove = state.cart.find((item) => item.id === action.payload)
+            if (itemToRemove) itemToRemove.quantity--
+        },
     },
 })
 
