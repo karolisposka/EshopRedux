@@ -37,7 +37,10 @@ const ProductCard = ({ description, title, price, handleClick, className, id }) 
                 )}
             </S.Text>
             <S.Price>{price} € </S.Price>
-            <S.StyledButton id={id} handleClick={() => dispatch(productAddedToCart(id))}>
+            <S.StyledButton
+                id={id}
+                handleClick={() => dispatch(productAddedToCart({ id: id, title: title, price: price }))}
+            >
                 Add to Cart
                 <S.CartIcon />
             </S.StyledButton>

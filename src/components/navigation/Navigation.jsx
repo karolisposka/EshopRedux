@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom"
 const Navigation = () => {
     const navigate = useNavigate()
     const loadersState = useSelector((state) => state.entities.products.loading)
+    const data = useSelector((state) => state.entities.cart)
+    const totalQuantity = data.cart.reduce((a, b) => a + b.quantity, 0)
+    console.log(totalQuantity)
 
     return (
         <S.NavigationContainer>
@@ -16,10 +19,10 @@ const Navigation = () => {
                     }}
                 >
                     <S.LogoImg src="./logo.png" alt="logo" />
-                    {loadersState && <S.StyledLoader />}
+                    {(loadersState || data.loading) && <S.StyledLoader />}
                 </S.LogoWrapper>
                 <S.CartWrapper>
-                    <S.CartItemsNumber>3</S.CartItemsNumber>
+                    <S.CartItemsNumber>{totalQuantity}</S.CartItemsNumber>
                     <S.CartIcon
                         onClick={() => {
                             navigate("/cart")

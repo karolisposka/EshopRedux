@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
 import moment from "moment"
-import { createSelector } from "reselect"
 import { apiCallBegan } from "./api"
 
 const url = "v1/products/get"

@@ -17,7 +17,7 @@ const CartTable = ({ items }) => {
             <S.TableBody>
                 {items &&
                     items.map((item) => (
-                        <CartTableItem title={item.title} price={item.price} quantity={item.quantity} />
+                        <CartTableItem title={item.title} price={item.price} quantity={item.quantity} id={item.id} />
                     ))}
             </S.TableBody>
         </S.Table>
