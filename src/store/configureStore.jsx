@@ -5,6 +5,11 @@ import reducer from "./reducer"
 export default function configureAppStore() {
     return configureStore({
         reducer,
-        middleware: [...getDefaultMiddleware(), api],
+        middleware: [
+            ...getDefaultMiddleware({
+                serializableCheck: false,
+            }),
+            api,
+        ],
     })
 }

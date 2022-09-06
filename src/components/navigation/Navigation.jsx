@@ -8,7 +8,6 @@ const Navigation = () => {
     const loadersState = useSelector((state) => state.entities.products.loading)
     const data = useSelector((state) => state.entities.cart)
     const totalQuantity = data.cart.reduce((a, b) => a + b.quantity, 0)
-    console.log(totalQuantity)
 
     return (
         <S.NavigationContainer>

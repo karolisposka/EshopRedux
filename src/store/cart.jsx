@@ -9,24 +9,34 @@ const Slice = createSlice({
     initialState: {
         cart: [],
         loading: false,
+        status: "",
     },
     reducers: {
-        productAddedToCart: (state, action) => {
+        increment: (state, action) => {
             const itemToCart = state.cart.find((item) => item.id === action.payload.id)
-            if (itemToCart) itemToCart.quantity++
-            else {
+            if (itemToCart) {
+                itemToCart.quantity++
+            } else {
                 state.cart.push({
                     id: action.payload.id,
-                    quantity: 1,
-                    price: action.payload.price,
+                    quantity: Number(1),
+                    price: Number(action.payload.price),
                     title: action.payload.title,
                 })
             }
         },
 
-        productRemovedFromCart: (state, action) => {
-            const itemToRemove = state.cart.find((item) => item.id === action.payload)
-            if (itemToRemove) itemToRemove.quantity--
+        decrement: (state, action) => {
+            const itemToDecrement = state.cart.find((item) => item.id === action.payload.id)
+            if (itemToDecrement.quantity <= 1) {
+                itemToDecrement.quantity = 1
+            } else {
+                itemToDecrement.quantity--
+            }
+        },
+        cartItemRemove: (state, action) => {
+            const index = state.cart.findIndex((element) => element.id === action.payload.id)
+            state.cart.splice(index, index + 1)
         },
         cartItemsRequested: (state, action) => {
             state.loading = true
@@ -34,6 +44,9 @@ const Slice = createSlice({
         cartItemsRecieved: (state, action) => {
             state.cart.push(...state.quantity, action.payload)
             state.loading = false
+        },
+        changeStatus: (state, action) => {
+            state.status = action.payload
         },
     },
 })
@@ -55,5 +68,6 @@ export const LoadCartItems = (products) => (dispatch, getState) => {
     )
 }
 
-export const { productAddedToCart, productRemovedFromCart, cartItemsRequested, cartItemsRecieved } = Slice.actions
+export const { increment, decrement, cartItemsRequested, cartItemsRecieved, cartItemRemove, changeStatus } =
+    Slice.actions
 export default Slice.reducer

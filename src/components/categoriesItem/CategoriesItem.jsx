@@ -9,7 +9,6 @@ const CategoriesItem = ({ categoryName }) => {
         <S.ListItem
             value={categoryName}
             onClick={() => {
-                console.log(categoryName)
                 dispatch(productsFiltered(categoryName))
             }}
         >

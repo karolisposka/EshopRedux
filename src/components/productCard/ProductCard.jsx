@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react"
 import * as S from "./ProductCard.styles"
 import PropTypes from "prop-types"
 import { useDispatch, useSelector } from "react-redux"
-import { productAddedToCart } from "../../store/cart"
+import { increment } from "../../store/cart"
 
 const ProductCard = ({ description, title, price, handleClick, className, id }) => {
     const data = useSelector((state) => state.entities.cart)
     const dispatch = useDispatch()
     const [showExpandBtn, setShowExpandBtn] = useState(false)
     const [expanded, setExpanded] = useState(false)
-    console.log(data)
 
     const checkDescriptionLength = (text) => {
         if (text.length > 45) {
@@ -37,10 +36,7 @@ const ProductCard = ({ description, title, price, handleClick, className, id }) 
                 )}
             </S.Text>
             <S.Price>{price} € </S.Price>
-            <S.StyledButton
-                id={id}
-                handleClick={() => dispatch(productAddedToCart({ id: id, title: title, price: price }))}
-            >
+            <S.StyledButton handleClick={() => dispatch(increment({ id: id, title: title, price: price }))}>
                 Add to Cart
                 <S.CartIcon />
             </S.StyledButton>

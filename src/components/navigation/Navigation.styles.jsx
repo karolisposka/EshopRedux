@@ -44,9 +44,11 @@ export const CartItemsNumber = Styled.span`
     color:white; //pakeisti spalva
     width:1rem;
     height:1rem;
+    padding:0.2rem;
     background:red; //pakeisti spalva
     font-size:0.8rem;
     border-radius:100%;
-    text-align:center;
+    display:flex;
+    justify-content:center;
     align-self: flex-end;
 `

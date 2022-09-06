@@ -1,29 +1,52 @@
-import Styled from "styled-components";
-import Button from "../Button/Button";
+import Styled from "styled-components"
+import Button from "../Button/Button"
+import { FaExclamation } from "react-icons/fa"
 
 export const InputContainer = Styled.div`
-    padding:1rem;
-`;
+   margin:1rem;
+`
 
-export const Form = Styled.form`
-    
+export const Label = Styled.label`
+    display:Block;
+    margin-bottom:0.25rem;
+    color:rgba(0,0,0,0.3); //keisti spalva
+`
 
-`;
+export const InputWrapper = Styled.div`
+   background:rgba(0,0,0,0.1);
+   display:flex;
+   justify-content:Space-between;
+   align-items:Center;
+   position:relative;
+   
+       
+`
 
 export const Input = Styled.input`
-    margin:1rem;
-    padding:0.25rem 0;
-    background:rgba(0,0,0,0.1);
+    padding:0.25rem;
+    background:transparent;
+    outline:none;
     border:none;
     border-radius:0.25rem;
-`;
+`
 
-export const StyledButton = Styled(Button)`
-    padding:0.4rem 1rem;
+export const CommentIcon = Styled(FaExclamation)`
+    color:red; //pakeisti spalva
+    cursor: pointer; 
+    margin:0 1rem;
+`
+
+export const Comment = Styled.div`
+    width:5rem;
+    height:5rem;
+    position:absolute;
+    right:0;
+    top:2rem;
+    background:rgba(0,0,0,0.1); //pakeisti spalva
     border-radius:0.25rem;
-    border:none;
-    background:#f92a45d6;
-    color:rgb(255,255,255);
-    text-transform: uppercase;
-    font-size:0.8rem;
-`;
+`
+
+export const CommentText = Styled.p`
+    padding:0.25rem;
+    font-size:0.75rem;
+`

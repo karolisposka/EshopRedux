@@ -25,7 +25,7 @@ export const HeaderCell = Styled.th`
 `
 
 export const TableBody = Styled.tbody`
-    
+     
 
 
 `
