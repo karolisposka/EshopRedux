@@ -7,7 +7,6 @@ import * as S from "./CategoriesList.styles"
 console.log(filterProducts)
 
 const CategoriesList = ({ categories }) => {
-    const dispatch = useDispatch()
     return (
         <>
             <S.CategoriesContainer>

@@ -1,4 +1,5 @@
 import Styled from "styled-components"
+import CartTableItem from "../cartTableItem/CartTableItem"
 
 export const Table = Styled.table`
     width:100%;
@@ -31,5 +32,10 @@ export const TableBody = Styled.tbody`
 `
 
 export const TableRow = Styled.tr`
+    
+`
+export const StyledCartTableItem = Styled(CartTableItem)`
+    width:100%;
+    
     
 `

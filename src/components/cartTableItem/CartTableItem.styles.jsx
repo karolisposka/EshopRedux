@@ -3,7 +3,21 @@ import { AiOutlineClose } from "react-icons/ai"
 
 export const TableRow = Styled.tr`
     border-bottom: 1px solid rgba(0,0,0,0.3);
- 
+    &&.fade-enter {
+    opacity:0;
+    }
+    &&.fade-enter-active {
+    opacity:1;
+    transition: all 300ms ease-out;
+    }
+    &&.fade-exit {
+    opacity: 1;
+    }
+    &&.fade-exit-active {
+    opacity:0;
+    transition: all 300ms ease-out;
+    }
+    
     
 `
 

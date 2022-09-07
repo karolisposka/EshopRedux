@@ -1,6 +1,9 @@
 import React from "react"
 import * as S from "./CartTable.styles"
 import CartTableItem from "../cartTableItem/CartTableItem"
+import { CSSTransition, TransitionGroup } from "react-transition-group"
+
+console.log(TransitionGroup)
 
 const CartTable = ({ items }) => {
     return (
@@ -14,12 +17,20 @@ const CartTable = ({ items }) => {
                     <S.HeaderCell>Total</S.HeaderCell>
                 </S.TableRow>
             </S.TableHeaders>
-            <S.TableBody>
+            <TransitionGroup component="tbody">
                 {items &&
-                    items.map((item) => (
-                        <CartTableItem title={item.title} price={item.price} quantity={item.quantity} id={item.id} />
+                    items.map((item, index) => (
+                        <CSSTransition key={index} timeout={200} classNames="fade">
+                            <S.StyledCartTableItem
+                                classNames="fade"
+                                title={item.title}
+                                price={item.price}
+                                quantity={item.quantity}
+                                id={item.id}
+                            />
+                        </CSSTransition>
                     ))}
-            </S.TableBody>
+            </TransitionGroup>
         </S.Table>
     )
 }

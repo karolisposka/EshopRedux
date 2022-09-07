@@ -16,6 +16,8 @@ const Cart = () => {
     const totalAmount = cartData.reduce((current, value) => current + value.price * value.quantity, 0)
     const deliveryAtHome = 5
 
+    console.log(cartData)
+
     const options = [
         { value: deliveryAtHome, label: "Home" },
         { value: "0", label: "Pick up" },
