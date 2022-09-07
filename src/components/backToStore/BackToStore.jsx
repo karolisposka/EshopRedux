@@ -1,8 +1,8 @@
 import React from "react"
-import * as S from "./NoDataNotification.styles"
+import * as S from "./BackToStore.styles"
 import { useNavigate } from "react-router-dom"
 
-const NoDataNotification = () => {
+const BackToStore = () => {
     const navigate = useNavigate()
     return (
         <>
@@ -21,4 +21,4 @@ const NoDataNotification = () => {
     )
 }
 
-export default NoDataNotification
+export default BackToStore

@@ -31,9 +31,10 @@ export const Input = Styled.input`
 `
 
 export const CommentIcon = Styled(FaExclamation)`
-    color:red; //pakeisti spalva
+    color:${(props) => props.theme.colors.background.danger}; //pakeisti spalva
     cursor: pointer; 
     margin:0 1rem;
+    
 `
 
 export const Comment = Styled.div`

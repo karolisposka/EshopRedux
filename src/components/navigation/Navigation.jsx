@@ -1,5 +1,6 @@
 import React from "react"
 import * as S from "./Navigation.styles"
+import Logo from "../../assets/logo.svg"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
@@ -17,7 +18,7 @@ const Navigation = () => {
                         navigate("/")
                     }}
                 >
-                    <S.LogoImg src="./logo.png" alt="logo" />
+                    <S.LogoImg src={Logo} alt="logo" />
                     {(loadersState || data.loading) && <S.StyledLoader />}
                 </S.LogoWrapper>
                 <S.CartWrapper>

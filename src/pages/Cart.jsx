@@ -6,7 +6,7 @@ import CartContainer from "../components/cartContainer/CartContainer"
 import CartTable from "../components/cartTable/CartTable"
 import OrderInfo from "../components/orderInfo/OrderInfo"
 import ShippingForm from "../components/shippingForm/ShippingForm"
-import NoDataNotification from "../components/noDataNotification/NoDataNotification"
+import BackToStore from "../components/backToStore/BackToStore"
 
 const Cart = () => {
     const navigate = useNavigate()
@@ -25,7 +25,7 @@ const Cart = () => {
         <>
             <Container>
                 {cartData.length === 0 ? (
-                    <NoDataNotification />
+                    <BackToStore />
                 ) : (
                     <>
                         <CartContainer>

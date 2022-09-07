@@ -1,18 +1,21 @@
 import React from "react"
 import * as S from "./CategoriesItem.styles"
+import { filterProducts } from "../../store/products"
 import { useDispatch } from "react-redux"
-import { productsFiltered } from "../../store/products"
 
 const CategoriesItem = ({ categoryName }) => {
     const dispatch = useDispatch()
     return (
-        <S.ListItem
-            value={categoryName}
-            onClick={() => {
-                dispatch(productsFiltered(categoryName))
-            }}
-        >
-            {categoryName}
+        <S.ListItem>
+            <S.Item
+                value={categoryName}
+                onClick={() => {
+                    dispatch(filterProducts(categoryName))
+                }}
+            >
+                {categoryName}
+                <S.Arrow />
+            </S.Item>
         </S.ListItem>
     )
 }

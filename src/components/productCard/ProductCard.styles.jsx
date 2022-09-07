@@ -9,6 +9,7 @@ export const Card = Styled.div`
     padding:1rem;
     justify-content:Space-between;
     align-items:center;
+    font-family: ${(props) => props.theme.fonts.names.primary};
 `
 
 export const Title = Styled.h1`
@@ -52,6 +53,7 @@ export const Price = Styled.p`
 `
 
 export const CartIcon = Styled(FaCartPlus)`
-    color: blue;
+    color:  ${(props) => props.theme.colors.background.icon};
     margin-left:1rem;
+  
 `

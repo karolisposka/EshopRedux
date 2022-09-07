@@ -19,8 +19,8 @@ export const LogoWrapper = Styled.div`
 
 `
 export const LogoImg = Styled.img`
-    width:3rem;
-    height:3rem;
+    width:5rem;
+    height:5rem;
 
 `
 export const StyledLoader = Styled(Loader)`
@@ -35,7 +35,7 @@ export const CartWrapper = Styled.div`
 `
 export const CartIcon = Styled(FaCartArrowDown)`
     font-size:1.5rem;
-    color:blue; //pakeisti spalva
+    color: ${(props) => props.theme.colors.background.icons}; //pakeisti spalva
     display:relative;
     cursor:pointer;
     
@@ -45,7 +45,7 @@ export const CartItemsNumber = Styled.span`
     width:1rem;
     height:1rem;
     padding:0.2rem;
-    background:red; //pakeisti spalva
+    background:${(props) => props.theme.colors.background.warning}; //pakeisti spalva
     font-size:0.8rem;
     border-radius:100%;
     display:flex;

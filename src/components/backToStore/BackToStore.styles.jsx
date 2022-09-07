@@ -5,14 +5,21 @@ export const Container = Styled.div`
     width:100%;
     text-align:Center;
     padding:5rem;
+    font-family: ${(props) => props.theme.fonts.names.primary};
 `
 
 export const Icon = Styled(FaShoppingBag)`
-  color:blue; //pakeisti spalva
+  font-family: ${(props) => props.theme.fonts.names.icon}; 
+  padding:2rem;
+  font-size:3rem;//pakeisti spalva
 
 `
 
 export const Button = Styled.button`
+  background: ${(props) => props.theme.colors.background.secondary};
+  font-size:${(props) => props.theme.fonts.size.small};
+  padding:0.5rem;
+  
   
 
 `

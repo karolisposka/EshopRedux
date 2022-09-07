@@ -12,5 +12,6 @@ export const TableCell = Styled.td`
 
 `
 export const DeleteIcon = Styled(AiOutlineClose)`
-    color: red;
+    color: ${(props) => props.theme.colors.background.danger};
+    font-size:${(props) => props.theme.fonts.size.small}
 `

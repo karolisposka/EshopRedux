@@ -10,7 +10,6 @@ const slice = createSlice({
     name: "products",
     initialState: {
         list: [],
-        filteredList: [],
         categories: [],
         loading: false,
         lastFetch: null,
@@ -21,11 +20,13 @@ const slice = createSlice({
             products.list.push(action.payload)
         },
         productsFiltered: (products, action) => {
-            products.filteredList = products.list.filter((item) => item.category === action.payload)
+            products.list = products.list.filter((item) => item.category === action.payload)
         },
         productsSortedByPrice: (products, action) => {
-            if (action.payload === "price") {
+            if (action.payload === "lowest price") {
                 products.list.sort((a, b) => a.price - b.price)
+            } else if (action.payload === "highest price") {
+                products.list.sort((a, b) => b.price - a.price)
             } else if (action.payload === "popularity") {
                 products.list.sort((a, b) => b.title - a.title)
             }
@@ -48,14 +49,19 @@ const slice = createSlice({
 //action creator
 
 export const loadProducts = () => (dispatch, getState) => {
-    const { lastFetch } = getState().entities.products
-
-    const diff = moment().diff(moment(lastFetch), "minutes")
-    if (diff < 10) return
-
     dispatch(
         apiCallBegan({
             url,
+            onStart: productsRequested.type,
+            onSuccess: productsRecieved.type,
+        })
+    )
+}
+
+export const filterProducts = (category) => (dispatch, getState) => {
+    dispatch(
+        apiCallBegan({
+            url: url + "/" + category,
             onStart: productsRequested.type,
             onSuccess: productsRecieved.type,
         })
@@ -66,7 +72,7 @@ export const loadCategories = () => (dispatch, getState) => {
     const { lastCategoriesFetch } = getState().entities.products
 
     const diff = moment().diff(moment(lastCategoriesFetch), "minutes")
-    if (diff < 10) return
+    if (diff < 1) return
 
     dispatch(
         apiCallBegan({
