@@ -13,7 +13,7 @@ const api =
 
         try {
             const res = await axios.request({
-                baseURL: "http://localhost:8080/",
+                baseURL: process.env.REACT_APP_BACKEND_BASE,
                 url,
                 method,
                 data,

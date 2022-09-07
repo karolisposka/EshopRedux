@@ -1,21 +1,16 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import Container from "../components/Container/Container"
 import ProductsList from "../components/ProductsList/ProductsList"
 import Menu from "../components/menu/Menu"
 import Filters from "../components/filters/Filters"
 import SelectDropDown from "../components/SelectDropDown/SelectDropDown"
+import SearchBox from "../components/searchBox/SearchBox"
 import CategoriesList from "../components/categoriesList/CategoriesList"
-import {
-    loadProducts,
-    categoriesFiltered,
-    loadCategories,
-    productsSortedByPrice,
-    resetProducts,
-    filterProducts,
-} from "../store/products"
+import { loadProducts, loadCategories, productsSortedByPrice } from "../store/products"
 import { useSelector, useDispatch } from "react-redux"
 
 const Home = () => {
+    const [spin, setSpin] = useState(false)
     const dispatch = useDispatch()
 
     dispatch(loadCategories())
@@ -32,9 +27,13 @@ const Home = () => {
             <Container>
                 <Filters
                     handleClick={() => {
-                        console.log("hi")
+                        setSpin(true)
                         dispatch(loadProducts())
+                        setTimeout(() => {
+                            setSpin(false)
+                        }, 200)
                     }}
+                    spin={spin}
                 >
                     <SelectDropDown
                         options={[
@@ -44,6 +43,12 @@ const Home = () => {
                         ]}
                         handleChange={(value) => {
                             dispatch(productsSortedByPrice(value))
+                        }}
+                    />
+                    <SearchBox
+                        placeholder="Search"
+                        handleChange={(e) => {
+                            console.log(e)
                         }}
                     />
                 </Filters>

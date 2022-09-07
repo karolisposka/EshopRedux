@@ -2,10 +2,6 @@ import { createSlice } from "@reduxjs/toolkit"
 import moment from "moment"
 import { apiCallBegan } from "./api"
 
-const url = "v1/products/get"
-const urlPost = "postBug"
-const urlCategories = "v1/products/categories"
-
 const slice = createSlice({
     name: "products",
     initialState: {
@@ -54,7 +50,7 @@ const slice = createSlice({
 export const loadProducts = () => (dispatch, getState) => {
     dispatch(
         apiCallBegan({
-            url,
+            url: process.env.REACT_APP_PRODUCTS_GET,
             onStart: productsRequested.type,
             onSuccess: productsRecieved.type,
         })
@@ -64,7 +60,7 @@ export const loadProducts = () => (dispatch, getState) => {
 export const filterProducts = (category) => (dispatch, getState) => {
     dispatch(
         apiCallBegan({
-            url: url + "/" + category,
+            url: process.env.REACT_APP_PRODUCTS_GET_CATEGORY + category,
             onStart: productsRequested.type,
             onSuccess: productsRecieved.type,
         })
@@ -79,20 +75,12 @@ export const loadCategories = () => (dispatch, getState) => {
 
     dispatch(
         apiCallBegan({
-            url: urlCategories,
+            url: process.env.REACT_APP_CATEGORIES_GET,
             onStart: productsRequested.type,
             onSuccess: categoriesRecieved.type,
         })
     )
 }
-
-export const addProduct = (products) =>
-    apiCallBegan({
-        url: urlPost,
-        method: "post",
-        data: products,
-        onSuccess: productsAdded.type,
-    })
 
 export const {
     productsAdded,

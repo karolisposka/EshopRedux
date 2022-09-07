@@ -32,6 +32,18 @@ export const RefreshIcon = Styled(BiRefresh)`
     color: ${(props) => props.theme.colors.background.warning};
     font-size: ${(props) => props.theme.fonts.size.medium};
     cursor: pointer;
-    
-
+    &&.fade-enter {
+        transform: rotate(0deg);
+    }
+    &&.fade-enter-active {
+        transform: rotate(360deg);
+        transition: all 700ms ease-out;
+    }
+    &&.fade-exit {
+        transform: rotate(360deg);
+    }
+    &&.fade-exit-active {
+        transform: rotate(720deg);
+        transition: all 700ms ease-out;
+    }
 `
