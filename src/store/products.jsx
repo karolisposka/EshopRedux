@@ -12,6 +12,7 @@ const slice = createSlice({
         list: [],
         categories: [],
         loading: false,
+        mount: "",
         lastFetch: null,
         lastCategoriesFetch: null,
     },
@@ -33,6 +34,7 @@ const slice = createSlice({
         },
         productsRequested: (products, action) => {
             products.loading = true
+            products.mount = false
         },
         categoriesRecieved: (products, action) => {
             products.categories = action.payload
@@ -42,6 +44,7 @@ const slice = createSlice({
         productsRecieved: (products, action) => {
             products.list = action.payload
             products.loading = false
+            products.mount = true
             products.lastFetch = Date.now()
         },
     },

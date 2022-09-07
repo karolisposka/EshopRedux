@@ -15,7 +15,6 @@ const Cart = () => {
     const totalQuantity = cartData.reduce((current, value) => current + value.quantity, 0)
     const totalAmount = cartData.reduce((current, value) => current + value.price * value.quantity, 0)
     const deliveryAtHome = 5
-
     console.log(cartData)
 
     const options = [
@@ -42,7 +41,7 @@ const Cart = () => {
                                 }}
                             />
                         </CartContainer>
-                        {deliveryOption === deliveryAtHome && <ShippingForm title="Shipping address">hi</ShippingForm>}
+                        {deliveryOption === deliveryAtHome && <ShippingForm title="Shipping address"></ShippingForm>}
                     </>
                 )}
             </Container>

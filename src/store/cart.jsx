@@ -35,8 +35,7 @@ const Slice = createSlice({
             }
         },
         cartItemRemove: (state, action) => {
-            const index = state.cart.findIndex((element) => element.id === action.payload.id)
-            state.cart.splice(index, index + 1)
+            state.cart = state.cart.filter((item) => item.id !== action.payload.id)
         },
         cartItemsRequested: (state, action) => {
             state.loading = true

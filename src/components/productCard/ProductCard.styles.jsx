@@ -10,6 +10,20 @@ export const Card = Styled.div`
     justify-content:Space-between;
     align-items:center;
     font-family: ${(props) => props.theme.fonts.names.primary};
+    &.fade-enter {
+    opacity: 0;
+  }
+  &.fade-enter-active {
+    transition: opacity 300ms;
+    opacity: 1;
+  }
+  &.fade-exit {
+    opacity: 1;
+  }
+  &.fade-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
+  }
 `
 
 export const Title = Styled.h1`

@@ -21,7 +21,7 @@ const CartTable = ({ items }) => {
                 {items &&
                     items.map((item, index) => (
                         <CSSTransition key={index} timeout={200} classNames="fade">
-                            <S.StyledCartTableItem
+                            <CartTableItem
                                 classNames="fade"
                                 title={item.title}
                                 price={item.price}

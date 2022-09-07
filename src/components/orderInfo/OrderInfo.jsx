@@ -17,13 +17,15 @@ const OrderInfo = ({ quantity, totalPrice, handleChange, options, deliveryOption
                 <S.SmallText>Sub-Total:</S.SmallText>
                 <S.Span>{totalPrice} € </S.Span>
             </S.TextWrapper>
-            <S.SmallText>Devilery:</S.SmallText>
-            <S.Select
-                options={options}
-                handleChange={(e) => {
-                    handleChange(e)
-                }}
-            />
+            <S.TextWrapper>
+                <S.SmallText>Devilery:</S.SmallText>
+                <S.Select
+                    options={options}
+                    handleChange={(e) => {
+                        handleChange(e)
+                    }}
+                />
+            </S.TextWrapper>
             <S.TextWrapper>
                 <S.SmallText>Total:</S.SmallText>
                 <S.Span>

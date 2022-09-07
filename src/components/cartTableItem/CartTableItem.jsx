@@ -13,7 +13,7 @@ const CartTableItem = ({ title, price, quantity, id, classNames }) => {
             <S.TableRow key={id} classNames={classNames}>
                 <S.TableCell></S.TableCell>
                 <S.TableCell>{title}</S.TableCell>
-                <S.TableCell>{price} €</S.TableCell>
+                <S.TableCell>{price.toFixed(2)} €</S.TableCell>
                 <S.TableCell>
                     <QuantityReducer
                         quantity={quantity}

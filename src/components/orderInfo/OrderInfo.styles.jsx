@@ -5,6 +5,8 @@ export const Container = Styled.div`
   flex:1;
   margin:2rem;
   border:1px solid rgba(0,0,0,0.3);
+  font-family: ${(props) => props.theme.fonts.names.primary};
+  
   
 
 `
@@ -19,6 +21,11 @@ export const TextWrapper = Styled.div`
   display:flex;
   align-items:center; 
   padding:0 1rem;
+  &:nth-child(4){
+    display:block;
+  }
+
+
 
 `
 
@@ -28,12 +35,10 @@ export const Span = Styled.span`
 `
 
 export const Select = Styled(SelectDropDown)`
-  margin:1rem;
+  
 `
 
 export const SmallText = Styled.h4`
-  &:nth-child(3){
-    margin-left:1rem;
-  }
+  
   
 `
