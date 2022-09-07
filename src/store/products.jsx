@@ -67,6 +67,16 @@ export const filterProducts = (category) => (dispatch, getState) => {
     )
 }
 
+export const searchProducts = (query) => (dispatch, getState) => {
+    dispatch(
+        apiCallBegan({
+            url: process.env.REACT_APP_PRODUCTS_SEARCH + query,
+            onStart: productsRequested.type,
+            onSuccess: productsRecieved.type,
+        })
+    )
+}
+
 export const loadCategories = () => (dispatch, getState) => {
     const { lastCategoriesFetch } = getState().entities.products
 

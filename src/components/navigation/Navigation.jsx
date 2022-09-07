@@ -22,6 +22,7 @@ const Navigation = () => {
                     {(loadersState || data.loading) && <S.StyledLoader />}
                 </S.LogoWrapper>
                 <S.CartWrapper>
+                    <S.UserIcon />
                     <S.CartItemsNumber>{totalQuantity}</S.CartItemsNumber>
                     <S.CartIcon
                         onClick={() => {

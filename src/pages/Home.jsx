@@ -6,7 +6,7 @@ import Filters from "../components/filters/Filters"
 import SelectDropDown from "../components/SelectDropDown/SelectDropDown"
 import SearchBox from "../components/searchBox/SearchBox"
 import CategoriesList from "../components/categoriesList/CategoriesList"
-import { loadProducts, loadCategories, productsSortedByPrice } from "../store/products"
+import { loadProducts, loadCategories, productsSortedByPrice, searchProducts } from "../store/products"
 import { useSelector, useDispatch } from "react-redux"
 
 const Home = () => {
@@ -47,8 +47,11 @@ const Home = () => {
                     />
                     <SearchBox
                         placeholder="Search"
-                        handleChange={(e) => {
-                            console.log(e)
+                        handleChange={(query) => {
+                            const data = dispatch(searchProducts(query))
+                            if (query.length === 0) {
+                                dispatch(loadProducts())
+                            }
                         }}
                     />
                 </Filters>

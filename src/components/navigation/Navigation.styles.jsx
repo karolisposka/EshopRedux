@@ -1,7 +1,7 @@
 import Styled from "styled-components"
 import Container from "../Container/Container"
 import Loader from "../loader/Loader"
-import { FaCartArrowDown } from "react-icons/fa"
+import { FaCartArrowDown, FaUser } from "react-icons/fa"
 
 export const NavigationContainer = Styled(Container)`
   border-bottom:1px solid rgba(0,0,0,0.6);  
@@ -40,6 +40,15 @@ export const CartIcon = Styled(FaCartArrowDown)`
     cursor:pointer;
     
 `
+
+export const UserIcon = Styled(FaUser)`
+    color:${(props) => props.theme.colors.background.icon};
+    cursor:pointer;
+    margin: 0 2rem;
+    font-size:1.5rem;
+
+`
+
 export const CartItemsNumber = Styled.span`
     color:white; //pakeisti spalva
     width:1rem;

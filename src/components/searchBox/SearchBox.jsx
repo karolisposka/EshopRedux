@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import * as S from "./SearchBox.styles"
 
 const SearchBox = ({ name, placeholder, handleChange }) => {
-    console.log(process.env)
     const [inputValue, setInputValue] = useState()
     return (
         <S.SearchBoxContainer>
