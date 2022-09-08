@@ -29,8 +29,8 @@ export const FilterIcon = Styled(FaFilter)`
 `
 
 export const RefreshIcon = Styled(BiRefresh)`
-    color: ${(props) => props.theme.colors.background.warning};
-    font-size: ${(props) => props.theme.fonts.size.medium};
+    color: ${(props) => props.theme.colors.fonts.info};
+    font-size: ${(props) => props.theme.fonts.size.strong};
     cursor: pointer;
     &&.fade-enter {
         transform: rotate(0deg);

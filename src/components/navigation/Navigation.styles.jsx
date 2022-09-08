@@ -46,6 +46,7 @@ export const UserIcon = Styled(FaUser)`
     cursor:pointer;
     margin: 0 2rem;
     font-size:1.5rem;
+    position:relative;
 
 `
 

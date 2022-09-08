@@ -13,11 +13,12 @@ export const Label = Styled.label`
 `
 
 export const InputWrapper = Styled.div`
-   background:rgba(0,0,0,0.1);
    display:flex;
    justify-content:Space-between;
    align-items:Center;
    position:relative;
+   border:1px solid rgba(0,0,0,0.3);
+   border-radius:0.25rem;
    
        
 `
@@ -31,7 +32,7 @@ export const Input = Styled.input`
 `
 
 export const CommentIcon = Styled(FaExclamation)`
-    color:${(props) => props.theme.colors.background.danger}; //pakeisti spalva
+    color:${(props) => props.theme.colors.background.warning}; //pakeisti spalva
     cursor: pointer; 
     margin:0 1rem;
     

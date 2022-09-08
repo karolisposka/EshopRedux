@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react"
 import * as S from "./ProductCard.styles"
 import PropTypes from "prop-types"
 import { useDispatch, useSelector } from "react-redux"
-import { increment } from "../../store/cart"
+import { increment, decrement } from "../../store/cart"
+import QuantityReducer from "../quantityReducer/QuantityReducer"
 
 const ProductCard = ({ description, title, price, handleClick, className, id }) => {
     const data = useSelector((state) => state.entities.cart)
@@ -36,10 +37,18 @@ const ProductCard = ({ description, title, price, handleClick, className, id }) 
                 )}
             </S.Text>
             <S.Price>{price} € </S.Price>
-            <S.StyledButton handleClick={() => dispatch(increment({ id: id, title: title, price: price }))}>
-                Add to Cart
-                <S.CartIcon />
-            </S.StyledButton>
+            {data.cart.filter((item) => item.id === id).length === 0 ? (
+                <S.StyledButton handleClick={() => dispatch(increment({ id: id, title: title, price: price }))}>
+                    Add to Cart
+                    <S.CartIcon />
+                </S.StyledButton>
+            ) : (
+                <QuantityReducer
+                    quantity={data.cart.filter((items) => items.id === id).map((item) => item.quantity)}
+                    handleIncrement={() => dispatch(increment({ id: id, title: title, price: price }))}
+                    handleDecrement={() => dispatch(decrement({ id: id }))}
+                />
+            )}
         </S.Card>
     )
 }
