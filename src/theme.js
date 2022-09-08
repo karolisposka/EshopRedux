@@ -8,10 +8,12 @@ const theme = {
         danger:'#EB1D36',
         warning: '#FF5D5D',
         icons: "#06283D",
+        info: '#3AB0FF',
 
         
     },
     fonts: {
+      light:'#F9F2ED',
       info:'#516BEB',
     }
       

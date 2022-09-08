@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import * as S from "./QuantityReducer.styles"
 
 const QuantityReducer = ({ quantity, handleDecrement, handleIncrement }) => {
@@ -9,6 +10,12 @@ const QuantityReducer = ({ quantity, handleDecrement, handleIncrement }) => {
             <S.IncrementBtn onClick={handleIncrement}>+</S.IncrementBtn>
         </S.ReducerContainer>
     )
+}
+
+QuantityReducer.propTypes = {
+    quantity: PropTypes.number.isRequired,
+    handleDecrement: PropTypes.func.isRequired,
+    handleIncrement: PropTypes.func.isRequired,
 }
 
 export default QuantityReducer
