@@ -12,6 +12,9 @@ export const FiltersContainer = Styled.div`
 
 export const Category = Styled.div`
     flex:1;
+    @media(max-width:768px){
+        display:none;
+    }
 
 `
 
@@ -19,13 +22,16 @@ export const FiltersWrapper = Styled.div`
     display:flex;
     align-items:Center;
     flex-direction:row-reverse;
-    flex:3;
+    flex:2;
 
 `
 
 export const FilterIcon = Styled(FaFilter)`
     color:${(props) => props.theme.colors.background.icons};
     margin-left:1rem;
+    @media(max-width:768px){
+        display:none;
+    }
 `
 
 export const RefreshIcon = Styled(BiRefresh)`

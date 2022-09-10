@@ -1,21 +1,19 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { TransitionGroup, CSSTransition } from "react-transition-group"
+import { CSSTransition } from "react-transition-group"
 import * as S from "./ProductsList.styles"
 import { useSelector } from "react-redux"
 
 const ProductsList = ({ items }) => {
-    const data = useSelector((state) => state.entities.products.mount)
-    console.log(data)
+    const data = useSelector((state) => state.products.mount)
     return (
         <S.ProductsList>
             {items &&
                 items.map((item) => (
-                    <CSSTransition in={data} classNames="fade" timeout={300}>
+                    <CSSTransition in={data} classNames="fade" timeout={2000} key={item.id}>
                         <S.StyledProductCard
                             description={item.description}
                             id={item.id}
-                            key={item.id}
                             title={item.title}
                             price={item.price}
                         />
@@ -26,7 +24,13 @@ const ProductsList = ({ items }) => {
 }
 
 ProductsList.propTypes = {
-    items: PropTypes.array.isRequired,
+    items: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        description: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        classNames: PropTypes.string,
+    }),
 }
 
 export default ProductsList

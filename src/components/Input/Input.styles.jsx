@@ -28,6 +28,7 @@ export const Input = Styled.input`
     background:transparent;
     outline:none;
     border:none;
+    width:100%;
     border-radius:0.25rem;
 `
 
@@ -39,13 +40,16 @@ export const CommentIcon = Styled(FaExclamation)`
 `
 
 export const Comment = Styled.div`
-    width:5rem;
-    height:5rem;
+    display:flex;
+    width:10rem;
+    text-align:center;
     position:absolute;
     right:0;
     top:2rem;
-    background:rgba(0,0,0,0.1); //pakeisti spalva
+    background:white; //pakeisti spalva
     border-radius:0.25rem;
+    z-index:3;
+    border:1px solid rgba(0,0,0,0.3);
 `
 
 export const CommentText = Styled.p`

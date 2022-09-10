@@ -2,23 +2,25 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 import ReactDOM from "react-dom/client";
 import theme from '../src/theme';
+import { PersistGate } from 'redux-persist/integration/react';
 import "normalize.css";
 import "./fonts.css";
 import {Provider} from 'react-redux';
-import configureAppSotre from '../src/store/configureStore';
+import configureAppSotre, {persistor} from '../src/store/configureStore';
 import Router from "./Router";
 
-
-console.log(theme)
 const store = configureAppSotre();
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
     <ThemeProvider theme={theme}>
       <Router />
       </ThemeProvider>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

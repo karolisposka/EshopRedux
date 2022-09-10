@@ -1,24 +1,21 @@
 import React from "react"
+import PropTypes from "prop-types"
 import * as S from "./BackToStore.styles"
-import { useNavigate } from "react-router-dom"
 
-const BackToStore = () => {
-    const navigate = useNavigate()
+const BackToStore = ({ handleClick }) => {
     return (
         <>
             <S.Container>
                 <S.Icon />
                 <S.Text>Your bag is empty</S.Text>
-                <S.Button
-                    onClick={() => {
-                        navigate("/")
-                    }}
-                >
-                    Back to store
-                </S.Button>
+                <S.Button onClick={handleClick}>Back to store</S.Button>
             </S.Container>
         </>
     )
+}
+
+BackToStore.propTypes = {
+    handleClick: PropTypes.func.isRequired,
 }
 
 export default BackToStore

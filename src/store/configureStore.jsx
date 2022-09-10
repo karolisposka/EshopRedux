@@ -1,17 +1,37 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit"
+import { configureStore, getDefaultMiddleware, combineReducers } from "@reduxjs/toolkit"
 import storage from "redux-persist/lib/storage"
 import { persistStore, persistReducer } from "redux-persist"
 import api from "../store/middleware/api"
-import reducer from "./reducer"
+import productsReducer from "./products"
+import usersReducer from "./users"
+import cartReducer from "./cart"
+import thunk from "redux-thunk"
+
+const rootReducer = combineReducers({
+    products: productsReducer,
+    cart: cartReducer,
+    users: usersReducer,
+})
+
+const rootPersistConfig = {
+    key: "primary",
+    storage,
+    version: 1,
+}
+
+const persistedReducer = persistReducer(rootPersistConfig, rootReducer)
 
 export default function configureAppStore() {
     return configureStore({
-        reducer,
+        reducer: persistedReducer,
         middleware: [
             ...getDefaultMiddleware({
                 serializableCheck: false,
             }),
             api,
+            thunk,
         ],
     })
 }
+
+export const persistor = persistStore(configureAppStore())

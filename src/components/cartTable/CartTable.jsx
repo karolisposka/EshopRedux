@@ -1,9 +1,8 @@
 import React from "react"
 import * as S from "./CartTable.styles"
+import PropTypes from "prop-types"
 import CartTableItem from "../cartTableItem/CartTableItem"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
-
-console.log(TransitionGroup)
 
 const CartTable = ({ items }) => {
     return (
@@ -22,6 +21,7 @@ const CartTable = ({ items }) => {
                     items.map((item, index) => (
                         <CSSTransition key={index} timeout={200} classNames="fade">
                             <CartTableItem
+                                index={index + 1 + "."}
                                 classNames="fade"
                                 title={item.title}
                                 price={item.price}
@@ -33,6 +33,17 @@ const CartTable = ({ items }) => {
             </TransitionGroup>
         </S.Table>
     )
+}
+
+CartTable.propTypes = {
+    items: PropTypes.shape({
+        index: PropTypes.number.isRequired,
+        className: PropTypes.string,
+        title: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        quantity: PropTypes.number.isRequired,
+        id: PropTypes.number.isRequired,
+    }),
 }
 
 export default CartTable

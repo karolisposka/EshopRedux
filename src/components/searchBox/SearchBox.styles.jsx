@@ -9,6 +9,9 @@ export const SearchBoxContainer = Styled.div`
     flex:2;
     margin:0 0.5rem;
     border-radius:0.25rem;
+    /* @media(max-width:768px){
+        flex:1;
+    } */
 `
 
 export const Input = Styled.input`

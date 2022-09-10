@@ -78,7 +78,7 @@ export const searchProducts = (query) => (dispatch, getState) => {
 }
 
 export const loadCategories = () => (dispatch, getState) => {
-    const { lastCategoriesFetch } = getState().entities.products
+    const { lastCategoriesFetch } = getState().products
 
     const diff = moment().diff(moment(lastCategoriesFetch), "minutes")
     if (diff < 1) return
@@ -101,4 +101,5 @@ export const {
     categoriesRecieved,
     productsSortedByPrice,
 } = slice.actions
+
 export default slice.reducer

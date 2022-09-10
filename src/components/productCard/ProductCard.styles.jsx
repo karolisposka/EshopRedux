@@ -10,35 +10,26 @@ export const Card = Styled.div`
     justify-content:Space-between;
     align-items:center;
     font-family: ${(props) => props.theme.fonts.names.primary};
-    &.fade-enter {
-    opacity: 0;
-  }
-  &.fade-enter-active {
-    transition: opacity 300ms;
-    opacity: 1;
-  }
-  &.fade-exit {
-    opacity: 1;
-  }
-  &.fade-exit-active {
-    opacity: 0;
-    transition: opacity 300ms;
-  }
-`
+   `
 
 export const Title = Styled.h1`
-
+    @media(max-width:768px){
+      font-size:1rem;
+    }
     
 `
 
 export const Text = Styled.p`
     font-size:1rem; 
+    @media(max-width:768px){
+      font-size:0.8rem;
+    }
 
 
 `
 
 export const Expand = Styled.span`
-    color:blue;
+    color:${(props) => props.theme.colors.fonts.info};
     font-style: italic;
     font-size:0.8rem;
     border-left: 1px solid rgba(255,255,255,0.6);
@@ -56,7 +47,11 @@ export const StyledButton = Styled(Button)`
     display:flex;
     align-items:center;
     &:hover{
-        color:blue;
+        color:${(props) => props.theme.colors.fonts.info};
+    }
+    @media(max-width:768px){
+      padding:0.25 0.5rem;
+      font-size:0.8rem;
     }
 
 `

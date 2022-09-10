@@ -2,14 +2,12 @@ import { createSlice } from "@reduxjs/toolkit"
 import { apiCallBegan } from "./api"
 import moment from "moment"
 
-const cartUrl = "/get"
-
 const Slice = createSlice({
     name: "cart",
     initialState: {
         cart: [],
         loading: false,
-        status: "",
+        status: false,
     },
     reducers: {
         increment: (state, action) => {
@@ -23,7 +21,11 @@ const Slice = createSlice({
                     price: Number(action.payload.price),
                     title: action.payload.title,
                 })
+                return state
             }
+        },
+        open: (state, action) => {
+            state.status = action.payload
         },
 
         decrement: (state, action) => {
@@ -58,7 +60,7 @@ export const LoadCartItems = (products) => (dispatch, getState) => {
 
     dispatch(
         apiCallBegan({
-            url: cartUrl,
+            url: process.env.REACT_APP_CART_GET,
             method: "post",
             data: products,
             onStart: cartItemsRequested.type,
@@ -67,6 +69,6 @@ export const LoadCartItems = (products) => (dispatch, getState) => {
     )
 }
 
-export const { increment, decrement, cartItemsRequested, cartItemsRecieved, cartItemRemove, changeStatus } =
+export const { increment, decrement, cartItemsRequested, cartItemsRecieved, cartItemRemove, changeStatus, open } =
     Slice.actions
 export default Slice.reducer

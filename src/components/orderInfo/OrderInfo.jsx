@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import CheckoutButton from "../checkoutButton/CheckoutButton"
 import * as S from "./OrderInfo.styles"
 
@@ -43,6 +44,14 @@ const OrderInfo = ({ quantity, totalPrice, handleChange, options, deliveryOption
             )}
         </S.Container>
     )
+}
+
+OrderInfo.propTypes = {
+    quantity: PropTypes.number.isRequired,
+    totalPrice: PropTypes.number.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    options: PropTypes.shape({}),
+    deliveryOption: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 export default OrderInfo

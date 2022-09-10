@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { increment, decrement } from "../../store/cart"
 import QuantityReducer from "../quantityReducer/QuantityReducer"
 
-const ProductCard = ({ description, title, price, handleClick, className, id }) => {
-    const data = useSelector((state) => state.entities.cart)
+const ProductCard = ({ description, title, price, className, id }) => {
+    const data = useSelector((state) => state.cart)
     const dispatch = useDispatch()
     const [showExpandBtn, setShowExpandBtn] = useState(false)
     const [expanded, setExpanded] = useState(false)
@@ -58,7 +58,6 @@ ProductCard.propTypes = {
     className: PropTypes.string,
     title: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
-    handleClick: PropTypes.func.isRequired,
 }
 
 export default ProductCard

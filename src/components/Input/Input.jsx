@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import * as S from "./Input.styles"
 import PropTypes from "prop-types"
 
-const Input = ({ placeholder, name, type, value, handleChange, label, comment }) => {
+const Input = ({ placeholder, name, type, value, handleChange, label, comment, handleBlur }) => {
     const [showComment, setShowComment] = useState(false)
     return (
         <S.InputContainer>
@@ -15,6 +15,7 @@ const Input = ({ placeholder, name, type, value, handleChange, label, comment })
                     onChange={(e) => {
                         handleChange(e)
                     }}
+                    onBlur={handleBlur}
                     value={value}
                 />
                 {comment && (

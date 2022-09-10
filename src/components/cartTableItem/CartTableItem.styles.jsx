@@ -23,6 +23,9 @@ export const TableRow = Styled.tr`
 
 export const TableCell = Styled.td`
     padding:1rem;
+    @media(max-width:768px){
+        
+    }
 
 `
 export const DeleteIcon = Styled(AiOutlineClose)`

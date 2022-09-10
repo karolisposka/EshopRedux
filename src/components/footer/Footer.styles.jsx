@@ -1,10 +1,15 @@
 import Styled from "styled-components"
-import Container from "../Container/Container"
 
-export const StyledContainer = Styled(Container)`
+export const StyledContainer = Styled.div`
     border-top:1px solid rgba(0,0,0,0.3);
-    margin-bottom: auto;
+    height:10rem;
+    width:100%;
     font-family:${(props) => props.theme.fonts.names.primary};
+`
+
+export const Section = Styled.section`
+    max-width:1200px;
+    margin: 0 auto;
 `
 export const ItemsListContainer = Styled.div`
     padding:1rem;   

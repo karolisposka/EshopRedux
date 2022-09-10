@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import PropTypes from "prop-types"
 import * as S from "./SearchBox.styles"
 
 const SearchBox = ({ name, placeholder, handleChange }) => {
@@ -16,6 +17,12 @@ const SearchBox = ({ name, placeholder, handleChange }) => {
             />
         </S.SearchBoxContainer>
     )
+}
+
+SearchBox.propTypes = {
+    name: PropTypes.string.isRequired,
+    placeholder: PropTypes.string.isRequired,
+    handleChange: PropTypes.func.isRequired,
 }
 
 export default SearchBox

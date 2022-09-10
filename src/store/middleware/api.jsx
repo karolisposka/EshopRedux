@@ -20,13 +20,13 @@ const api =
             })
             //general success
             dispatch(apiCallSuccess(res.data))
-            //specific success
+            dispatch(apiCallFailed(res.err))
             if (onSuccess) dispatch({ type: onSuccess, payload: res.data })
         } catch (err) {
             //general error
             dispatch(apiCallFailed(err))
             //specific error
-            if (onError) return dispatch({ type: onError, payload: err.message })
+            if (onError) return dispatch({ type: onError, payload: err.response.data })
         }
     }
 

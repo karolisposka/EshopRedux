@@ -2,7 +2,6 @@ import React from "react"
 import * as Yup from "yup"
 import { useNavigate } from "react-router-dom"
 import * as S from "./ShippingForm.styles"
-import Input from "../Input/Input"
 import { useFormik } from "formik"
 import CheckoutButton from "../checkoutButton/CheckoutButton"
 
@@ -32,19 +31,17 @@ const ShippingForm = ({ title }) => {
             postCode: Yup.string().required(),
         }),
 
-        onSubmit: (values) => {
-            console.log(values)
+        onSubmit: () => {
             navigate("/checkout")
         },
     })
 
-    console.log(formik.errors)
     return (
         <>
             <S.FormContainer>
                 <S.Title>{title}</S.Title>
                 <S.Form onSubmit={formik.handleSubmit}>
-                    <Input
+                    <S.StyledInput
                         type="text"
                         placeholder="First Name"
                         name="firstName"
@@ -54,7 +51,7 @@ const ShippingForm = ({ title }) => {
                         onBlur={formik.handleBlur}
                         value={formik.values.firstName}
                     />
-                    <Input
+                    <S.StyledInput
                         placeholder="Last Name"
                         name="lastName"
                         label="Last Name"
@@ -63,7 +60,7 @@ const ShippingForm = ({ title }) => {
                         onBlur={formik.handleBlur}
                         value={formik.values.lastName}
                     />
-                    <Input
+                    <S.StyledInput
                         placeholder="+370 XXXXXXXX"
                         name="mobile"
                         label="Mobile number"
@@ -72,7 +69,7 @@ const ShippingForm = ({ title }) => {
                         onBlur={formik.handleBlur}
                         value={formik.values.mobile}
                     />
-                    <Input
+                    <S.StyledInput
                         placeholder="Address"
                         name="address"
                         label="Address"
@@ -81,7 +78,7 @@ const ShippingForm = ({ title }) => {
                         onBlur={formik.handleBlur}
                         value={formik.values.address}
                     />
-                    <Input
+                    <S.StyledInput
                         placeholder="City"
                         name="city"
                         label="City"
@@ -90,7 +87,7 @@ const ShippingForm = ({ title }) => {
                         onBlur={formik.handleBlur}
                         value={formik.values.city}
                     />
-                    <Input
+                    <S.StyledInput
                         placeholder="LT-XXXXX"
                         type="text"
                         name="postCode"

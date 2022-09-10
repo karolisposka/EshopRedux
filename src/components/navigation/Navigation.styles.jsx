@@ -2,10 +2,19 @@ import Styled from "styled-components"
 import Container from "../Container/Container"
 import Loader from "../loader/Loader"
 import { FaCartArrowDown, FaUser } from "react-icons/fa"
+import { HiMenu } from "react-icons/hi"
 
-export const NavigationContainer = Styled(Container)`
-  border-bottom:1px solid rgba(0,0,0,0.6);  
+export const NavigationContainer = Styled.div`
+  border-bottom:1px solid rgba(0,0,0,0.6);
+  max-height:6rem;  
 `
+
+export const Section = Styled.section`
+    max-width:1200px;
+    height:100%;
+    margin:0 auto;
+`
+
 export const ItemsContainer = Styled.div`
     display:flex;
     justify-content:space-between;
@@ -16,6 +25,9 @@ export const LogoWrapper = Styled.div`
     margin:1rem 2rem;
     display:flex;
     align-items:center;
+    @media(max-width:768px){
+        margin:0 1rem;
+    }
 
 `
 export const LogoImg = Styled.img`
@@ -30,6 +42,9 @@ export const StyledLoader = Styled(Loader)`
 export const CartWrapper = Styled.div`
     margin: 1rem;
     display:Flex;
+    @media(max-width:768px){
+        display:none;
+    }
     
 
 `
@@ -38,7 +53,18 @@ export const CartIcon = Styled(FaCartArrowDown)`
     color: ${(props) => props.theme.colors.background.icons}; //pakeisti spalva
     display:relative;
     cursor:pointer;
+  
     
+`
+
+export const BurgerMenu = Styled(HiMenu)`
+    font-size:1.5rem;
+    color: ${(props) => props.theme.colors.background.icons};
+    cursor:pointer;
+    margin:1rem;
+    @media(min-width:768px){
+        display:none;
+    }
 `
 
 export const UserIcon = Styled(FaUser)`

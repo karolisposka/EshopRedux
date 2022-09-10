@@ -2,16 +2,16 @@ import React from "react"
 import * as S from "./CartTableItem.styles"
 import QuantityReducer from "../quantityReducer/QuantityReducer"
 import { useDispatch } from "react-redux/es/exports"
-import { CSSTransition } from "react-transition-group"
+import PropTypes from "prop-types"
 import { increment, decrement, cartItemRemove } from "../../store/cart"
 
-const CartTableItem = ({ title, price, quantity, id, classNames }) => {
+const CartTableItem = ({ title, price, quantity, id, classNames, index }) => {
     const dispatch = useDispatch()
     const total = price * quantity
     return (
         <>
             <S.TableRow key={id} classNames={classNames}>
-                <S.TableCell></S.TableCell>
+                <S.TableCell>{index}</S.TableCell>
                 <S.TableCell>{title}</S.TableCell>
                 <S.TableCell>{price.toFixed(2)} €</S.TableCell>
                 <S.TableCell>
@@ -29,7 +29,6 @@ const CartTableItem = ({ title, price, quantity, id, classNames }) => {
                 <S.TableCell>
                     <S.DeleteIcon
                         onClick={() => {
-                            console.log("click")
                             dispatch(cartItemRemove({ id: id }))
                         }}
                     />
@@ -37,6 +36,15 @@ const CartTableItem = ({ title, price, quantity, id, classNames }) => {
             </S.TableRow>
         </>
     )
+}
+
+CartTableItem.propTypes = {
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    quantity: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    classNames: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired,
 }
 
 export default CartTableItem

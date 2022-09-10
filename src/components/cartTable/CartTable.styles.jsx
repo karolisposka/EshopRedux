@@ -3,11 +3,14 @@ import Styled from "styled-components"
 export const Table = Styled.table`
     width:100%;
     border-collapse:collapse;
-    flex:2;
+    flex:3;
     border:1px solid rgba(0,0,0,0.3);
     margin:2rem;
     font-family: ${(props) => props.theme.fonts.names.primary};
     box-shadow: 1px 1px 2px 2px rgba(0,0,0,0.11);
+    @media(max-width:768px){
+        width:100%;
+    }
 `
 
 export const TableHeaders = Styled.thead`
