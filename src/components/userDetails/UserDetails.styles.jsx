@@ -1,8 +1,8 @@
 import Styled from "styled-components"
 import CategoriesList from "../categoriesList/CategoriesList"
 import Carousel from "../carousel/Carousel"
-import Container from "../Container/Container"
 import { FaBox, FaHistory, FaAddressBook } from "react-icons/fa"
+import AddAddressForm from "../addAddressForm/AddAddressForm"
 
 export const ContentSection = Styled.section`
     display:flex;
@@ -20,8 +20,10 @@ export const WindowWrapper = Styled.div`
   flex:3;
   margin:1rem;
   min-height:74vh;
+  box-sizing:border-box;
   @media(max-width:768px){
     flex:none;
+    width:calc(100% - 2rem);
   }
 
 `
@@ -34,7 +36,7 @@ export const StyledCarousel = Styled(Carousel)`
 
 export const TitleContainer = Styled.div`
   margin:1rem;
-  width:100%;
+  min-width:100%;
   font-family:${(props) => props.theme.fonts.names.primary};
   background:${(props) => props.theme.colors.background.secondary};
 
@@ -78,4 +80,7 @@ export const AddAddress = Styled.button`
   cursor:pointer;
   box-sizing:border-box;
   
+`
+export const StyledAddAddressForm = Styled(AddAddressForm)`
+   
 `

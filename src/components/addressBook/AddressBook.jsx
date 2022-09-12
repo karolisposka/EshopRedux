@@ -1,18 +1,12 @@
 import React from "react"
 import * as S from "./AddressBook.styles"
 import AddressCard from "../addressCard/AddressCard"
+import ErrorNotification from "../errorNotification/ErrorNotification"
 
 const AddressBook = ({ data, handleChange, handleDelete }) => {
-    const setStatus = (status) => {
-        if (status === 0) {
-            return 1
-        } else {
-            return 0
-        }
-    }
     return (
         <S.AddressBook>
-            {data.address ? (
+            {data.address.length > 0 ? (
                 data.address.map((item) => (
                     <AddressCard
                         lastName={item.last_name}
@@ -31,7 +25,7 @@ const AddressBook = ({ data, handleChange, handleDelete }) => {
                     />
                 ))
             ) : (
-                <div>{data.error.err}</div>
+                <ErrorNotification>No data found</ErrorNotification>
             )}
         </S.AddressBook>
     )

@@ -4,11 +4,12 @@ import SelectDropDown from "../SelectDropDown/SelectDropDown"
 export const Container = Styled.div`
   flex:1;
   margin:2rem;
+  box-sizing:border-box;
   border:1px solid rgba(0,0,0,0.3);
   font-family: ${(props) => props.theme.fonts.names.primary};
   box-shadow: 1px 1px 2px 2px rgba(0,0,0,0.11);
   @media(max-width:768px){
-    width:100%;
+    width:calc(100% - 2rem);
     flex:none;
   }
   

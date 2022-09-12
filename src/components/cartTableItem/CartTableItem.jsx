@@ -15,7 +15,7 @@ const CartTableItem = ({ title, price, quantity, id, classNames, index }) => {
                 <S.TableCell>{title}</S.TableCell>
                 <S.TableCell>{price.toFixed(2)} €</S.TableCell>
                 <S.TableCell>
-                    <QuantityReducer
+                    <S.StyledQuantityReducer
                         quantity={quantity}
                         handleDecrement={() => {
                             dispatch(decrement({ id: id }))

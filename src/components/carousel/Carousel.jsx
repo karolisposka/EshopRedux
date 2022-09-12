@@ -19,9 +19,9 @@ const Carousel = ({ items, className }) => {
             }}
         >
             {items &&
-                items.map((item) => (
-                    <SwiperSlide>
-                        <Tab>{item}</Tab>
+                items.map((item, index) => (
+                    <SwiperSlide key={index}>
+                        <Tab onClick={item.handleClick}>{item.text}</Tab>
                     </SwiperSlide>
                 ))}
         </Swiper>

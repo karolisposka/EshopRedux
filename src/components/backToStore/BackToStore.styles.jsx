@@ -3,8 +3,11 @@ import { FaShoppingBag } from "react-icons/fa"
 
 export const Container = Styled.div`
     width:100%;
+    min-height:74vh;
     text-align:Center;
-    padding:5rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
     font-family: ${(props) => props.theme.fonts.names.primary};
 `
 

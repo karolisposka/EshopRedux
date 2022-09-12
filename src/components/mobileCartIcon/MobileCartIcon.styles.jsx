@@ -11,8 +11,8 @@ export const Container = Styled.div`
   width:3.5rem;
   height:3.5rem;
   justify-content:Center;
-  bottom:1rem;
-  right:1rem;
+  bottom:1.5rem;
+  right:1.5rem;
   border-radius:50%;
   @media(max-width:768px){
     display:flex;
@@ -25,7 +25,7 @@ export const SpanFrame = Styled.div`
   background:white;
   position:absolute;
   top:2rem;
-  left:1rem;
+  left:0.5rem;
   border-radius:50%;
   width:0.5rem;
   height:0.5rem;

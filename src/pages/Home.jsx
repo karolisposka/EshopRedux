@@ -39,8 +39,11 @@ const Home = () => {
                     <MobileSideMenu
                         open={mobileSideBarStatus}
                         categories={categories}
-                        handleClick={() => {
+                        handleExit={() => {
                             dispatch(open(false))
+                        }}
+                        handleClick={() => {
+                            navigate("/account")
                         }}
                     />
                     <Filters

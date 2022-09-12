@@ -7,6 +7,20 @@ export const FormContainer = Styled.div`
     width:100%;
     margin:1rem auto;
     border:1px solid rgba(0,0,0,0.3);
+    &&.fade-enter {
+    opacity:0;
+    }
+    &&.fade-enter-active {
+    opacity:1;
+    transition: all 300ms ease-in-out;
+    }
+    &&.fade-exit {
+    opacity: 1;
+    }
+    &&.fade-exit-active {
+    opacity:0;
+    transition: all 300ms ease-in-out;
+    }
 
 `
 

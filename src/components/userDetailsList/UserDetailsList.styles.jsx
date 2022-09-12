@@ -2,6 +2,9 @@ import Styled from "styled-components"
 
 export const Container = Styled.div`
   flex:1;
+  @media(max-width:768px){
+    display:none;
+  }
 
 
 `

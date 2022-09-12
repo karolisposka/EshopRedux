@@ -59,7 +59,9 @@ const slice = createSlice({
             users.address = action.payload
         },
         userDefaultAddressChanged: (users, action) => {
-            users.details.address.default_status = action.payload
+            users.loading = false
+            const itemToCart = users.address.find((item) => item.id === action.payload.id)
+            itemToCart.default_status = action.payload.status
         },
         addressDeleted: (users, action) => {
             users.address = users.address.filter((item) => item.id !== Number(action.payload.id))
@@ -157,7 +159,8 @@ export const setAddressAsDefault = (data) => (dispatch, getState) => {
             },
             data: data,
             onStart: userDetailsRequested.type,
-            onSucces: userDefaultAddressChanged.type,
+            onError: errorRecieved.type,
+            onSuccess: userDefaultAddressChanged.type,
         })
     )
 }
