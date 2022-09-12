@@ -9,7 +9,7 @@ export const Container = Styled.div`
   box-shadow: 1px 1px 2px 2px rgba(0,0,0,0.11);
   @media(max-width:768px){
     width:100%;
-    flex:0;
+    flex:none;
   }
   
   

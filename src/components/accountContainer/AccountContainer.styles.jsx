@@ -27,7 +27,7 @@ export const Overlay = Styled.div`
     clip-path: ellipse(80% 24% at 51% 0%);
     display:flex;
     flex-direction:column;
-    height:70vh;
+    height:100vh;
     z-index:3;
     justify-content:flex-start;
     left:0;
@@ -38,7 +38,7 @@ export const Overlay = Styled.div`
     transition:1s ease-in-out;
     &.overlay-enter {
         width:100%;
-        height: 70vh;  
+        height: 100vh;  
     }
     &.overlay-enter-active {
         width:100%;
@@ -51,7 +51,7 @@ export const Overlay = Styled.div`
     }
     &.overlay-exit-active {
         width:100%;
-        height:70vh;
+        height:100vh;
     }
 `
 
@@ -74,6 +74,7 @@ export const Text = Styled.p`
 `
 
 export const FormContainer = Styled.div`
-    padding-top:4rem;
+    align-self:flex-end;
     width:80%;
+    padding-bottom:4rem;
 `

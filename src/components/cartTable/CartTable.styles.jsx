@@ -9,7 +9,7 @@ export const Table = Styled.table`
     font-family: ${(props) => props.theme.fonts.names.primary};
     box-shadow: 1px 1px 2px 2px rgba(0,0,0,0.11);
     @media(max-width:768px){
-        width:100%;
+        flex:none;
     }
 `
 

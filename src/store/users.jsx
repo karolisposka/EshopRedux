@@ -11,6 +11,7 @@ const slice = createSlice({
         error: "",
         expanded: false,
         message: "",
+        address: [],
     },
 
     reducers: {
@@ -50,6 +51,28 @@ const slice = createSlice({
             users.loading = "false"
             users.message = action.payload
         },
+        userDetailsRequested: (users, action) => {
+            users.loading = true
+        },
+        userDetailsRecieved: (users, action) => {
+            users.loading = false
+            users.address = action.payload
+        },
+        userDefaultAddressChanged: (users, action) => {
+            users.details.address.default_status = action.payload
+        },
+        addressDeleted: (users, action) => {
+            users.address = users.address.filter((item) => item.id !== Number(action.payload.id))
+        },
+        addressPostRequested: (users, action) => {
+            users.loading = true
+        },
+        addressPostResponseRecieved: (users, action) => {
+            users.address.push(action.payload)
+        },
+        userKeyDeleted: (users, action) => {
+            users.key = ""
+        },
     },
 })
 
@@ -79,6 +102,66 @@ export const register = (data) => (dispatch, getState) => {
     )
 }
 
+export const getUserDetails = () => (dispatch, getState) => {
+    dispatch(
+        apiCallBegan({
+            url: process.env.REACT_APP_USERDETAILS,
+            headers: {
+                Authorization: `Bearer ${getState().users.key}`,
+            },
+            onStart: userDetailsRequested.type,
+            onError: errorRecieved.type,
+            onSuccess: userDetailsRecieved.type,
+        })
+    )
+}
+
+export const deleteAddress = (id) => (dispatch, getState) => {
+    dispatch(
+        apiCallBegan({
+            url: process.env.REACT_APP_DELETEADDRESS + id,
+            method: "delete",
+            headers: {
+                Authorization: `Bearer ${getState().users.key}`,
+            },
+            onStart: userDetailsRequested.type,
+            onSuccess: addressDeleted.type,
+            onError: errorRecieved.type,
+        })
+    )
+}
+
+export const PostAddress = (data) => (dispatch, getState) => {
+    dispatch(
+        apiCallBegan({
+            url: process.env.REACT_APP_POST_NEW_ADDRESS,
+            method: "post",
+            headers: {
+                Authorization: `Bearer ${getState().users.key}`,
+            },
+            data: data,
+            onStart: addressPostRequested.type,
+            onSuccess: addressPostResponseRecieved.type,
+            onError: errorRecieved.type,
+        })
+    )
+}
+
+export const setAddressAsDefault = (data) => (dispatch, getState) => {
+    dispatch(
+        apiCallBegan({
+            url: process.env.REACT_APP_DEFAULTADDRESS,
+            method: "post",
+            headers: {
+                Authorization: `Bearer ${getState().users.key}`,
+            },
+            data: data,
+            onStart: userDetailsRequested.type,
+            onSucces: userDefaultAddressChanged.type,
+        })
+    )
+}
+
 export const {
     formDisplayed,
     userTokenRecieved,
@@ -88,5 +171,12 @@ export const {
     formChanged,
     formChanged2,
     userRegistationStarted,
+    userDetailsRecieved,
+    userDetailsRequested,
+    userDefaultAddressChanged,
+    addressDeleted,
+    addressPostRequested,
+    addressPostResponseRecieved,
+    userKeyDeleted,
 } = slice.actions
 export default slice.reducer

@@ -29,6 +29,10 @@ export const Span = Styled.span`
 
 `
 export const StyledButton = Styled(Button)`
-   margin:0 0 1rem 1rem;
-   padding:0.5rem 1rem;
+    margin: 1rem auto;
+    border: 1px solid rgba(0,0,0,0.3);
+    padding:0.5rem 4rem;
+    margin
+    text-align:Center;
+    display:block;
 `

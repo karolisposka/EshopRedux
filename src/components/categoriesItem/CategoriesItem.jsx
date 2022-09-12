@@ -11,7 +11,9 @@ const CategoriesItem = ({ categoryName }) => {
             <S.Item
                 value={categoryName}
                 onClick={() => {
-                    dispatch(filterProducts(categoryName))
+                    {
+                        dispatch(filterProducts(categoryName))
+                    }
                 }}
             >
                 {categoryName}
