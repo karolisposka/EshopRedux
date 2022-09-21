@@ -3,6 +3,7 @@ import { HiOutlineX, HiBackspace } from "react-icons/hi"
 import { ReactComponent as Pizza } from "../../assets/pizza.svg"
 import Button from "../Button/Button"
 import QuantityReducer from "../quantityReducer/QuantityReducer"
+import Additives from "../additives/Additives"
 
 export const ProductContainer = Styled.section`
   position:fixed;
@@ -18,6 +19,11 @@ export const ExitBtn = Styled(HiOutlineX)`
   color:${(props) => props.theme.colors.background.danger};
   font-size:2rem;
   margin:1rem;
+  transition: transform 0.1s ease-in-out;
+  &:hover{
+  transform: scale(1.25);
+  }
+
 `
 
 export const ProductSection = Styled.section`
@@ -39,7 +45,8 @@ export const ImageWrapper = Styled.div`
 `
 
 export const ProductImage = Styled.img`
-  width:19rem;
+  transition: width 0.3s ease-in-out;
+  width:${(props) => (props.expand ? "22rem" : "19rem")};
   background-size:cover;
   background-position:center;
   background-repeat: no-repeat;
@@ -122,4 +129,8 @@ export const StyledButton = Styled(Button)`
 export const StyledQuantityReducer = Styled(QuantityReducer)`
   margin:1rem 0;
 
+`
+
+export const StyledAdditives = Styled(Additives)`
+    width:100%;
 `

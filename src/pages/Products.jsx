@@ -16,6 +16,7 @@ import {
     productsSortedByPrice,
     searchProducts,
     productsFiltered,
+    getAdditives,
 } from "../store/products"
 import { useSelector, useDispatch } from "react-redux"
 import MobileCartIcon from "../components/mobileCartIcon/MobileCartIcon"
@@ -43,6 +44,7 @@ const Products = () => {
 
     useEffect(() => {
         displayData(url.category)
+        dispatch(getAdditives())
     }, [])
 
     const data = useSelector((state) => state.productsFiltered)

@@ -6,6 +6,7 @@ const slice = createSlice({
     name: "products",
     initialState: {
         list: [],
+        additives: [],
         categories: [],
         loading: false,
         mount: "",
@@ -43,6 +44,9 @@ const slice = createSlice({
             products.mount = true
             products.lastFetch = Date.now()
         },
+        additivesRecieved: (products, action) => {
+            products.additives.push(action.payload)
+        },
         productPosted: (products, action) => {
             products.list.push(action.payload)
             products.loading = false
@@ -50,7 +54,8 @@ const slice = createSlice({
         },
     },
 })
-//action creator
+
+//action creators
 
 export const loadProducts = () => (dispatch, getState) => {
     dispatch(
@@ -97,6 +102,16 @@ export const loadCategories = () => (dispatch, getState) => {
     )
 }
 
+export const getAdditives = () => (dispatch, getState) => {
+    dispatch(
+        apiCallBegan({
+            url: process.env.REACT_APP_GET_ADDITIVES,
+            onStart: productsRequested.type,
+            onSuccess: additivesRecieved.type,
+        })
+    )
+}
+
 export const UploadProduct = (data) => (dispatch, getState) => {
     dispatch(
         apiCallBegan({
@@ -122,6 +137,7 @@ export const {
     categoriesRecieved,
     productsSortedByPrice,
     productPosted,
+    additivesRecieved,
 } = slice.actions
 
 export default slice.reducer

@@ -1,13 +1,13 @@
 import React, { useState } from "react"
 import * as S from "./SingleProductContainer.styles"
-import pizza from "../../assets/pizza.png"
+
 import { increment, decrement } from "../../store/cart"
 import { useSelector, useDispatch } from "react-redux"
 import IngredientTag from "../ingredientTag/IngredientTag"
 
-const SingleProductContainer = ({ handleExit, item }) => {
+const SingleProductContainer = ({ handleExit, item, additives }) => {
     const [ingredients, setIngredients] = useState(item.description.split(","))
-    console.log(ingredients)
+    const [size, setSize] = useState(item.small)
     const [ingredientsState, setIngredientsState] = useState(
         item.description
             .split(",")
@@ -29,12 +29,12 @@ const SingleProductContainer = ({ handleExit, item }) => {
             <S.ProductSection>
                 <S.ImageWrapper>
                     <S.SizeLine>
-                        <S.ProductImage src={item.imageurl} alt="alt" />
+                        <S.ProductImage src={item.imageurl} alt="alt" expand={size === item.big ? true : false} />
                     </S.SizeLine>
                 </S.ImageWrapper>
                 <S.ProductInfoWrapper>
                     <S.Title>{item.title}</S.Title>
-                    <S.SmallText>Size 30cm, tradicinis padas</S.SmallText>
+                    <S.SmallText>Size {size === item.small ? "30cm" : "42cm"}, tradicinis padas</S.SmallText>
                     <S.IngredientsWrapper>
                         {ingredientsState.map((product, index) => (
                             <IngredientTag
@@ -72,8 +72,18 @@ const SingleProductContainer = ({ handleExit, item }) => {
                     </S.IngredientsWrapper>
 
                     <S.description>Choose size:</S.description>
-                    <S.StyledPizza big={true} />
-                    <S.StyledPizza />
+                    <S.StyledPizza
+                        big={true}
+                        onClick={() => {
+                            setSize(item.big)
+                        }}
+                    />
+                    <S.StyledPizza
+                        onClick={() => {
+                            setSize(item.small)
+                        }}
+                    />
+                    <S.StyledAdditives additives={additives} />
                     {data.cart.filter(
                         (product) => product.title === item.title && product.description === ingredients
                     ) ? (
@@ -84,12 +94,12 @@ const SingleProductContainer = ({ handleExit, item }) => {
                                         id: item.id,
                                         title: item.title,
                                         description: ingredients.toString(),
-                                        price: item.price,
+                                        price: size,
                                     })
                                 )
                             }
                         >
-                            Add to Cart for {item.price}€
+                            Add to Cart for {size}€
                         </S.StyledButton>
                     ) : (
                         <S.StyledQuantityReducer
