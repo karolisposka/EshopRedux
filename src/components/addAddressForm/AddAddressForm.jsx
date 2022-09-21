@@ -3,7 +3,7 @@ import { useFormik } from "formik"
 import * as Yup from "yup"
 import * as S from "./AddAddressForm.styles"
 
-const AddAddressForm = ({ handleClose, handleSubmit }) => {
+const AddAddressForm = ({ handleClose, handleSubmit, className }) => {
     const formik = useFormik({
         initialValues: {
             first_name: "",
@@ -30,7 +30,7 @@ const AddAddressForm = ({ handleClose, handleSubmit }) => {
     })
 
     return (
-        <S.FormContainer>
+        <S.FormContainer className={className}>
             <S.Form onSubmit={formik.handleSubmit}>
                 <S.TitleWrapper>
                     <S.Title>Enter Your Address Details</S.Title>

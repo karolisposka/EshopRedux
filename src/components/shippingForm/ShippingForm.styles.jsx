@@ -9,7 +9,6 @@ export const FormContainer = Styled.div`
     width:calc(100% - 2rem);
     margin:1rem;
   }
-  
 `
 export const Title = Styled.h4`
   padding:0.5rem 1rem;
@@ -17,16 +16,30 @@ export const Title = Styled.h4`
 export const Form = Styled.form`
   width:100%;
   border:1px solid rgba(0,0,0,0.3);
-  box-sizing:border-box;
   @media(max-width:768px){
     width:100%;
   }
 `
 
 export const StyledInput = Styled(Input)`
-  width:100%;
+  width:calc(100% - 0.5rem);
   box-sizing:Border-box;
   @media(max-width:768px){
     
   }
+`
+export const CheckBox = Styled.input`
+
+  
+`
+
+export const CheckboxContainer = Styled.div`
+  margin:1rem;
+  display:flex;
+  align-items:Center;
+`
+
+export const Label = Styled.label`
+  margin-left:0.5rem;
+
 `

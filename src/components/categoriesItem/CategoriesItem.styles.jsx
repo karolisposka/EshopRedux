@@ -1,5 +1,6 @@
 import Styled from "styled-components"
 import { FaArrowRight } from "react-icons/fa"
+import { Link } from "react-router-dom"
 
 export const ListItem = Styled.div`
     display:flex;
@@ -8,13 +9,14 @@ export const ListItem = Styled.div`
 
 `
 
-export const Item = Styled.li`
+export const Item = Styled(Link)`
     width:100%;
     border-bottom:1px solid rgba(0,0,0,0.3);
     padding:0.75rem 1rem;
     list-style: none;
     position:relative;
     cursor:pointer;
+    text-decoration:none;
   
 `
 export const Arrow = Styled(FaArrowRight)`

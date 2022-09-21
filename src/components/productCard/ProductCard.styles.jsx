@@ -5,14 +5,36 @@ import { FaCartPlus } from "react-icons/fa"
 export const Card = Styled.div`
     border: 1px solid rgba(0,0,0,0.3);
     border-radius:0.75rem;
+    min-height:10rem;
     position:relative;
-    padding:1rem;
     justify-content:Space-between;
     align-items:center;
+    overflow:hidden;
+    box-sizing:border-box;
     font-family: ${(props) => props.theme.fonts.names.primary};
    `
 
-export const Title = Styled.h1`
+export const Image = Styled.div`
+    width:100%;
+    background-image:url(${(props) => props.image});
+    height:10rem;
+    padding:1rem 0;
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+    transition:0.3s ease-in-out;
+    &:hover{
+        transform:scale(1.05)
+    }
+
+`
+
+export const ContentWrapper = Styled.section`
+    padding:1rem;
+
+`
+export const Title = Styled.h3`
+    margin:0rem 0rem;
     @media(max-width:768px){
       font-size:1rem;
     }

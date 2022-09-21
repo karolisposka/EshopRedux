@@ -1,30 +1,20 @@
 import React from "react"
 import * as S from "./CategoriesItem.styles"
 import PropTypes from "prop-types"
-import { filterProducts } from "../../store/products"
-import { useDispatch } from "react-redux"
 
-const CategoriesItem = ({ categoryName }) => {
-    const dispatch = useDispatch()
+const CategoriesItem = ({ path, text }) => {
     return (
         <S.ListItem>
-            <S.Item
-                value={categoryName}
-                onClick={() => {
-                    {
-                        dispatch(filterProducts(categoryName))
-                    }
-                }}
-            >
-                {categoryName}
+            <S.Item to={path}>
+                {text}
                 <S.Arrow />
             </S.Item>
         </S.ListItem>
     )
 }
-
 CategoriesItem.propTypes = {
-    categoryName: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
 }
 
 export default CategoriesItem

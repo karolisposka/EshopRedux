@@ -1,20 +1,33 @@
-import React from "react"
+import React, { useState } from "react"
 import * as Yup from "yup"
 import { useNavigate } from "react-router-dom"
 import * as S from "./ShippingForm.styles"
 import { useFormik } from "formik"
 import CheckoutButton from "../checkoutButton/CheckoutButton"
+import { useSelector } from "react-redux"
 
-const ShippingForm = ({ title }) => {
+const ShippingForm = ({ title, handleSubmit, handleCheckbox }) => {
+    const [checkbox, setCheckBox] = useState(true)
+    const userData = useSelector((state) => state.users)
+    const CheckIfUserHasDefaultAddress = () => {
+        if (userData.key) {
+            const filteredData = userData.address.filter((item) => item.default_status === 1)[0]
+            return filteredData
+        } else {
+            return ""
+        }
+    }
+    const defaultAddress = CheckIfUserHasDefaultAddress()
+
     const navigate = useNavigate()
     const formik = useFormik({
         initialValues: {
-            firstName: "",
-            lastName: "",
-            mobile: "",
-            address: "",
-            city: "",
-            postCode: "",
+            firstName: "" || defaultAddress.first_name,
+            lastName: "" || defaultAddress.last_name,
+            mobile: "" || defaultAddress.mobile,
+            address: "" || defaultAddress.address,
+            city: "" || defaultAddress.city,
+            postCode: "" || defaultAddress.post_code,
         },
 
         validationSchema: Yup.object({
@@ -31,9 +44,7 @@ const ShippingForm = ({ title }) => {
             postCode: Yup.string().required(),
         }),
 
-        onSubmit: () => {
-            navigate("/checkout")
-        },
+        onSubmit: handleSubmit,
     })
 
     return (
@@ -46,45 +57,45 @@ const ShippingForm = ({ title }) => {
                         placeholder="First Name"
                         name="firstName"
                         label="First Name"
+                        comment={formik.touched.firstName ? formik.errors.firstName : null}
                         handleChange={formik.handleChange}
-                        comment={formik.errors.firstName}
-                        onBlur={formik.handleBlur}
+                        handleBlur={formik.handleBlur}
                         value={formik.values.firstName}
                     />
                     <S.StyledInput
                         placeholder="Last Name"
                         name="lastName"
                         label="Last Name"
-                        comment={formik.errors.lastName}
+                        comment={formik.touched.lastName ? formik.errors.lastName : null}
                         handleChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
+                        handleBlur={formik.handleBlur}
                         value={formik.values.lastName}
                     />
                     <S.StyledInput
                         placeholder="+370 XXXXXXXX"
                         name="mobile"
                         label="Mobile number"
-                        comment={formik.errors.mobile}
+                        comment={formik.touched.mobile ? formik.errors.mobile : null}
                         handleChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
+                        handleBlur={formik.handleBlur}
                         value={formik.values.mobile}
                     />
                     <S.StyledInput
                         placeholder="Address"
                         name="address"
                         label="Address"
-                        comment={formik.errors.address}
+                        comment={formik.touched.address ? formik.errors.address : null}
                         handleChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
+                        handleBlur={formik.handleBlur}
                         value={formik.values.address}
                     />
                     <S.StyledInput
                         placeholder="City"
                         name="city"
                         label="City"
-                        comment={formik.errors.city}
+                        comment={formik.touched.city ? formik.errors.city : null}
                         handleChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
+                        onhandleBlur={formik.handleBlur}
                         value={formik.values.city}
                     />
                     <S.StyledInput
@@ -92,11 +103,23 @@ const ShippingForm = ({ title }) => {
                         type="text"
                         name="postCode"
                         label="PostCode"
-                        comment={formik.errors.postCode}
+                        comment={formik.touched.postCode ? formik.errors.postCode : null}
                         handleChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
+                        handleBlur={formik.handleBlur}
                         value={formik.values.postCode}
                     />
+                    {userData.key && !defaultAddress && (
+                        <S.CheckboxContainer>
+                            <S.CheckBox
+                                type="checkbox"
+                                onChange={() => {
+                                    setCheckBox(!checkbox)
+                                    handleCheckbox(checkbox)
+                                }}
+                            />
+                            <S.Label>I want it to be my default address</S.Label>
+                        </S.CheckboxContainer>
+                    )}
                     <CheckoutButton type="submit" />
                 </S.Form>
             </S.FormContainer>

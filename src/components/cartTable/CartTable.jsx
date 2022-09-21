@@ -27,6 +27,7 @@ const CartTable = ({ items }) => {
                                 price={item.price}
                                 quantity={item.quantity}
                                 id={item.id}
+                                description={item.description}
                             />
                         </CSSTransition>
                     ))}

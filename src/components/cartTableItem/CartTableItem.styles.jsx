@@ -36,6 +36,13 @@ export const DeleteIcon = Styled(AiOutlineClose)`
     cursor: pointer;
 `
 
+export const Span = Styled.span`
+    color:rgba(0,0,0,0.5);
+    display:block;
+    font-size:0.8rem;
+
+`
+
 export const StyledQuantityReducer = Styled(QuantityReducer)`
     max-width:4rem;
     

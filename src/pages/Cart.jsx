@@ -9,11 +9,13 @@ import ShippingForm from "../components/shippingForm/ShippingForm"
 import BackToStore from "../components/backToStore/BackToStore"
 import Footer from "../components/footer/Footer"
 import MainContainer from "../components/mainContainer/MainContainer"
+import AccountPageInfo from "../components/AccountPageInfoSection/AccountPromo"
 
 const Cart = () => {
     const navigate = useNavigate()
     const [deliveryOption, setDeliveryOption] = useState()
     const cartData = useSelector((state) => state.cart.cart)
+    const userKey = useSelector((state) => state.users.key)
     const totalQuantity = cartData.reduce((current, value) => current + value.quantity, 0)
     const totalAmount = cartData.reduce((current, value) => current + value.price * value.quantity, 0)
     const deliveryAtHome = 5
@@ -48,8 +50,14 @@ const Cart = () => {
                                 />
                             </CartContainer>
                             {deliveryOption === deliveryAtHome && (
-                                <ShippingForm title="Shipping address"></ShippingForm>
+                                <ShippingForm
+                                    title="Shipping address"
+                                    handleCheckbox={(values) => {
+                                        console.log(values)
+                                    }}
+                                />
                             )}
+                            {!userKey ? <AccountPageInfo flex="flex" /> : null}
                         </>
                     )}
                 </Container>

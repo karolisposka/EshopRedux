@@ -11,7 +11,9 @@ const Slice = createSlice({
     },
     reducers: {
         increment: (state, action) => {
-            const itemToCart = state.cart.find((item) => item.id === action.payload.id)
+            const itemToCart = state.cart.find(
+                (item) => item.id === action.payload.id && item.description === action.payload.description
+            )
             if (itemToCart) {
                 itemToCart.quantity++
             } else {
@@ -20,6 +22,7 @@ const Slice = createSlice({
                     quantity: Number(1),
                     price: Number(action.payload.price),
                     title: action.payload.title,
+                    description: action.payload.description,
                 })
                 return state
             }
@@ -29,7 +32,9 @@ const Slice = createSlice({
         },
 
         decrement: (state, action) => {
-            const itemToDecrement = state.cart.find((item) => item.id === action.payload.id)
+            const itemToDecrement = state.cart.find(
+                (item) => item.id === action.payload.id && item.description === action.payload.description
+            )
             if (itemToDecrement.quantity <= 1) {
                 itemToDecrement.quantity = 1
             } else {
@@ -37,7 +42,7 @@ const Slice = createSlice({
             }
         },
         cartItemRemove: (state, action) => {
-            state.cart = state.cart.filter((item) => item.id !== action.payload.id)
+            state.cart = state.cart.filter((item) => item.description !== action.payload.description)
         },
         cartItemsRequested: (state, action) => {
             state.loading = true

@@ -1,11 +1,12 @@
 import Styled from "styled-components"
 
 export const Container = Styled.div`
-    margin:2rem;
+  
+
+    flex:2;
 `
 
 export const Section = Styled.section`
-    max-width:600px;
     margin:0 auto;
     overflow: hidden;
     position:relative;

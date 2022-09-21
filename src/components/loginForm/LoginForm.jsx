@@ -3,8 +3,30 @@ import * as S from "./LoginForm.styles"
 import { useFormik } from "formik"
 import * as yup from "yup"
 import Loader from "../loader/Loader"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 const LoginForm = ({ handleClick, handleSubmit, status }) => {
+    const navigate = useNavigate()
+    const data = useSelector((state) => state.users)
+
+    const loginStatus = () => {
+        if (data.loading === false) {
+            return "Log in"
+        }
+        if (data.loading === true) {
+            return <Loader />
+        }
+    }
+
+    const checkIfTokenRecived = () => {
+        if (data.status === true) {
+            navigate("/userDetails")
+        }
+    }
+
+    checkIfTokenRecived()
+
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -41,7 +63,7 @@ const LoginForm = ({ handleClick, handleSubmit, status }) => {
                     handleBlur={formik.handleBlur}
                     value={formik.values.password}
                 />
-                <S.StyledButton type="submit">{status.loading ? <Loader /> : "Log in"}</S.StyledButton>
+                <S.StyledButton type="submit">{loginStatus()}</S.StyledButton>
                 <S.SmallText>
                     Dont have an account? <S.Span onClick={handleClick}>Sign in</S.Span>
                 </S.SmallText>

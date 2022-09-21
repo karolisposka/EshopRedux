@@ -3,6 +3,7 @@ import ProductCard from "../productCard/ProductCard"
 
 export const ProductsList = Styled.div`
     width:100%;
+    min-height:62vh;
     padding:1rem;
     display:flex;
     flex-wrap:wrap;

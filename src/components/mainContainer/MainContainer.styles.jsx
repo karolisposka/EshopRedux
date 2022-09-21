@@ -1,7 +1,7 @@
 import Styled from "styled-components"
 
 export const Container = Styled.div`
-    height:100%;
+    min-height:74vh;
     @media(max-width:768px){
         width:100%;
     }

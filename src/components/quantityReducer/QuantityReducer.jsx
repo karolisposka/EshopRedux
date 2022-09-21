@@ -2,9 +2,9 @@ import React from "react"
 import PropTypes from "prop-types"
 import * as S from "./QuantityReducer.styles"
 
-const QuantityReducer = ({ quantity, handleDecrement, handleIncrement, classNames }) => {
+const QuantityReducer = ({ quantity, handleDecrement, handleIncrement, className }) => {
     return (
-        <S.ReducerContainer classNamaes={classNames}>
+        <S.ReducerContainer className={className}>
             <S.DecrementBtn onClick={handleDecrement}>-</S.DecrementBtn>
             <S.QuantitySpan>{quantity}</S.QuantitySpan>
             <S.IncrementBtn onClick={handleIncrement}>+</S.IncrementBtn>

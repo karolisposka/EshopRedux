@@ -4,8 +4,11 @@ import PropTypes from "prop-types"
 import { useDispatch, useSelector } from "react-redux"
 import { increment, decrement } from "../../store/cart"
 import QuantityReducer from "../quantityReducer/QuantityReducer"
+import { useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 
-const ProductCard = ({ description, title, price, className, id }) => {
+const ProductCard = ({ description, title, smallPrice, className, id, image }) => {
+    const navigate = useNavigate()
     const data = useSelector((state) => state.cart)
     const dispatch = useDispatch()
     const [showExpandBtn, setShowExpandBtn] = useState(false)
@@ -23,32 +26,27 @@ const ProductCard = ({ description, title, price, className, id }) => {
 
     return (
         <S.Card className={className}>
-            <S.Title>{title}</S.Title>
-            <S.Text>
-                {expanded && showExpandBtn ? description.substr(0, 999) : description.substr(0, 45)}
-                {showExpandBtn && (
-                    <S.Expand
-                        onClick={() => {
-                            setExpanded(!expanded)
-                        }}
-                    >
-                        {expanded ? " less" : " more"}
-                    </S.Expand>
-                )}
-            </S.Text>
-            <S.Price>{price} € </S.Price>
-            {data.cart.filter((item) => item.id === id).length === 0 ? (
-                <S.StyledButton handleClick={() => dispatch(increment({ id: id, title: title, price: price }))}>
-                    Add to Cart
+            <S.Image image={image} />
+            <S.ContentWrapper>
+                <S.Title>{title}</S.Title>
+                <S.Text>
+                    {expanded && showExpandBtn ? description.substr(0, 999) : description.substr(0, 45)}
+                    {showExpandBtn && (
+                        <S.Expand
+                            onClick={() => {
+                                setExpanded(!expanded)
+                            }}
+                        >
+                            {expanded ? " less" : " more"}
+                        </S.Expand>
+                    )}
+                </S.Text>
+                <S.Price>from {smallPrice} € </S.Price>
+                <S.StyledButton handleClick={() => navigate(`${title}`)}>
+                    View
                     <S.CartIcon />
                 </S.StyledButton>
-            ) : (
-                <QuantityReducer
-                    quantity={data.cart.filter((items) => items.id === id).map((item) => item.quantity)}
-                    handleIncrement={() => dispatch(increment({ id: id, title: title, price: price }))}
-                    handleDecrement={() => dispatch(decrement({ id: id }))}
-                />
-            )}
+            </S.ContentWrapper>
         </S.Card>
     )
 }

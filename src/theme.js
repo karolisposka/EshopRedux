@@ -4,11 +4,14 @@ const theme = {
   colors: {
     background:{
         primary: "#1e252a",
-        secondary: "#F9F9F9",
-        danger:'#EB1D36',
-        warning: '#FF5D5D',
+        secondary: "#FFDE00",
+        danger:'#D2001A',
+        warning: '#D2001A',
         icons: "#06283D",
         info: '#3AB0FF',
+        light: '#FFFAE7',
+        lightest: '#EFEFEF'
+        
 
         
     },

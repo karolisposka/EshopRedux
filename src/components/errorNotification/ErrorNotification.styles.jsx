@@ -7,22 +7,6 @@ export const NotificationContainer = Styled.div`
   padding:0.75rem;
   font-family:${(props) => props.theme.fonts.names.primary};
   border-radius:0.75rem;
-  &&.show-enter {
-        opacity:0
-    }
-    &&.show-enter-active {
-        opacity:1;
-        transition: 200ms ease-in-out;
-
-    }
-    &&.show-exit {
-        opacity:1;
-    }
-    &&.show-exit-active {
-        opacity:0;
-        transition: 200ms ease-in-out;
-    }
-
 `
 
 export const Span = Styled.div`

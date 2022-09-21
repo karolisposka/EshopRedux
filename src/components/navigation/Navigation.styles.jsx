@@ -31,8 +31,8 @@ export const LogoWrapper = Styled.div`
 
 `
 export const LogoImg = Styled.img`
-    width:5rem;
-    height:5rem;
+    width:3rem;
+    height:3rem;
 
 `
 export const StyledLoader = Styled(Loader)`

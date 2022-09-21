@@ -10,6 +10,7 @@ const slice = createSlice({
         loading: false,
         error: "",
         expanded: false,
+        success: false,
         message: "",
         address: [],
     },
@@ -22,13 +23,16 @@ const slice = createSlice({
             users.loading = true
             users.error = ""
             users.message = ""
+            users.success = false
         },
         userTokenRecieved: (users, action) => {
             users.key = action.payload
             users.loading = false
+            users.success = true
         },
         errorRecieved: (users, action) => {
             users.error = action.payload
+            users.message = ""
             users.loading = false
         },
         formChanged: (users, action) => {
@@ -58,6 +62,11 @@ const slice = createSlice({
             users.loading = false
             users.address = action.payload
         },
+        successMessageRecieved: (users, action) => {
+            users.message = action.payload
+            users.error = ""
+            users.loading = false
+        },
         userDefaultAddressChanged: (users, action) => {
             users.loading = false
             const itemToCart = users.address.find((item) => item.id === action.payload.id)
@@ -65,15 +74,20 @@ const slice = createSlice({
         },
         addressDeleted: (users, action) => {
             users.address = users.address.filter((item) => item.id !== Number(action.payload.id))
+            users.loading = false
         },
         addressPostRequested: (users, action) => {
             users.loading = true
         },
         addressPostResponseRecieved: (users, action) => {
             users.address.push(action.payload)
+            users.loading = false
         },
         userKeyDeleted: (users, action) => {
             users.key = ""
+            users.status = "login"
+            users.error = ""
+            users.success = false
         },
     },
 })
@@ -165,6 +179,23 @@ export const setAddressAsDefault = (data) => (dispatch, getState) => {
     )
 }
 
+export const changePassword = (data) => (dispatch, getState) => {
+    dispatch(
+        apiCallBegan({
+            url: process.env.REACT_APP_CHANGE_PASSWORD,
+            method: "post",
+            headers: {
+                "Content-type": "multipart/form-data",
+                authorization: `Bearer ${getState().users.key}`,
+            },
+            data: data,
+            onStart: userDetailsRequested.type,
+            onError: errorRecieved.type,
+            onSuccess: successMessageRecieved.type,
+        })
+    )
+}
+
 export const {
     formDisplayed,
     userTokenRecieved,
@@ -181,5 +212,6 @@ export const {
     addressPostRequested,
     addressPostResponseRecieved,
     userKeyDeleted,
+    successMessageRecieved,
 } = slice.actions
 export default slice.reducer

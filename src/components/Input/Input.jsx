@@ -2,11 +2,11 @@ import React, { useState } from "react"
 import * as S from "./Input.styles"
 import PropTypes from "prop-types"
 
-const Input = ({ placeholder, name, type, value, handleChange, label, comment, handleBlur }) => {
+const Input = ({ className, placeholder, name, type, value, handleChange, label, comment, handleBlur }) => {
     const [showComment, setShowComment] = useState(false)
     return (
-        <S.InputContainer>
-            <S.Label>{label}</S.Label>
+        <S.InputContainer className={className}>
+            {label && <S.Label>{label}</S.Label>}
             <S.InputWrapper>
                 <S.Input
                     placeholder={placeholder}
@@ -41,8 +41,8 @@ const Input = ({ placeholder, name, type, value, handleChange, label, comment, h
 Input.propTypes = {
     placeholder: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    type: PropTypes.oneOf(["text", "number", "email", "password"]).isRequired,
-    handleSubmit: PropTypes.func.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    type: PropTypes.oneOf(["text", "number", "email", "password", "file"]).isRequired,
 }
 
 export default Input

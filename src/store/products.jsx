@@ -43,6 +43,11 @@ const slice = createSlice({
             products.mount = true
             products.lastFetch = Date.now()
         },
+        productPosted: (products, action) => {
+            products.list.push(action.payload)
+            products.loading = false
+            products.mount = true
+        },
     },
 })
 //action creator
@@ -92,6 +97,22 @@ export const loadCategories = () => (dispatch, getState) => {
     )
 }
 
+export const UploadProduct = (data) => (dispatch, getState) => {
+    dispatch(
+        apiCallBegan({
+            url: process.env.REACT_APP_POST_PRODUCT,
+            method: "post",
+            headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization: `Bearer ${getState().users.key}`,
+            },
+            data: data,
+            onStart: productsRequested.type,
+            onSuccess: productPosted.type,
+        })
+    )
+}
+
 export const {
     productsAdded,
     productsResolved,
@@ -100,6 +121,7 @@ export const {
     productsRequested,
     categoriesRecieved,
     productsSortedByPrice,
+    productPosted,
 } = slice.actions
 
 export default slice.reducer

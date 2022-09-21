@@ -9,8 +9,9 @@ const Carousel = ({ items, className }) => {
             className={className}
             breakpoints={{
                 0: {
-                    width: 640,
+                    width: 768,
                     slidesPerView: 2,
+                    spaceBetween: 10,
                 },
                 768: {
                     width: 768,
@@ -21,7 +22,7 @@ const Carousel = ({ items, className }) => {
             {items &&
                 items.map((item, index) => (
                     <SwiperSlide key={index}>
-                        <Tab onClick={item.handleClick}>{item.text}</Tab>
+                        <Tab onClick={item.handleClick()}>{item.text}</Tab>
                     </SwiperSlide>
                 ))}
         </Swiper>
