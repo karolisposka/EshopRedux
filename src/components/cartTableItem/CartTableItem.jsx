@@ -1,6 +1,5 @@
 import React from "react"
 import * as S from "./CartTableItem.styles"
-import QuantityReducer from "../quantityReducer/QuantityReducer"
 import { useDispatch } from "react-redux/es/exports"
 import PropTypes from "prop-types"
 import { increment, decrement, cartItemRemove } from "../../store/cart"

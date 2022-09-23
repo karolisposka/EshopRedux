@@ -2,21 +2,28 @@ import React, { useState, useEffect } from "react"
 import * as S from "./ProductCard.styles"
 import PropTypes from "prop-types"
 import { useDispatch, useSelector } from "react-redux"
-import { increment, decrement } from "../../store/cart"
-import QuantityReducer from "../quantityReducer/QuantityReducer"
 import { useNavigate } from "react-router-dom"
-import { useParams } from "react-router-dom"
 
-const ProductCard = ({ description, title, smallPrice, className, id, image }) => {
+const ProductCard = ({ description, title, smallPrice, className, category, image }) => {
     const navigate = useNavigate()
     const data = useSelector((state) => state.cart)
-    const dispatch = useDispatch()
     const [showExpandBtn, setShowExpandBtn] = useState(false)
     const [expanded, setExpanded] = useState(false)
 
     const checkDescriptionLength = (text) => {
         if (text.length > 45) {
             setShowExpandBtn(true)
+        }
+    }
+
+    const checkProductCategory = (product) => {
+        switch (product) {
+            case product.includes("Vistiena"):
+                return <S.Chicken />
+            case product.includes("Kumpis"):
+                return <S.Ham />
+            default:
+                ;<div />
         }
     }
 
@@ -28,7 +35,9 @@ const ProductCard = ({ description, title, smallPrice, className, id, image }) =
         <S.Card className={className}>
             <S.Image image={image} />
             <S.ContentWrapper>
-                <S.Title>{title}</S.Title>
+                <S.Title>
+                    {title} {checkProductCategory(description)}
+                </S.Title>
                 <S.Text>
                     {expanded && showExpandBtn ? description.substr(0, 999) : description.substr(0, 45)}
                     {showExpandBtn && (

@@ -17,7 +17,7 @@ export const ListItem = Styled.li`
 
 export const TextWrapper = Styled.div`
   overflow:hidden;
-  transition:0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   height:${(props) => (props.expanded ? "100%" : "0")};
   margin-top:0.5rem;
 

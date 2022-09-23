@@ -2,10 +2,10 @@ import React from "react"
 import PropTypes from "prop-types"
 import * as S from "./CheckoutButton.styles"
 
-const CheckoutButton = ({ type, handleClick }) => {
+const CheckoutButton = ({ type, handleClick, className }) => {
     return (
         <>
-            <S.StyledButton type={type} onClick={handleClick}>
+            <S.StyledButton className={className} type={type} onClick={handleClick}>
                 Checkout <S.Icon />
             </S.StyledButton>
         </>

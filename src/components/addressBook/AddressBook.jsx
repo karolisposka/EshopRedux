@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import * as S from "./AddressBook.styles"
 import AddressCard from "../addressCard/AddressCard"
 import ErrorNotification from "../errorNotification/ErrorNotification"
-import Loader from "../loader/Loader"
+import NoData from "../noData/NoData"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
 
 const AddressBook = ({ data, handleChange, handleDelete, handleSubmit }) => {
@@ -60,7 +60,7 @@ const AddressBook = ({ data, handleChange, handleDelete, handleSubmit }) => {
                         />
                     ))
                 ) : (
-                    <ErrorNotification>No data found</ErrorNotification>
+                    <NoData />
                 )}
             </S.AddressBook>
         </S.Container>

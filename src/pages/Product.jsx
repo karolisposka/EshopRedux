@@ -1,14 +1,20 @@
-import React from "react"
+import React, { useEffect } from "react"
 import SingleProductContainer from "../components/SingleProductContainer/SingleProductContainer"
 import { useParams, useNavigate } from "react-router-dom"
+import { loadProducts, getAdditives } from "../store/products"
 import { useDispatch, useSelector } from "react-redux"
 
 const Product = () => {
-    const { title } = useParams()
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { title } = useParams()
+    useEffect(() => {
+        dispatch(loadProducts())
+        dispatch(getAdditives())
+    }, [])
+
     const data = useSelector((state) => state.products.list).filter((item) => item.title === title)
     const additives = useSelector((state) => state.products.additives)
-    console.log(additives)
     return (
         <SingleProductContainer
             item={data[0]}

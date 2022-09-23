@@ -3,6 +3,7 @@ import Container from "../Container/Container"
 import Loader from "../loader/Loader"
 import { FaCartArrowDown, FaUser } from "react-icons/fa"
 import { HiMenu } from "react-icons/hi"
+import { RiAdminFill } from "react-icons/ri"
 
 export const NavigationContainer = Styled.div`
   border-bottom:1px solid rgba(0,0,0,0.6);
@@ -50,7 +51,7 @@ export const CartWrapper = Styled.div`
 `
 export const CartIcon = Styled(FaCartArrowDown)`
     font-size:1.5rem;
-    color: ${(props) => props.theme.colors.background.icons}; //pakeisti spalva
+    color: ${(props) => props.theme.colors.background.icons}; 
     display:relative;
     cursor:pointer;
   
@@ -76,8 +77,16 @@ export const UserIcon = Styled(FaUser)`
 
 `
 
+export const AdminIcon = Styled(RiAdminFill)`
+    color:${(props) => props.theme.colors.background.icon};
+    cursor:pointer;
+    font-size:1.7rem;
+    position:relative;
+
+`
+
 export const CartItemsNumber = Styled.span`
-    color:white; //pakeisti spalva
+    color:white; 
     width:1rem;
     height:1rem;
     padding:0.2rem;

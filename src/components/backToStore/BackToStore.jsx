@@ -8,7 +8,7 @@ const BackToStore = ({ handleClick }) => {
             <S.Container>
                 <S.Icon />
                 <S.Text>Your bag is empty</S.Text>
-                <S.Button onClick={handleClick}>Back to store</S.Button>
+                <S.StyledButton handleClick={handleClick}>Back to store</S.StyledButton>
             </S.Container>
         </>
     )

@@ -59,18 +59,8 @@ export const Expand = Styled.span`
     
 `
 
-export const StyledButton = Styled(Button)`
-    border:none;
-    margin-bottom:auto;
-    border:1px solid rgba(0,0,0,0.2);
-    border-radius:1rem;
-    padding:0.25rem 1.25rem;
-    transition: ease-in-out 0.5s ease;
-    display:flex;
-    align-items:center;
-    &:hover{
-        color:${(props) => props.theme.colors.fonts.info};
-    }
+export const StyledButton = Styled(Button)` 
+    width:100%;
     @media(max-width:768px){
       padding:0.25 0.5rem;
       font-size:0.8rem;
@@ -87,4 +77,15 @@ export const CartIcon = Styled(FaCartPlus)`
     color:  ${(props) => props.theme.colors.background.icon};
     margin-left:1rem;
   
+`
+
+export const Chicken = Styled.div`
+    width:1rem;
+    height:1rem;
+    color:red;
+`
+export const Ham = Styled.div`
+    width:1rem;
+    height:1rem;
+    color:yellow;
 `

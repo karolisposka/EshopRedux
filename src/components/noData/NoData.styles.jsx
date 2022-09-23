@@ -4,9 +4,11 @@ export const Container = Styled.div`
   display:flex;
   align-items:Center;
   justify-content:Center;
+  box-sizing:border-box;
   width:100%;
-  background:White;
+  background:${(props) => props.theme.colors.background.lightest};
   padding:1rem;
+  margin:1rem 0;
   box-sizing:border-box;
   min-height:50vh;
 `

@@ -8,7 +8,7 @@ export const ReducerContainer = Styled.div`
 export const DecrementBtn = Styled.button`
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
-  width:2rem;
+  width:2.5rem;
   height:2rem;
   border:none;
   font-size:1.2rem;

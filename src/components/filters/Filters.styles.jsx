@@ -22,7 +22,7 @@ export const FiltersWrapper = Styled.div`
     display:flex;
     align-items:Center;
     flex-direction:row-reverse;
-    flex:2;
+    flex:3;
 
 `
 

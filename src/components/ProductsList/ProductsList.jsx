@@ -30,6 +30,7 @@ const ProductsList = () => {
                                 price={item.price}
                                 image={item.imageurl}
                                 smallPrice={item.small}
+                                category={item.category}
                             />
                         </CSSTransition>
                     ))}

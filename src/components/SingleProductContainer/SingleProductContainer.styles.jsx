@@ -13,9 +13,33 @@ export const ProductContainer = Styled.section`
   height:100vh;
   background:rgba(0,0,0,0.2);
   font-family:${(props) => props.theme.fonts.names.primary};
+  z-index:5;
+
+`
+
+export const ProductSection = Styled.section`
+  background:${(props) => props.theme.colors.background.lightest};
+  max-width:800px;
+  min-width:600px;
+  margin:1rem auto;
+  min-height:70vh;
+  border-radius:0.25rem;
+  display:Flex;
+`
+
+export const ImageWrapper = Styled.div`
+  flex:2;
+  position:relative;
+  border-right:1px solid rgba(0,0,0,0.3);
+  display:flex;
+  justify-content:Center;
+  align-items:center;
 `
 
 export const ExitBtn = Styled(HiOutlineX)`
+  position:absolute;
+  top:1rem;
+  left:1rem;
   color:${(props) => props.theme.colors.background.danger};
   font-size:2rem;
   margin:1rem;
@@ -24,24 +48,6 @@ export const ExitBtn = Styled(HiOutlineX)`
   transform: scale(1.25);
   }
 
-`
-
-export const ProductSection = Styled.section`
-  background:${(props) => props.theme.colors.background.lightest};
-  max-width:800px;
-  min-width:600px;
-  margin:0 auto;
-  min-height:74vh;
-  border-radius:0.25rem;
-  display:Flex;
-`
-
-export const ImageWrapper = Styled.div`
-  flex:2;
-  border-right:1px solid rgba(0,0,0,0.3);
-  display:flex;
-  justify-content:Center;
-  align-items:center;
 `
 
 export const ProductImage = Styled.img`
@@ -87,6 +93,31 @@ export const description = Styled.p`
 
 `
 
+export const TypeWrapper = Styled.div`
+  padding:1rem 0;
+ 
+`
+
+export const TypeButtons = Styled(Button)`
+  width:50%;
+  padding:0.5rem 1rem;
+  transition: All 0.3s ease-in-out; 
+  background:${(props) => (props.active ? "#3AB0FF" : "transparent")};
+  color:${(props) => (props.active ? "white" : "black")};
+  font-weight:700;
+  &&:hover{
+    background: ${(props) => props.theme.colors.background.info};
+  }
+   &&:nth-child(1){
+    border-top-right-radius:0;
+    border-bottom-right-radius:0;
+  }
+  &&:nth-child(2){
+    border-top-left-radius:0;
+    border-bottom-left-radius:0;
+  }
+`
+
 export const SelectionFrame = Styled.div`
   display:inline-block;
   padding:0.25rem;
@@ -110,15 +141,20 @@ export const IngredientsWrapper = Styled.div`
 `
 
 export const StyledButton = Styled(Button)`
-    border:2px solid rgba(0,0,0,0.7);
-    border-radius:1rem;
-    padding:0.25rem 1.25rem;
+    border-radius:0.5rem;
+    padding:0.5rem 1.25rem;
     transition: ease-in-out 0.5s ease;
     display:flex;
-    margin:1rem 0;
+    margin:0.5rem 0;
+    width:100%;
     align-items:center;
+    display:flex;
+    font-weight:700;
+    justify-content:Center;
+    transition: all 0.3s ease-in-out;
     &:hover{
-        color:${(props) => props.theme.colors.fonts.info};
+        background:${(props) => props.theme.colors.background.info};
+        color:white;
     }
     @media(max-width:768px){
       padding:0.25 0.5rem;
@@ -132,5 +168,7 @@ export const StyledQuantityReducer = Styled(QuantityReducer)`
 `
 
 export const StyledAdditives = Styled(Additives)`
-    width:100%;
+    width:20rem;
+    padding:1rem 0;
+   
 `

@@ -32,7 +32,7 @@ const Cart = () => {
                     {cartData.length === 0 ? (
                         <BackToStore
                             handleClick={() => {
-                                navigate("/")
+                                navigate("/products")
                             }}
                         />
                     ) : (
@@ -43,6 +43,9 @@ const Cart = () => {
                                     totalPrice={totalAmount.toFixed(2)}
                                     quantity={totalQuantity}
                                     options={options}
+                                    handleBackToStore={() => {
+                                        navigate("/products")
+                                    }}
                                     deliveryOption={deliveryOption}
                                     handleChange={(value) => {
                                         setDeliveryOption(value)

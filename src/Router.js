@@ -2,7 +2,6 @@ import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
 import React from "react";
 import Products from "./pages/Products";
 import Cart from './pages/Cart';
-import Checkout from "./pages/Checkout";
 import Navigation from './components/navigation/Navigation';
 import Account from '../src/pages/Account'
 import UserDetails from "./pages/UserDetails";
@@ -34,9 +33,6 @@ const Router = () => {
             </Route>
             
           </Route>
-         
-         
-          <Route exact path='/checkout' element={<Checkout/>}/>
           <Route exact path='/account' element={<Account/>}/>
         </Routes>
     </BrowserRouter>

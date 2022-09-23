@@ -6,13 +6,20 @@ export const StyledButton = Styled.button`
     border-radius:0.25rem;
     margin:0 0rem 1rem 1rem;
     border:none;
-    background:#f92a45d6;
-    color:rgb(255,255,255);
     text-transform: uppercase;
     font-size:0.8rem;
     display:flex;
     align-items:center;
+    background:transparent;
+    border:2px solid rgba(0,0,0,0.7);
+    font-weight:700;
     position:relative;
+    transition: all 0.3s ease-in-out;
+    &:hover{
+        background:${(props) => props.theme.colors.background.info};
+        color:White;
+    }
+    
 `
 
 export const Icon = Styled(FaArrowCircleRight)`

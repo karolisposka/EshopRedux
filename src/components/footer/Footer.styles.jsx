@@ -39,7 +39,7 @@ export const ListItem = Styled.li`
 `
 
 export const InputContainer = Styled.div`
-    
+    margin:0 2rem;
 
 `
 
@@ -71,5 +71,10 @@ export const StyledButton = Styled(Button)`
     border-radius:0.25rem;
     padding:0.25rem 1rem;
     margin-left: -0.9rem;
-    background:${(props) => props.theme.colors.background.lightest};
+    font-weight:700;
+    transition: all 0.3s ease-in-out;
+    &:hover{
+        background:${(props) => props.theme.colors.background.info};
+        color:white;
+    }
 `

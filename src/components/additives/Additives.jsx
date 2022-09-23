@@ -1,26 +1,26 @@
-import React from "react"
+import React, { useRef, useCallback } from "react"
 import * as S from "./Additives.styles"
-
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
+import "swiper/css/navigation"
+import "swiper/css/pagination"
 
-const Additives = ({ additives, className }) => {
+const Additives = ({ additives, className, handleAdd }) => {
+    const sliderRef = useRef(null)
+
+    const handlePrev = useCallback(() => {
+        if (!sliderRef.current) return
+        sliderRef.current.swiper.slidePrev()
+    }, [])
+
+    const handleNext = useCallback(() => {
+        if (!sliderRef.current) return
+        sliderRef.current.swiper.slideNext()
+    }, [])
+
     return (
         <S.Container className={className}>
-            <Swiper
-                breakpoints={{
-                    0: {
-                        width: 768,
-                        slidesPerView: 2,
-                        spaceBetween: 10,
-                    },
-                    768: {
-                        width: 768,
-                        spaceBetween: 10,
-                        slidesPerView: 4,
-                    },
-                }}
-            >
+            <Swiper ref={sliderRef} styles={{ width: "16rem" }} slidesPerView={2} spaceBetween={10}>
                 {additives &&
                     additives.map((item, index) => (
                         <SwiperSlide key={index}>
@@ -28,12 +28,16 @@ const Additives = ({ additives, className }) => {
                                 title={item.title}
                                 price={item.price}
                                 url={item.image}
-                                handleClick={() => {
-                                    alert("hi")
+                                handleAdd={() => {
+                                    handleAdd({ price: item.price, title: item.title })
                                 }}
                             />
                         </SwiperSlide>
                     ))}
+                <S.NavigationArrowsWrapper>
+                    <S.NavigationArrowLeft onClick={handlePrev} />
+                    <S.NavigationArrowRight onClick={handleNext} />
+                </S.NavigationArrowsWrapper>
             </Swiper>
         </S.Container>
     )

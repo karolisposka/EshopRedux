@@ -1,9 +1,9 @@
 import Styled from "styled-components"
 
 export const Container = Styled.div`
-  
-
-    flex:2;
+    max-width:600px;
+    margin:0 auto;
+    padding:1rem;
 `
 
 export const Section = Styled.section`

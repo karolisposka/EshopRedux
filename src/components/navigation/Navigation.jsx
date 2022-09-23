@@ -32,13 +32,7 @@ const Navigation = () => {
                         }}
                     />
                     <S.CartWrapper>
-                        <a
-                            onClick={() => {
-                                navigate("/admin")
-                            }}
-                        >
-                            admin
-                        </a>
+                        {key === process.env.REACT_APP_ADMIN_KEY && <S.AdminIcon />}
                         <S.UserIcon
                             onClick={() => {
                                 {

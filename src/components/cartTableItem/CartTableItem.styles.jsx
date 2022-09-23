@@ -3,7 +3,6 @@ import { AiOutlineClose } from "react-icons/ai"
 import QuantityReducer from "../quantityReducer/QuantityReducer"
 
 export const TableRow = Styled.tr`
-    border-bottom: 1px solid rgba(0,0,0,0.3);
     &&.fade-enter {
     opacity:0;
     }

@@ -4,7 +4,8 @@ import AddAddressForm from "../addAddressForm/AddAddressForm"
 
 export const Container = Styled.div`
     width:100%;
-    background:rgba(0,0,0,0.1);  
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius:0.25rem;  
     padding:1rem;
     font-family:${(props) => props.theme.fonts.names.primary};
     box-sizing:border-box;
@@ -12,9 +13,6 @@ export const Container = Styled.div`
 `
 
 export const TitleWrapper = Styled.div`
-      
-   
-
 `
 
 export const AddressBookIcon = Styled(FaAddressBook)`
