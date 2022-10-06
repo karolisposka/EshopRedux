@@ -3,7 +3,8 @@ import { Link } from "react-router-dom"
 
 export const StyledLink = Styled(Link)`
     text-decoration: none;
-    font-family:${(props) => props.theme.fonts.names.primary};
+    font-family:${(props) => props.theme.fonts.names.secondary};
+    font-weight:700;
     padding:1rem;
     text-transform: uppercase;
     display:block;

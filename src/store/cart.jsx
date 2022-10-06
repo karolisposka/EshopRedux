@@ -8,6 +8,8 @@ const Slice = createSlice({
         cart: [],
         loading: false,
         status: false,
+        lastFetch: null,
+        completed: false,
     },
     reducers: {
         increment: (state, action) => {
@@ -54,13 +56,29 @@ const Slice = createSlice({
         changeStatus: (state, action) => {
             state.status = action.payload
         },
+        orderPlaced: (state, action) => {
+            return {
+                ...state,
+                loading: true,
+                error: "",
+            }
+        },
+        orderDispatched: (state, action) => {
+            return {
+                ...state,
+                cart: [],
+                loading: false,
+                completed: true,
+                error: action.payload.err ? action.payload.err : "",
+            }
+        },
     },
 })
 
 export const LoadCartItems = (products) => (dispatch, getState) => {
-    const { lastCategoriesFetch } = getState().entities.products
+    const { lastFetch } = getState().cart
 
-    const diff = moment().diff(moment(lastCategoriesFetch), "minutes")
+    const diff = moment().diff(moment(lastFetch), "minutes")
     if (diff < 10) return
 
     dispatch(
@@ -74,6 +92,35 @@ export const LoadCartItems = (products) => (dispatch, getState) => {
     )
 }
 
-export const { increment, decrement, cartItemsRequested, cartItemsRecieved, cartItemRemove, changeStatus, open } =
-    Slice.actions
+export const placeOrder = (token, data) => (dispatch, getState) => {
+    dispatch(
+        apiCallBegan({
+            url: process.env.REACT_APP_MAKE_ORDER,
+            method: "post",
+            headers: {
+                "Content-type": "application/json",
+                Authorization: `Bearer ${getState().users.key}`,
+            },
+            data: {
+                products: data,
+                token,
+            },
+            onStart: orderPlaced.type,
+            onSuccess: orderDispatched.type,
+        })
+    )
+}
+
+export const {
+    increment,
+    decrement,
+    cartItemsRequested,
+    cartItemsRecieved,
+    cartItemRemove,
+    changeStatus,
+    open,
+    orderDispatched,
+    orderPlaced,
+} = Slice.actions
+
 export default Slice.reducer

@@ -1,19 +1,12 @@
 import React from "react"
 import PropTypes from "prop-types"
 import * as S from "./Menu.styles"
-import CategoriesList from "../categoriesList/CategoriesList"
-import ProductsList from "../ProductsList/ProductsList"
-import { useParams, Outlet } from "react-router-dom"
+// import CategoriesList from "../categoriesList/CategoriesList"
+// import ProductsList from "../ProductsList/ProductsList"
+// import { useParams, Outlet } from "react-router-dom"
 
-const Menu = () => {
-    const { category } = useParams()
-    return (
-        <S.MenuContainer>
-            <CategoriesList />
-            {!category && <ProductsList />}
-            <Outlet />
-        </S.MenuContainer>
-    )
+const Menu = ({ children }) => {
+    return <S.MenuContainer>{children}</S.MenuContainer>
 }
 
 export default Menu

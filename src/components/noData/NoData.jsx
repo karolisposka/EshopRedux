@@ -1,10 +1,10 @@
 import React from "react"
 import * as S from "./NoData.styles"
 
-const NoData = () => {
+const NoData = ({ text }) => {
     return (
         <S.Container>
-            <S.Message>No data found</S.Message>
+            <S.Message>{text}</S.Message>
         </S.Container>
     )
 }

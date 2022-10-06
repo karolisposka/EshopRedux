@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import Container from "../components/Container/Container"
 import ProductsList from "../components/ProductsList/ProductsList"
+import Hero from "../components/hero/Hero"
 import Menu from "../components/menu/Menu"
 import Footer from "../components/footer/Footer"
 import Filters from "../components/filters/Filters"
@@ -9,7 +10,7 @@ import SearchBox from "../components/searchBox/SearchBox"
 import MainContainer from "../components/mainContainer/MainContainer"
 import CategoriesList from "../components/categoriesList/CategoriesList"
 import { open } from "../store/cart"
-import { useParams } from "react-router-dom"
+import { useParams, Outlet } from "react-router-dom"
 import {
     loadProducts,
     loadCategories,
@@ -32,10 +33,9 @@ const Products = () => {
     const mobileSideBarStatus = cartData.status
     const totalQuantity = cartData.cart.reduce((a, b) => a + b.quantity, 0)
 
-    dispatch(loadCategories())
-
     const displayData = (url) => {
         if (url) {
+            console.log("cia")
             return dispatch(productsFiltered(url))
         } else {
             return dispatch(loadProducts())
@@ -63,6 +63,7 @@ const Products = () => {
                             navigate("/account")
                         }}
                     />
+                    <Hero />
                     <Filters
                         handleClick={() => {
                             setSpin(true)
@@ -102,6 +103,8 @@ const Products = () => {
                                 navigate("/cart")
                             }}
                         />
+                        {(!url || url.title) && <ProductsList />}
+                        <Outlet />
                     </Menu>
                 </Container>
                 <Footer />

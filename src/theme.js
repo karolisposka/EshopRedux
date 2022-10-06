@@ -10,7 +10,8 @@ const theme = {
         icons: "#06283D",
         info: '#3AB0FF',
         light: '#FFFAE7',
-        lightest: '#EFEFEF'
+        lightest: '#EFEFEF',
+        success: '#38E54D'
         
 
         
@@ -25,7 +26,7 @@ const theme = {
   fonts: {
     names: {
       primary: '"Lato", sans-serif',
-
+      secondary: '"Oswald", sans-serif',
     },
     size:{
         small:'1rem',

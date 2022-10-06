@@ -5,7 +5,6 @@ import Container from "../components/Container/Container"
 import CartContainer from "../components/cartContainer/CartContainer"
 import CartTable from "../components/cartTable/CartTable"
 import OrderInfo from "../components/orderInfo/OrderInfo"
-import ShippingForm from "../components/shippingForm/ShippingForm"
 import BackToStore from "../components/backToStore/BackToStore"
 import Footer from "../components/footer/Footer"
 import MainContainer from "../components/mainContainer/MainContainer"
@@ -32,19 +31,19 @@ const Cart = () => {
                     {cartData.length === 0 ? (
                         <BackToStore
                             handleClick={() => {
-                                navigate("/products")
+                                navigate("/")
                             }}
                         />
                     ) : (
                         <>
                             <CartContainer>
-                                <CartTable items={cartData}></CartTable>
+                                <CartTable items={cartData} />
                                 <OrderInfo
                                     totalPrice={totalAmount.toFixed(2)}
                                     quantity={totalQuantity}
                                     options={options}
                                     handleBackToStore={() => {
-                                        navigate("/products")
+                                        navigate("/")
                                     }}
                                     deliveryOption={deliveryOption}
                                     handleChange={(value) => {
@@ -52,14 +51,6 @@ const Cart = () => {
                                     }}
                                 />
                             </CartContainer>
-                            {deliveryOption === deliveryAtHome && (
-                                <ShippingForm
-                                    title="Shipping address"
-                                    handleCheckbox={(values) => {
-                                        console.log(values)
-                                    }}
-                                />
-                            )}
                             {!userKey ? <AccountPageInfo flex="flex" /> : null}
                         </>
                     )}

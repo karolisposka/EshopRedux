@@ -3,7 +3,9 @@ import { FaBox } from "react-icons/fa"
 
 export const Container = Styled.div`
     width:100%;
-    background:rgba(0,0,0,0.1);  
+    background: transparent;
+    border-radius:0.25rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     padding:1rem;
     font-family:${(props) => props.theme.fonts.names.primary};
     box-sizing:border-box;

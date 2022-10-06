@@ -10,16 +10,14 @@ const ShippingForm = ({ title, handleSubmit, handleCheckbox }) => {
     const [checkbox, setCheckBox] = useState(true)
     const userData = useSelector((state) => state.users)
     const CheckIfUserHasDefaultAddress = () => {
-        if (userData.key) {
+        if (userData.key && userData.address) {
             const filteredData = userData.address.filter((item) => item.default_status === 1)[0]
             return filteredData
         } else {
-            return ""
+            return null
         }
     }
     const defaultAddress = CheckIfUserHasDefaultAddress()
-
-    const navigate = useNavigate()
     const formik = useFormik({
         initialValues: {
             firstName: "" || defaultAddress.first_name,

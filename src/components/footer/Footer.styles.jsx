@@ -1,12 +1,19 @@
 import Styled from "styled-components"
 import Input from "../Input/Input"
 import Button from "../Button/Button"
+import { Link } from "react-router-dom"
 
 export const StyledContainer = Styled.div`
     border-top:1px solid rgba(0,0,0,0.3);
     min-height:6rem;
     width:100%;
     font-family:${(props) => props.theme.fonts.names.primary};
+`
+
+export const NavigationContainer = Styled.div`
+    display:Flex;
+    flex-direction:column;
+
 `
 
 export const Section = Styled.section`
@@ -20,24 +27,26 @@ export const ItemsListContainer = Styled.div`
     padding:1rem;   
     width:10rem;
 `
-export const ItemsList = Styled.ul`
-    width:100%;
+export const ItemsList = Styled.nav`
+    display:flex;
+    
 `
-export const ListItem = Styled.li`
+export const ListItem = Styled(Link)`
     list-style:none;
     padding:0.25rem;
-    display: inline-block;
     width:100%;
+    font-family:${(props) => props.theme.fonts.names.secondary};
     text-transform: uppercase;
     transition: font-weight 200;
-    &:not(:last-child){
-        border-bottom:1px solid rgba(0,0,0,0.3)
-    }
     &:hover{
         font-weight:700  
         }
 `
 
+export const NavSection = Styled.section`
+    
+
+`
 export const InputContainer = Styled.div`
     margin:0 2rem;
 

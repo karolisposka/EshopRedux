@@ -3,30 +3,21 @@ import PropTypes from "prop-types"
 import StripeCheckout from "react-stripe-checkout"
 import CheckoutButton from "../checkoutButton/CheckoutButton"
 import * as S from "./OrderInfo.styles"
-import { useSelector, dispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { placeOrder } from "../../store/cart"
+import { useNavigate } from "react-router-dom"
 
 const OrderInfo = ({ quantity, totalPrice, handleChange, options, deliveryOption, handleBackToStore }) => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     let finalPrice = Number(totalPrice) + Number(deliveryOption)
     const test = finalPrice.toFixed(2)
-    const products = useSelector((state) => state.cart.cart)
+    const products = useSelector((state) => state.cart)
+    const key = useSelector((state) => state.users.key)
 
-    const makePayment = (data) => async (token) => {
-        return fetch("http://localhost:8080/v1/cart/checkout", {
-            method: "post",
-            headers: {
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-                token,
-                products: data,
-            }),
-        })
-            .then((response) => {
-                console.log(response)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+    const makePayment = (data) => (token) => {
+        dispatch(placeOrder(token, data))
+        navigate("/")
     }
 
     return (
@@ -58,7 +49,7 @@ const OrderInfo = ({ quantity, totalPrice, handleChange, options, deliveryOption
             {deliveryOption === "0" ? (
                 <StripeCheckout
                     stripeKey={process.env.REACT_APP_STRIPE_SECRET_KEY}
-                    token={makePayment(products)}
+                    token={makePayment(products.cart)}
                     currency="EUR"
                     name={"checkout"}
                     amount={Number(totalPrice) * 100}

@@ -14,17 +14,23 @@ export const ProductContainer = Styled.section`
   background:rgba(0,0,0,0.2);
   font-family:${(props) => props.theme.fonts.names.primary};
   z-index:5;
+  @media(max-width:576px){
+    height:100%;
+  }
 
 `
 
 export const ProductSection = Styled.section`
   background:${(props) => props.theme.colors.background.lightest};
-  max-width:800px;
-  min-width:600px;
+  max-width:1000px;
+  min-width:400px;
   margin:1rem auto;
   min-height:70vh;
   border-radius:0.25rem;
   display:Flex;
+  @media(max-width:567px){
+    flex-direction:column;
+  }
 `
 
 export const ImageWrapper = Styled.div`
@@ -170,5 +176,15 @@ export const StyledQuantityReducer = Styled(QuantityReducer)`
 export const StyledAdditives = Styled(Additives)`
     width:20rem;
     padding:1rem 0;
+    @media(max-width:567px){
+      display:none;
+    }
    
+`
+
+export const ChooseAddivites = Styled(Button)`
+  display:none;
+  @media(max-width:576px){
+    display:block;
+  }
 `

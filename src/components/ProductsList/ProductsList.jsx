@@ -1,11 +1,10 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useMemo } from "react"
 import PropTypes from "prop-types"
 import { CSSTransition } from "react-transition-group"
 import * as S from "./ProductsList.styles"
 import { useSelector, useDispatch } from "react-redux"
 import { filterProducts } from "../../store/products"
 import { useParams } from "react-router-dom"
-import { Outlet } from "react-router-dom"
 
 const ProductsList = () => {
     const dispatch = useDispatch()
@@ -35,7 +34,6 @@ const ProductsList = () => {
                         </CSSTransition>
                     ))}
             </S.ProductsList>
-            <Outlet />
         </>
     )
 }

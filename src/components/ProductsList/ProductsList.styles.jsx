@@ -29,7 +29,11 @@ export const StyledProductCard = Styled(ProductCard)`
         transition: opacity 100ms;
     }
 
-    @media(max-width:768px){
+    @media(max-width:576px){
+        width:calc(100% - 1rem);
+        
+    }
+    @media (min-width:576px) and (max-width:1000px){
         width:calc(50% - 2rem);
     }
 

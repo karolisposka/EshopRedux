@@ -1,16 +1,19 @@
 import React from "react"
 import PropTypes from "prop-types"
 import * as S from "./AccountContainer.styles"
+import { useLocation } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
 import { useSelector } from "react-redux"
 
 const AccountContainer = ({ children, state }) => {
+    const path = useLocation()
     const test = useSelector((state) => state.users.expanded)
+
     return (
         <S.Container>
             <S.Section>
-                <CSSTransition in={test} timeout={1000} classNames="overlay">
-                    {state.status === "login" ? (
+                <CSSTransition in={test} timeout={500} classNames="overlay">
+                    {path.pathname === "/account" ? (
                         <S.Overlay classNames="overlay">
                             <S.TextWrapper>
                                 <S.Title>Welcome Back!</S.Title>

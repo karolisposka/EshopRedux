@@ -1,6 +1,7 @@
 import Styled from "styled-components"
-import Input from "../Input/Input"
-import Button from "../Button/Button"
+import Input from "../../components/Input/Input"
+import Button from "../../components/Button/Button"
+import { Link } from "react-router-dom"
 
 export const RegisterFormContainer = Styled.div`
     margin:1rem;
@@ -9,7 +10,7 @@ export const RegisterFormContainer = Styled.div`
 `
 
 export const Form = Styled.form`
-    
+    margin-top:2rem;
 `
 
 export const StyledInput = Styled(Input)`
@@ -24,7 +25,7 @@ export const SmallText = Styled.p`
 
 `
 
-export const Span = Styled.span`
+export const Span = Styled(Link)`
     color:${(props) => props.theme.colors.fonts.info};
 
 `

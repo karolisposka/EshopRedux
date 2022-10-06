@@ -1,12 +1,12 @@
 import React from "react"
 import * as S from "./ChangePassword.styles"
 import ChangePasswordForm from "../changePasswordForm/ChangePasswordForm"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { changePassword } from "../../store/users"
-import { TransitionGroup, CSSTransition } from "react-transition-group"
+import { CSSTransition } from "react-transition-group"
 
-const ChangePassword = ({ data }) => {
-    console.log(data)
+const ChangePassword = () => {
+    const data = useSelector((state) => state.users)
     const dispatch = useDispatch()
     return (
         <S.Container>

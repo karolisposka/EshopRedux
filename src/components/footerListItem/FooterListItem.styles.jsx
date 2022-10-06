@@ -1,18 +1,22 @@
 import Styled from "styled-components"
+import { Link } from "react-router-dom"
 
-export const ListItem = Styled.li`
+export const ListItem = Styled(Link)`
     list-style:none;
-    padding:0.25rem;
-    display: inline-block;
     width:100%;
     text-transform: uppercase;
-    transition: font-weight 200;
-    &:not(:last-child){
-        border-bottom:1px solid rgba(0,0,0,0.3)
-    }
+    text-decoration:none;
+    color:${(props) => props.theme.colors.background.icons};
+    font-family:${(props) => props.theme.fonts.names.secondary};
+    font-weight:700;
     &:hover{
         font-weight:700  
         }
+`
+export const Text = Styled.h4`
+  display:inline-block;
+  width: 5rem;
+
 `
 
 export const TextWrapper = Styled.div`

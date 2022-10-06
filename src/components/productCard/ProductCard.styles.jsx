@@ -5,12 +5,15 @@ import { FaCartPlus } from "react-icons/fa"
 export const Card = Styled.div`
     border: 1px solid rgba(0,0,0,0.3);
     border-radius:0.75rem;
-    min-height:10rem;
+    min-height:23.5rem;
+    max-height:30rem;
     position:relative;
     justify-content:Space-between;
     align-items:center;
     overflow:hidden;
+    position:relative;
     box-sizing:border-box;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     font-family: ${(props) => props.theme.fonts.names.primary};
    `
 
@@ -60,7 +63,7 @@ export const Expand = Styled.span`
 `
 
 export const StyledButton = Styled(Button)` 
-    width:100%;
+    width:calc(100% - 2rem);
     @media(max-width:768px){
       padding:0.25 0.5rem;
       font-size:0.8rem;
@@ -73,19 +76,17 @@ export const Price = Styled.p`
 
 `
 
+export const ButtonWrapper = Styled.div`
+    position:absolute;
+    bottom:0;
+    margin:1rem;
+    width:100%;
+    left:0;
+
+`
+
 export const CartIcon = Styled(FaCartPlus)`
     color:  ${(props) => props.theme.colors.background.icon};
     margin-left:1rem;
   
-`
-
-export const Chicken = Styled.div`
-    width:1rem;
-    height:1rem;
-    color:red;
-`
-export const Ham = Styled.div`
-    width:1rem;
-    height:1rem;
-    color:yellow;
 `

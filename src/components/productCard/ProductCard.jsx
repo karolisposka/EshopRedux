@@ -11,19 +11,8 @@ const ProductCard = ({ description, title, smallPrice, className, category, imag
     const [expanded, setExpanded] = useState(false)
 
     const checkDescriptionLength = (text) => {
-        if (text.length > 45) {
+        if (text && text.length > 45) {
             setShowExpandBtn(true)
-        }
-    }
-
-    const checkProductCategory = (product) => {
-        switch (product) {
-            case product.includes("Vistiena"):
-                return <S.Chicken />
-            case product.includes("Kumpis"):
-                return <S.Ham />
-            default:
-                ;<div />
         }
     }
 
@@ -35,33 +24,35 @@ const ProductCard = ({ description, title, smallPrice, className, category, imag
         <S.Card className={className}>
             <S.Image image={image} />
             <S.ContentWrapper>
-                <S.Title>
-                    {title} {checkProductCategory(description)}
-                </S.Title>
-                <S.Text>
-                    {expanded && showExpandBtn ? description.substr(0, 999) : description.substr(0, 45)}
-                    {showExpandBtn && (
-                        <S.Expand
-                            onClick={() => {
-                                setExpanded(!expanded)
-                            }}
-                        >
-                            {expanded ? " less" : " more"}
-                        </S.Expand>
-                    )}
-                </S.Text>
-                <S.Price>from {smallPrice} € </S.Price>
-                <S.StyledButton handleClick={() => navigate(`${title}`)}>
-                    View
-                    <S.CartIcon />
-                </S.StyledButton>
+                <S.Title>{title}</S.Title>
+                {description !== null ? (
+                    <S.Text>
+                        {expanded && showExpandBtn ? description.substr(0, 999) : description.substr(0, 45)}
+                        {showExpandBtn && (
+                            <S.Expand
+                                onClick={() => {
+                                    setExpanded(!expanded)
+                                }}
+                            >
+                                {expanded ? " less" : " more"}
+                            </S.Expand>
+                        )}
+                    </S.Text>
+                ) : null}
+                <S.Price>from {Number(smallPrice).toFixed(2)} € </S.Price>
+                <S.ButtonWrapper>
+                    <S.StyledButton handleClick={() => navigate(`/${category}/${title}`)}>
+                        View
+                        <S.CartIcon />
+                    </S.StyledButton>
+                </S.ButtonWrapper>
             </S.ContentWrapper>
         </S.Card>
     )
 }
 
 ProductCard.propTypes = {
-    description: PropTypes.string.isRequired,
+    description: PropTypes.string,
     className: PropTypes.string,
     title: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,

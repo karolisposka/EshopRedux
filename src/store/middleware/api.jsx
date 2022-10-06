@@ -21,7 +21,6 @@ const api =
             })
             //general success
             dispatch(apiCallSuccess(res.data))
-            dispatch(apiCallFailed(res.err))
             if (onSuccess) dispatch({ type: onSuccess, payload: res.data })
         } catch (err) {
             //general error

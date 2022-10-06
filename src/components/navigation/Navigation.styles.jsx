@@ -6,7 +6,8 @@ import { HiMenu } from "react-icons/hi"
 import { RiAdminFill } from "react-icons/ri"
 
 export const NavigationContainer = Styled.div`
-  border-bottom:1px solid rgba(0,0,0,0.6);
+  border-bottom:1px solid rgba(0,0,0,0.3);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   max-height:6rem;  
 `
 

@@ -45,12 +45,15 @@ const slice = createSlice({
             products.lastFetch = Date.now()
         },
         additivesRecieved: (products, action) => {
-            products.additives.push(action.payload)
+            products.additives = action.payload
         },
         productPosted: (products, action) => {
             products.list.push(action.payload)
             products.loading = false
             products.mount = true
+        },
+        singleProductRequested: (products, action) => {
+            products.list.push(action.payload)
         },
     },
 })
@@ -128,6 +131,16 @@ export const UploadProduct = (data) => (dispatch, getState) => {
     )
 }
 
+export const singleProductRequest = (data) => (dispatch, getState) => {
+    dispatch(
+        apiCallBegan({
+            url: process.env.REACT_APP_SINGLE_PRODUCT + data,
+            onStart: productsRequested.type,
+            onSuccess: singleProductRequested.type,
+        })
+    )
+}
+
 export const {
     productsAdded,
     productsResolved,
@@ -138,6 +151,7 @@ export const {
     productsSortedByPrice,
     productPosted,
     additivesRecieved,
+    singleProductRequested,
 } = slice.actions
 
 export default slice.reducer

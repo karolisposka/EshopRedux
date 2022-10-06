@@ -14,6 +14,7 @@ export const Container = Styled.div`
   bottom:1.5rem;
   right:1.5rem;
   border-radius:50%;
+  z-index:99;
   @media(max-width:768px){
     display:flex;
   }

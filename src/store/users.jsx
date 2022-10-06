@@ -9,6 +9,7 @@ const slice = createSlice({
         status: "login",
         loading: false,
         error: "",
+        roles: [],
         expanded: false,
         success: false,
         message: "",
@@ -26,7 +27,8 @@ const slice = createSlice({
             users.success = false
         },
         userTokenRecieved: (users, action) => {
-            users.key = action.payload
+            users.key = action.payload.id
+            users.roles = action.payload.roles.split(",")
             users.loading = false
             users.success = true
         },
@@ -88,6 +90,7 @@ const slice = createSlice({
             users.status = "login"
             users.error = ""
             users.success = false
+            users.roles = []
         },
     },
 })

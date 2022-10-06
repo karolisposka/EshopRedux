@@ -1,9 +1,16 @@
 import React from "react"
-import * as S from "./RegisterForm.styles"
+import * as S from "./register.styles"
 import * as yup from "yup"
+import { useDispatch } from "react-redux"
+import { register, formChanged, formChanged2, formDisplayed } from "../../store/users"
 import { useFormik } from "formik"
 
-const RegisterForm = ({ handleSubmit, handleClick }) => {
+const Register = () => {
+    const dispatch = useDispatch()
+    const handleRegister = (values) => {
+        return dispatch(register(values))
+    }
+
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -18,7 +25,9 @@ const RegisterForm = ({ handleSubmit, handleClick }) => {
                 .min(8)
                 .oneOf([yup.ref("password"), null], "Passwords must match"),
         }),
-        onSubmit: handleSubmit,
+        onSubmit: (values) => {
+            handleRegister(values)
+        },
     })
     return (
         <S.RegisterFormContainer>
@@ -54,7 +63,19 @@ const RegisterForm = ({ handleSubmit, handleClick }) => {
                     handleBlur={formik.handleBlur}
                 />
                 <S.SmallText>
-                    Already have account? <S.Span onClick={handleClick}>Sign in</S.Span>
+                    Already have account?{" "}
+                    <S.Span
+                        to="/account"
+                        onClick={() => {
+                            dispatch(formChanged())
+                            setTimeout(() => {
+                                dispatch(formChanged2())
+                                dispatch(formDisplayed("register"))
+                            }, 500)
+                        }}
+                    >
+                        Sign in
+                    </S.Span>
                 </S.SmallText>
                 <S.StyledButton type="submit">Register</S.StyledButton>
             </S.Form>
@@ -62,4 +83,4 @@ const RegisterForm = ({ handleSubmit, handleClick }) => {
     )
 }
 
-export default RegisterForm
+export default Register

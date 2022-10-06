@@ -1,31 +1,19 @@
 import React from "react"
 import * as S from "./LoginForm.styles"
 import { useFormik } from "formik"
+import { useDispatch } from "react-redux"
+import { loggin, formChanged, formChanged2, formDisplayed } from "../../store/users"
 import * as yup from "yup"
 import Loader from "../loader/Loader"
 import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 
-const LoginForm = ({ handleClick, handleSubmit, status }) => {
+const LoginForm = () => {
+    const dispatch = useDispatch()
     const navigate = useNavigate()
+    const location = useLocation()
     const data = useSelector((state) => state.users)
-
-    const loginStatus = () => {
-        if (data.loading === false) {
-            return "Log in"
-        }
-        if (data.loading === true) {
-            return <Loader />
-        }
-    }
-
-    const checkIfTokenRecived = () => {
-        if (data.status === true) {
-            navigate("/userDetails")
-        }
-    }
-
-    checkIfTokenRecived()
+    const from = location.state?.from?.pathname || "/"
 
     const formik = useFormik({
         initialValues: {
@@ -37,7 +25,10 @@ const LoginForm = ({ handleClick, handleSubmit, status }) => {
             email: yup.string().email("must the a valid Email").required("Required field"),
             password: yup.string().min(8).required("Required field"),
         }),
-        onSubmit: handleSubmit,
+        onSubmit: (values) => {
+            dispatch(loggin(values))
+            navigate("/")
+        },
     })
 
     return (
@@ -63,9 +54,21 @@ const LoginForm = ({ handleClick, handleSubmit, status }) => {
                     handleBlur={formik.handleBlur}
                     value={formik.values.password}
                 />
-                <S.StyledButton type="submit">{loginStatus()}</S.StyledButton>
+                <S.StyledButton type="submit"> Login </S.StyledButton>
                 <S.SmallText>
-                    Dont have an account? <S.Span onClick={handleClick}>Sign in</S.Span>
+                    Dont have an account?{" "}
+                    <S.Span
+                        to="/account/register"
+                        onClick={() => {
+                            dispatch(formChanged())
+                            setTimeout(() => {
+                                formDisplayed("login")
+                                dispatch(formChanged2())
+                            }, 1000)
+                        }}
+                    >
+                        Sign in
+                    </S.Span>
                 </S.SmallText>
             </S.Form>
         </S.LoginFormContainer>

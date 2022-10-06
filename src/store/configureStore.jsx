@@ -5,12 +5,16 @@ import api from "../store/middleware/api"
 import productsReducer from "./products"
 import usersReducer from "./users"
 import cartReducer from "./cart"
+import ordersReducer from "./orders"
+import userOrdersReducer from "./userOrders"
 import thunk from "redux-thunk"
 
 const rootReducer = combineReducers({
     products: productsReducer,
     cart: cartReducer,
     users: usersReducer,
+    orders: ordersReducer,
+    userOrders: userOrdersReducer,
 })
 
 const rootPersistConfig = {

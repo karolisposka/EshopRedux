@@ -6,15 +6,20 @@ export const ListItem = Styled.div`
     display:flex;
     align-items:center;
     width:100%;
-
 `
 
 export const Item = Styled(Link)`
     width:100%;
+    font-family:${(props) => props.theme.fonts.names.secondary};
+    font-weight:700;
+    color::red;
     border-bottom:1px solid rgba(0,0,0,0.3);
     padding:0.75rem 1rem;
     list-style: none;
     position:relative;
+    font-size:1.2rem;
+    text-transform:uppercase;
+    color:${(props) => props.theme.colors.background.icons};
     cursor:pointer;
     text-decoration:none;
   

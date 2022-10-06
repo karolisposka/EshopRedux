@@ -1,6 +1,7 @@
 import Styled from "styled-components"
 import Input from "../Input/Input"
 import Button from "../Button/Button"
+import { Link } from "react-router-dom"
 
 export const LoginFormContainer = Styled.div`
     margin:1rem;
@@ -34,7 +35,7 @@ export const SmallText = Styled.p`
 
 `
 
-export const Span = Styled.span`
+export const Span = Styled(Link)`
     color:${(props) => props.theme.colors.fonts.info};
     cursor:pointer;
 
