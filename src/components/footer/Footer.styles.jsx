@@ -1,11 +1,11 @@
 import Styled from "styled-components"
 import Input from "../Input/Input"
 import Button from "../Button/Button"
-import { Link } from "react-router-dom"
+import { FaMobile, FaGlobe, FaMailchimp } from "react-icons/fa"
 
 export const StyledContainer = Styled.div`
     border-top:1px solid rgba(0,0,0,0.3);
-    min-height:6rem;
+    min-height:8rem;
     width:100%;
     font-family:${(props) => props.theme.fonts.names.primary};
 `
@@ -16,44 +16,55 @@ export const NavigationContainer = Styled.div`
 
 `
 
+export const Title = Styled.h5`
+    text-transform: uppercase;
+    margin:0 0.5rem;
+`
+
 export const Section = Styled.section`
     max-width:1200px;
     margin: 0 auto;
     display:flex;
     justify-content:space-between;
     align-items:Center;
+    @media(max-width:768px){
+        flex-direction:column;
+    }
 `
 export const ItemsListContainer = Styled.div`
-    padding:1rem;   
-    width:10rem;
+      
+   
 `
 export const ItemsList = Styled.nav`
     display:flex;
     
 `
-export const ListItem = Styled(Link)`
-    list-style:none;
-    padding:0.25rem;
-    width:100%;
-    font-family:${(props) => props.theme.fonts.names.secondary};
-    text-transform: uppercase;
-    transition: font-weight 200;
-    &:hover{
-        font-weight:700  
-        }
+
+export const PlainText = Styled.p`
+    margin-left:0.5rem;
+    display:flex;
+    align-items:center;
 `
 
 export const NavSection = Styled.section`
-    
+    width:100%;
 
 `
 export const InputContainer = Styled.div`
     margin:0 2rem;
+    @media(max-width:768px){
+        margin:1rem 0;
+    }
 
 `
 
 export const Text = Styled.h4`
     margin:0.5rem 1rem;
+`
+
+export const SectionText = Styled.p`
+    margin-left:0.25rem;
+
 `
 
 export const Span = Styled.span`
@@ -86,4 +97,14 @@ export const StyledButton = Styled(Button)`
         background:${(props) => props.theme.colors.background.info};
         color:white;
     }
+`
+
+export const MobileIcon = Styled(FaMobile)`
+    margin-right:0.25rem;
+`
+export const GlobeIcon = Styled(FaGlobe)`
+    margin-right:0.25rem;
+`
+export const MailIcon = Styled(FaMailchimp)`
+    margin-right:0.25rem;
 `

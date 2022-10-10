@@ -1,17 +1,17 @@
 import Styled from "styled-components"
-import { Link } from "react-router-dom"
 
-export const ListItem = Styled(Link)`
+export const ListItem = Styled.a`
     list-style:none;
     width:100%;
+    text-align:Center;
     text-transform: uppercase;
     text-decoration:none;
     color:${(props) => props.theme.colors.background.icons};
     font-family:${(props) => props.theme.fonts.names.secondary};
     font-weight:700;
     &:hover{
-        font-weight:700  
-        }
+      font-weight:700  
+    }
 `
 export const Text = Styled.h4`
   display:inline-block;

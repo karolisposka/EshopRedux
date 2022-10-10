@@ -8,7 +8,6 @@ const slice = createSlice({
         orders: [],
         history: [],
         loading: false,
-        lastFetch: null,
         error: "",
     },
     reducers: {
@@ -24,7 +23,6 @@ const slice = createSlice({
                 orders: action.payload.data ? action.payload : [],
                 loading: false,
                 error: action.payload.err ? action.payload.err : "",
-                lastFetch: Date.now(),
             }
         },
         errorRecieved: (state, action) => {
@@ -37,24 +35,18 @@ const slice = createSlice({
 })
 
 export const getUserOrders = () => (dispatch, getState) => {
-    const { lastFetch } = getState().userOrders
-    const diff = moment().diff(moment(lastFetch), "minutes")
-    if (diff < 1) {
-        return
-    } else {
-        dispatch(
-            apiCallBegan({
-                url: process.env.REACT_APP_USER_ORDERS,
-                headers: {
-                    "Content-type": "application/json",
-                    Authorization: `Bearer ${getState().users.key}`,
-                },
-                onStart: dataRequested.type,
-                onSuccess: userOrdersRecieved.type,
-                onError: errorRecieved.type,
-            })
-        )
-    }
+    dispatch(
+        apiCallBegan({
+            url: process.env.REACT_APP_USER_ORDERS,
+            headers: {
+                "Content-type": "application/json",
+                Authorization: `Bearer ${getState().users.key}`,
+            },
+            onStart: dataRequested.type,
+            onSuccess: userOrdersRecieved.type,
+            onError: errorRecieved.type,
+        })
+    )
 }
 
 export const { dataRequested, userOrdersRecieved, errorRecieved } = slice.actions

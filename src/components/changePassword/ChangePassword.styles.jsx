@@ -10,6 +10,7 @@ export const Container = Styled.div`
     font-family:${(props) => props.theme.fonts.names.primary};
     box-sizing:border-box;
     min-height:60vh;
+
 `
 
 export const TitleWrapper = Styled.div`

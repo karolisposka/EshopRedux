@@ -8,7 +8,6 @@ const Slice = createSlice({
         cart: [],
         loading: false,
         status: false,
-        lastFetch: null,
         completed: false,
     },
     reducers: {
@@ -30,7 +29,10 @@ const Slice = createSlice({
             }
         },
         open: (state, action) => {
-            state.status = action.payload
+            return {
+                ...state,
+                status: action.payload,
+            }
         },
 
         decrement: (state, action) => {
@@ -44,17 +46,28 @@ const Slice = createSlice({
             }
         },
         cartItemRemove: (state, action) => {
-            state.cart = state.cart.filter((item) => item.description !== action.payload.description)
+            return {
+                ...state,
+                cart: state.cart.filter((item) => item.description !== action.payload.description),
+            }
         },
         cartItemsRequested: (state, action) => {
-            state.loading = true
+            return {
+                ...state,
+                loading: true,
+            }
         },
         cartItemsRecieved: (state, action) => {
-            state.cart.push(...state.quantity, action.payload)
-            state.loading = false
+            return {
+                ...state,
+                cart: [...state.cart, action.payload],
+            }
         },
         changeStatus: (state, action) => {
-            state.status = action.payload
+            return {
+                ...state,
+                status: action.payload,
+            }
         },
         orderPlaced: (state, action) => {
             return {
@@ -76,11 +89,6 @@ const Slice = createSlice({
 })
 
 export const LoadCartItems = (products) => (dispatch, getState) => {
-    const { lastFetch } = getState().cart
-
-    const diff = moment().diff(moment(lastFetch), "minutes")
-    if (diff < 10) return
-
     dispatch(
         apiCallBegan({
             url: process.env.REACT_APP_CART_GET,

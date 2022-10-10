@@ -2,13 +2,13 @@ import React from "react"
 import * as S from "./register.styles"
 import * as yup from "yup"
 import { useDispatch } from "react-redux"
-import { register, formChanged, formChanged2, formDisplayed } from "../../store/users"
+import { reegister, formChanged, formChanged2, formDisplayed } from "../../store/users"
 import { useFormik } from "formik"
 
 const Register = () => {
     const dispatch = useDispatch()
     const handleRegister = (values) => {
-        return dispatch(register(values))
+        return dispatch(reegister(values))
     }
 
     const formik = useFormik({

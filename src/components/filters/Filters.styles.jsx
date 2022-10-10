@@ -1,42 +1,43 @@
 import Styled from "styled-components"
-import { FaFilter } from "react-icons/fa"
 import { BiRefresh } from "react-icons/bi"
+import SelectDropDown from "../SelectDropDown/SelectDropDown"
+import SearchBox from "../searchBox/SearchBox"
 
 export const FiltersContainer = Styled.div`
-    margin: 0rem 1rem;
+    margin: 0rem 2rem;
     padding-top:1rem;
-    display:flex;
+    display:grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1.2fr 0.1fr 3.9fr;
     align-items:center;
-    
-`
-
-export const Category = Styled.div`
-    flex:1;
+    gap:0;
     @media(max-width:768px){
-        display:none;
+        grid-template-columns: 1fr;
     }
-
 `
 
 export const FiltersWrapper = Styled.div`
+    width:100%;
     display:flex;
-    align-items:Center;
-    flex-direction:row-reverse;
-    flex:3;
+    margin-right:1rem;
+    justify-content:flex-end;
+    @media(max-width:768px){
+        grid-columns: 1;
+    }
 
 `
 
-export const FilterIcon = Styled(FaFilter)`
-    color:${(props) => props.theme.colors.background.icons};
-    margin-left:1rem;
-    @media(max-width:768px){
-        display:none;
-    }
+export const StyledSearchBox = Styled(SearchBox)`
+    grid-columns: 1/3;
+   
+    
 `
 
 export const RefreshIcon = Styled(BiRefresh)`
     color: ${(props) => props.theme.colors.fonts.info};
     font-size: ${(props) => props.theme.fonts.size.strong};
+    grid-column: 2;
+    margin-left:1rem;
     cursor: pointer;
     &&.fade-enter {
         transform: rotate(0deg);
@@ -52,4 +53,21 @@ export const RefreshIcon = Styled(BiRefresh)`
         transform: rotate(720deg);
         transition: all 700ms ease-out;
     }
+    @media(max-width:768px){
+        display:none;
+    }
+`
+
+export const Select = Styled(SelectDropDown)`
+   @media(max-width:768px){
+        grid-columns:2 / 3;
+   }
+`
+
+export const CategoriesSelect = Styled(SelectDropDown)`
+    display:none;
+    @media(max-width:768px){
+        display:block;
+    }
+
 `

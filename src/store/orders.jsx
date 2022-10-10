@@ -15,15 +15,7 @@ const slice = createSlice({
                 loading: true,
             }
         },
-        // orderDispatched: (state, action) => {
-        //     console.log(action.payload)
-        //     return {
-        //         ...state,
-        //         orders: [...state.orders, ...action.payload],
-        //         loading: true,
-        //         error: "",
-        //     }
-        // },
+
         ordersRecieved: (state, action) => {
             return {
                 ...state,

@@ -1,10 +1,11 @@
 import React, { useState } from "react"
+import * as S from "./SelectDropDown.styles"
 import Select from "react-select"
 
 const SelectDropDown = ({ handleChange, options, className }) => {
     return (
         <>
-            <Select
+            <S.StyledSelect
                 className={className}
                 options={options}
                 onChange={(e) => {

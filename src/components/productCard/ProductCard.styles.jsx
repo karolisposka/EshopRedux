@@ -5,7 +5,7 @@ import { FaCartPlus } from "react-icons/fa"
 export const Card = Styled.div`
     border: 1px solid rgba(0,0,0,0.3);
     border-radius:0.75rem;
-    min-height:23.5rem;
+    min-height:24.5rem;
     max-height:30rem;
     position:relative;
     justify-content:Space-between;

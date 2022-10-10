@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react"
 import * as S from "./SingleProductContainer.styles"
-import { increment, decrement } from "../../store/cart"
+import { increment } from "../../store/cart"
 import { useSelector, useDispatch } from "react-redux"
 import IngredientTag from "../ingredientTag/IngredientTag"
-import { singleProductRequest } from "../../store/products"
 
 const SingleProductContainer = ({ handleExit, item, additives }) => {
     const dispatch = useDispatch()
     const data = useSelector((state) => state.cart)
-    const [ingredients, setIngredients] = useState(item.description.split(","))
+    const [ingredients, setIngredients] = useState(item.description ? item.description.split(",") : "")
     const [size, setSize] = useState(item.small)
     const [type, setType] = useState("italian")
     const [finalPrice, setFinalPrice] = useState()
-    const [ingredientsState, setIngredientsState] = useState(
-        item.description
+
+    const transformDescriptionIntoArray = (des) => {
+        return des
             .split(",")
             .sort((a, b) => a.length - b.length)
             .map((ingredient, index) => {
@@ -23,6 +23,10 @@ const SingleProductContainer = ({ handleExit, item, additives }) => {
                     deleted: false,
                 }
             })
+    }
+
+    const [ingredientsState, setIngredientsState] = useState(
+        item.description ? transformDescriptionIntoArray(item.description) : null
     )
 
     const sumAllAdditivesPrice = (data) => {
@@ -74,7 +78,7 @@ const SingleProductContainer = ({ handleExit, item, additives }) => {
     }
 
     useEffect(() => {
-        setFinalPrice(calculateTotalPrice(sumAllAdditivesPrice(ingredientsState), size))
+        setFinalPrice(calculateTotalPrice(sumAllAdditivesPrice(ingredientsState !== "" ? ingredientsState : 0), size))
     }, [ingredientsState, size])
 
     return (
@@ -83,45 +87,60 @@ const SingleProductContainer = ({ handleExit, item, additives }) => {
                 <S.ProductSection>
                     <S.ImageWrapper>
                         <S.ExitBtn onClick={handleExit} />
-                        <S.SizeLine>
+                        {item.category.toLowerCase() === "pica" ? (
+                            <S.SizeLine>
+                                <S.ProductImage
+                                    src={item.imageurl}
+                                    alt="alt"
+                                    expand={size === item.big ? true : false}
+                                />
+                            </S.SizeLine>
+                        ) : (
                             <S.ProductImage src={item.imageurl} alt="alt" expand={size === item.big ? true : false} />
-                        </S.SizeLine>
+                        )}
                     </S.ImageWrapper>
                     <S.ProductInfoWrapper>
                         <S.Title>{item.title}</S.Title>
-                        <S.SmallText>
-                            Size {size === item.small ? "30cm" : "42cm"}, {type}
-                        </S.SmallText>
+                        {item.category.toLowerCase() === "pica" && (
+                            <S.SmallText>
+                                Size {size === item.small ? "30cm" : "42cm"}, {type}
+                            </S.SmallText>
+                        )}
                         <S.IngredientsWrapper>
-                            {ingredientsState.map((product, index) => (
-                                <IngredientTag
-                                    id={index}
-                                    deleted={product.deleted}
-                                    handleDelete={() => {
-                                        deleteIgredient(product)
-                                    }}
-                                    handleUndo={() => {
-                                        moveIngredientBack(product)
-                                    }}
-                                >
-                                    {product.ingredient}
-                                </IngredientTag>
-                            ))}
+                            {ingredientsState !== null
+                                ? ingredientsState.map((product, index) => (
+                                      <IngredientTag
+                                          id={index}
+                                          deleted={product.deleted}
+                                          handleDelete={() => {
+                                              deleteIgredient(product)
+                                          }}
+                                          handleUndo={() => {
+                                              moveIngredientBack(product)
+                                          }}
+                                      >
+                                          {product.ingredient}
+                                      </IngredientTag>
+                                  ))
+                                : null}
                         </S.IngredientsWrapper>
-
-                        <S.description>Choose size:</S.description>
-                        <S.StyledPizza
-                            big={true}
-                            onClick={() => {
-                                setSize(item.big)
-                            }}
-                        />
-                        <S.StyledPizza
-                            onClick={() => {
-                                setSize(item.small)
-                            }}
-                        />
-                        {item.category === "pica" && (
+                        {item.category.toLowerCase() === "pica" && (
+                            <>
+                                <S.description>Choose size:</S.description>
+                                <S.StyledPizza
+                                    big={true}
+                                    onClick={() => {
+                                        setSize(item.big)
+                                    }}
+                                />
+                                <S.StyledPizza
+                                    onClick={() => {
+                                        setSize(item.small)
+                                    }}
+                                />
+                            </>
+                        )}
+                        {item.category.toLowerCase() === "pica" && (
                             <S.TypeWrapper>
                                 <S.TypeButtons
                                     active={type === "italian" ? true : false}
@@ -149,10 +168,9 @@ const SingleProductContainer = ({ handleExit, item, additives }) => {
                                 }}
                             />
                         )}
-
                         {data.cart.filter(
                             (product) => product.title === item.title && product.description === ingredients
-                        ) ? (
+                        ) && (
                             <S.StyledButton
                                 handleClick={() =>
                                     dispatch(
@@ -167,25 +185,6 @@ const SingleProductContainer = ({ handleExit, item, additives }) => {
                             >
                                 Add to Cart for {finalPrice} €
                             </S.StyledButton>
-                        ) : (
-                            <S.StyledQuantityReducer
-                                quantity={data.cart
-                                    .filter((items) => items.id === item.id)
-                                    .map((item) => item.quantity)}
-                                handleIncrement={() =>
-                                    dispatch(
-                                        increment({
-                                            id: item.id,
-                                            title: item.title,
-                                            description: ingredients.toString(),
-                                            price: finalPrice,
-                                        })
-                                    )
-                                }
-                                handleDecrement={() =>
-                                    dispatch(decrement({ id: item.id, description: ingredients.toString() }))
-                                }
-                            />
                         )}
                     </S.ProductInfoWrapper>
                 </S.ProductSection>

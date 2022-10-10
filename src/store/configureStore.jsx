@@ -25,16 +25,10 @@ const rootPersistConfig = {
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer)
 
-export default function configureAppStore() {
+export const configureAppStore = () => {
     return configureStore({
         reducer: persistedReducer,
-        middleware: [
-            ...getDefaultMiddleware({
-                serializableCheck: false,
-            }),
-            api,
-            thunk,
-        ],
+        middleware: [api, thunk],
     })
 }
 

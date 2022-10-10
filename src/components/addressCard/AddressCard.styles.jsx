@@ -12,6 +12,8 @@ export const AddressCard = Styled.div`
   font-family:${(props) => props.theme.fonts.names.primary};
   display:flex;
   justify-content:Space-between;
+  box-shadow:${(props) => props.theme.shadows.primary};
+  border-radius:0.25rem;
 
 `
 

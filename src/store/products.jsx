@@ -9,51 +9,60 @@ const slice = createSlice({
         additives: [],
         categories: [],
         loading: false,
-        mount: "",
-        lastFetch: null,
-        lastCategoriesFetch: null,
     },
     reducers: {
         productsAdded: (products, action) => {
-            products.list.push(action.payload)
-        },
-        productsFiltered: (products, action) => {
-            products.list = products.list.filter((item) => item.category === action.payload)
-        },
-        productsSortedByPrice: (products, action) => {
-            if (action.payload === "lowest price") {
-                products.list.sort((a, b) => a.price - b.price)
-            } else if (action.payload === "highest price") {
-                products.list.sort((a, b) => b.price - a.price)
-            } else if (action.payload === "popularity") {
-                products.list.sort((a, b) => b.title - a.title)
+            return {
+                ...products,
+                list: [...products, action.payload],
             }
         },
+
         productsRequested: (products, action) => {
-            products.loading = true
-            products.mount = false
+            return {
+                ...products,
+                loading: true,
+            }
         },
         categoriesRecieved: (products, action) => {
-            products.categories = action.payload
-            products.loading = false
-            products.lastCategoriesFetch = Date.now()
+            return {
+                ...products,
+                categories: action.payload,
+                loading: false,
+            }
+        },
+        filterProducts: (products, action) => {
+            return {
+                ...products,
+                filteredList: products.list.filter((product) => product.category === action.payload),
+                mount: true,
+            }
         },
         productsRecieved: (products, action) => {
-            products.list = action.payload
-            products.loading = false
-            products.mount = true
-            products.lastFetch = Date.now()
+            return {
+                ...products,
+                list: action.payload,
+                loading: false,
+            }
         },
         additivesRecieved: (products, action) => {
-            products.additives = action.payload
+            return {
+                ...products,
+                additives: action.payload,
+            }
         },
         productPosted: (products, action) => {
-            products.list.push(action.payload)
-            products.loading = false
-            products.mount = true
+            return {
+                ...products,
+                list: [...products.list, action.payload],
+                loading: false,
+            }
         },
         singleProductRequested: (products, action) => {
-            products.list.push(action.payload)
+            return {
+                ...products,
+                list: [...products.list, action.payload],
+            }
         },
     },
 })
@@ -64,16 +73,6 @@ export const loadProducts = () => (dispatch, getState) => {
     dispatch(
         apiCallBegan({
             url: process.env.REACT_APP_PRODUCTS_GET,
-            onStart: productsRequested.type,
-            onSuccess: productsRecieved.type,
-        })
-    )
-}
-
-export const filterProducts = (category) => (dispatch, getState) => {
-    dispatch(
-        apiCallBegan({
-            url: process.env.REACT_APP_PRODUCTS_GET_CATEGORY + category,
             onStart: productsRequested.type,
             onSuccess: productsRecieved.type,
         })
@@ -91,11 +90,6 @@ export const searchProducts = (query) => (dispatch, getState) => {
 }
 
 export const loadCategories = () => (dispatch, getState) => {
-    const { lastCategoriesFetch } = getState().products
-
-    const diff = moment().diff(moment(lastCategoriesFetch), "minutes")
-    if (diff < 1) return
-
     dispatch(
         apiCallBegan({
             url: process.env.REACT_APP_CATEGORIES_GET,
@@ -151,6 +145,7 @@ export const {
     productsSortedByPrice,
     productPosted,
     additivesRecieved,
+    filterProducts,
     singleProductRequested,
 } = slice.actions
 

@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react"
 import * as S from "./ProductCard.styles"
 import PropTypes from "prop-types"
-import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
 const ProductCard = ({ description, title, smallPrice, className, category, image }) => {
     const navigate = useNavigate()
-    const data = useSelector((state) => state.cart)
     const [showExpandBtn, setShowExpandBtn] = useState(false)
     const [expanded, setExpanded] = useState(false)
 
     const checkDescriptionLength = (text) => {
         if (text && text.length > 45) {
             setShowExpandBtn(true)
+        } else {
+            setShowExpandBtn(false)
         }
     }
 

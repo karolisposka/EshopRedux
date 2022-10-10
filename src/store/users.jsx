@@ -18,79 +18,130 @@ const slice = createSlice({
 
     reducers: {
         formDisplayed: (users, action) => {
-            users.status = action.payload
+            return {
+                ...users,
+                status: action.payload,
+            }
         },
         userTokenRequested: (users, action) => {
-            users.loading = true
-            users.error = ""
-            users.message = ""
-            users.success = false
+            return {
+                ...users,
+                loading: true,
+                error: null,
+                success: false,
+            }
         },
         userTokenRecieved: (users, action) => {
-            users.key = action.payload.id
-            users.roles = action.payload.roles.split(",")
-            users.loading = false
-            users.success = true
+            return {
+                ...users,
+                key: action.payload.id,
+                roles: action.payload.roles.split(","),
+                loading: false,
+                success: true,
+            }
         },
         errorRecieved: (users, action) => {
-            users.error = action.payload
-            users.message = ""
-            users.loading = false
+            return {
+                ...users,
+                error: action.payload,
+                message: "",
+                loading: false,
+            }
         },
         formChanged: (users, action) => {
-            users.expanded = true
-            users.error = ""
-            users.message = ""
+            return {
+                ...users,
+                expanded: true,
+                error: "",
+                message: "",
+            }
         },
         formChanged2: (users, action) => {
-            users.expanded = false
-            users.error = ""
-            users.message = ""
+            return {
+                ...users,
+                expanded: false,
+                error: "",
+                message: "",
+            }
         },
         userRegistationStarted: (users, action) => {
-            users.loading = "true"
-            users.error = ""
-            users.message = ""
+            return {
+                ...users,
+                loading: true,
+                error: "",
+                message: "",
+            }
         },
         userRegistered: (users, action) => {
-            users.status = "register"
-            users.loading = "false"
-            users.message = action.payload
+            return {
+                ...users,
+                status: "register",
+                loading: false,
+                message: action.payload,
+            }
         },
         userDetailsRequested: (users, action) => {
-            users.loading = true
+            return {
+                ...users,
+                loading: true,
+            }
         },
         userDetailsRecieved: (users, action) => {
-            users.loading = false
-            users.address = action.payload
+            return {
+                ...users,
+                loading: false,
+                address: action.payload,
+            }
         },
         successMessageRecieved: (users, action) => {
-            users.message = action.payload
-            users.error = ""
-            users.loading = false
+            return {
+                ...users,
+                message: action.payload,
+                error: "",
+                loading: false,
+            }
         },
         userDefaultAddressChanged: (users, action) => {
-            users.loading = false
-            const itemToCart = users.address.find((item) => item.id === action.payload.id)
-            itemToCart.default_status = action.payload.status
+            return {
+                ...users,
+                loading: false,
+                address: users.address.map((add) => {
+                    if (add.id === Number(action.payload.id)) {
+                        return { ...add, status: action.payload.status }
+                    }
+                    return add
+                }),
+            }
         },
         addressDeleted: (users, action) => {
-            users.address = users.address.filter((item) => item.id !== Number(action.payload.id))
-            users.loading = false
+            return {
+                ...users,
+                address: users.address.filter((item) => item.id !== Number(action.payload.id)),
+                loading: false,
+            }
         },
         addressPostRequested: (users, action) => {
-            users.loading = true
+            return {
+                ...users,
+                loading: true,
+            }
         },
         addressPostResponseRecieved: (users, action) => {
-            users.address.push(action.payload)
-            users.loading = false
+            return {
+                ...users,
+                address: [...users.address, action.payload],
+                loading: false,
+            }
         },
         userKeyDeleted: (users, action) => {
-            users.key = ""
-            users.status = "login"
-            users.error = ""
-            users.success = false
-            users.roles = []
+            return {
+                ...users,
+                key: "",
+                status: "login",
+                error: "",
+                success: false,
+                roles: [],
+            }
         },
     },
 })
@@ -108,7 +159,7 @@ export const loggin = (data) => (dispatch, getState) => {
     )
 }
 
-export const register = (data) => (dispatch, getState) => {
+export const reegister = (data) => (dispatch, getState) => {
     dispatch(
         apiCallBegan({
             url: process.env.REACT_APP_REGISTER,

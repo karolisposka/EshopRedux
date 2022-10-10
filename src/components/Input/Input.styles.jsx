@@ -46,13 +46,17 @@ export const Comment = Styled.div`
     position:absolute;
     right:0;
     top:2rem;
-    background:white; //pakeisti spalva
+    background:${(props) => props.theme.colors.background.info};
+    border: 2px solid black;
     border-radius:0.25rem;
     z-index:3;
-    border:1px solid rgba(0,0,0,0.3);
 `
 
 export const CommentText = Styled.p`
-    padding:0.25rem;
+    margin:0 0.25rem;
+    padding:0.1rem 0;
     font-size:0.75rem;
+    color:${(props) => props.theme.colors.background.lightest};
+    font-weight:700;
+    
 `

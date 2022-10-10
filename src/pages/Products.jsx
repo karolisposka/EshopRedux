@@ -1,53 +1,51 @@
 import React, { useEffect, useState } from "react"
 import Container from "../components/Container/Container"
-import ProductsList from "../components/ProductsList/ProductsList"
 import Hero from "../components/hero/Hero"
 import Menu from "../components/menu/Menu"
 import Footer from "../components/footer/Footer"
 import Filters from "../components/filters/Filters"
-import SelectDropDown from "../components/SelectDropDown/SelectDropDown"
-import SearchBox from "../components/searchBox/SearchBox"
 import MainContainer from "../components/mainContainer/MainContainer"
 import CategoriesList from "../components/categoriesList/CategoriesList"
 import { open } from "../store/cart"
-import { useParams, Outlet } from "react-router-dom"
-import {
-    loadProducts,
-    loadCategories,
-    productsSortedByPrice,
-    searchProducts,
-    productsFiltered,
-    getAdditives,
-} from "../store/products"
+import { Outlet, useSearchParams } from "react-router-dom"
+import { loadProducts } from "../store/products"
 import { useSelector, useDispatch } from "react-redux"
 import MobileCartIcon from "../components/mobileCartIcon/MobileCartIcon"
 import { useNavigate } from "react-router-dom"
 import MobileSideMenu from "../components/mobileSideMenu/MobileSideMenu"
 
 const Products = () => {
-    const url = useParams()
     const navigate = useNavigate()
+    const [searchParams, setSearchParams] = useSearchParams()
+    const [selectParams, setSelectParams] = useSearchParams()
     const [spin, setSpin] = useState(false)
     const dispatch = useDispatch()
-    const cartData = useSelector((state) => state.cart)
-    const mobileSideBarStatus = cartData.status
-    const totalQuantity = cartData.cart.reduce((a, b) => a + b.quantity, 0)
 
-    const displayData = (url) => {
-        if (url) {
-            console.log("cia")
-            return dispatch(productsFiltered(url))
+    useEffect(() => {
+        dispatch(loadProducts())
+    }, [])
+
+    const handleChange = (value) => {
+        const title = value
+        if (title) {
+            setSearchParams({ title })
         } else {
-            return dispatch(loadProducts())
+            setSearchParams({})
         }
     }
 
-    useEffect(() => {
-        displayData(url.category)
-        dispatch(getAdditives())
-    }, [])
+    const handleSelect = (value) => {
+        const sort = value
+        if (sort) {
+            setSelectParams({ sort })
+        } else {
+            setSearchParams({})
+        }
+    }
 
-    const data = useSelector((state) => state.productsFiltered)
+    const cartData = useSelector((state) => state.cart)
+    const mobileSideBarStatus = cartData.status
+    const totalQuantity = cartData.cart.reduce((a, b) => a + b.quantity, 0)
 
     return (
         <>
@@ -55,7 +53,6 @@ const Products = () => {
                 <Container>
                     <MobileSideMenu
                         open={mobileSideBarStatus}
-                        // categories={categories}
                         handleExit={() => {
                             dispatch(open(false))
                         }}
@@ -73,28 +70,13 @@ const Products = () => {
                             }, 200)
                         }}
                         spin={spin}
-                    >
-                        <SelectDropDown
-                            options={[
-                                { value: "lowest price", label: "Lowest price" },
-                                { value: "highest price", label: "Highest price" },
-                                { value: "popularity", label: "the most popular" },
-                            ]}
-                            handleChange={(value) => {
-                                dispatch(productsSortedByPrice(value))
-                            }}
-                        />
-                        <SearchBox
-                            placeholder="Search"
-                            name="query"
-                            handleChange={(query) => {
-                                const data = dispatch(searchProducts(query))
-                                if (query.length === 0) {
-                                    dispatch(loadProducts())
-                                }
-                            }}
-                        />
-                    </Filters>
+                        handleSelect={(value) => {
+                            handleSelect(value)
+                        }}
+                        handleChange={(value) => {
+                            handleChange(value)
+                        }}
+                    ></Filters>
                     <Menu>
                         <CategoriesList />
                         <MobileCartIcon
@@ -103,7 +85,6 @@ const Products = () => {
                                 navigate("/cart")
                             }}
                         />
-                        {(!url || url.title) && <ProductsList />}
                         <Outlet />
                     </Menu>
                 </Container>

@@ -3,7 +3,7 @@ import CategoriesList from "../categoriesList/CategoriesList"
 import { AiOutlineClose } from "react-icons/ai"
 
 export const SideMenuContainer = Styled.div`
-    position:absolute;
+    position:fixed;
     font-family:${(props) => props.theme.fonts.names.primary};
     top:0;
     left:0;
