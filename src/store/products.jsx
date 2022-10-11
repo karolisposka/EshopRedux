@@ -9,6 +9,8 @@ const slice = createSlice({
         additives: [],
         categories: [],
         loading: false,
+        lastFetched: null,
+        lastCategoriesFetched: null,
     },
     reducers: {
         productsAdded: (products, action) => {
@@ -29,6 +31,7 @@ const slice = createSlice({
                 ...products,
                 categories: action.payload,
                 loading: false,
+                lastCategoriesFetched: new Date().now(),
             }
         },
         filterProducts: (products, action) => {
@@ -43,6 +46,7 @@ const slice = createSlice({
                 ...products,
                 list: action.payload,
                 loading: false,
+                lastFetched: new Date().now(),
             }
         },
         additivesRecieved: (products, action) => {
@@ -70,13 +74,19 @@ const slice = createSlice({
 //action creators
 
 export const loadProducts = () => (dispatch, getState) => {
-    dispatch(
-        apiCallBegan({
-            url: process.env.REACT_APP_PRODUCTS_GET,
-            onStart: productsRequested.type,
-            onSuccess: productsRecieved.type,
-        })
-    )
+    const { lastFetched } = getState().products
+    const diff = moment().diff(moment(lastFetched), "minutes")
+    if (diff < 1) {
+        return
+    } else {
+        dispatch(
+            apiCallBegan({
+                url: process.env.REACT_APP_PRODUCTS_GET,
+                onStart: productsRequested.type,
+                onSuccess: productsRecieved.type,
+            })
+        )
+    }
 }
 
 export const searchProducts = (query) => (dispatch, getState) => {
@@ -90,13 +100,19 @@ export const searchProducts = (query) => (dispatch, getState) => {
 }
 
 export const loadCategories = () => (dispatch, getState) => {
-    dispatch(
-        apiCallBegan({
-            url: process.env.REACT_APP_CATEGORIES_GET,
-            onStart: productsRequested.type,
-            onSuccess: categoriesRecieved.type,
-        })
-    )
+    const { lastCategoriesFetched } = getState().products
+    const diff = moment().diff(moment(lastCategoriesFetched), "minutes")
+    if (diff < 1) {
+        return
+    } else {
+        dispatch(
+            apiCallBegan({
+                url: process.env.REACT_APP_CATEGORIES_GET,
+                onStart: productsRequested.type,
+                onSuccess: categoriesRecieved.type,
+            })
+        )
+    }
 }
 
 export const getAdditives = () => (dispatch, getState) => {

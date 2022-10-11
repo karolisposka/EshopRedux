@@ -6,7 +6,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import "normalize.css";
 import "./fonts.css";
 import {Provider} from 'react-redux';
-import {configureAppStore, persistor} from '../src/store/configureStore';
+import {store, persistor} from '../src/store/configureStore';
 import Router from "./Router";
 
 
@@ -15,7 +15,7 @@ import Router from "./Router";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider store={configureAppStore()}>
+    <Provider store={store}>
       <PersistGate persistor={persistor}>
     <ThemeProvider theme={theme}>
       <Router />

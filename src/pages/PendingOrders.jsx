@@ -14,6 +14,7 @@ const OrdersAdmin = () => {
     }, [])
 
     const orders = useSelector((state) => state.orders.orders).filter((items) => items.status === 0)
+    console.log(orders)
 
     return (
         <>
@@ -36,7 +37,7 @@ const OrdersAdmin = () => {
                         ))}
                 </OrdersList>
             )}
-            {orders.length === 0 && <NoData>no data</NoData>}
+            {orders.length === 0 && <NoData text="No active orders" />}
         </>
     )
 }

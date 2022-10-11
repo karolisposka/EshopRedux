@@ -5,7 +5,7 @@ import CheckoutButton from "../checkoutButton/CheckoutButton"
 
 export const Container = Styled.div`
   flex:1;
-  margin:2rem;
+  margin:2rem 1rem;
   box-sizing:border-box;
   border:1px solid rgba(0,0,0,0.3);
   border-radius:0.25rem;
@@ -56,6 +56,11 @@ export const ButtonsWrapper = Styled.div`
     display:flex;
     padding:1rem;
 
+`
+
+export const Error = Styled.p`
+  color:${(props) => props.theme.colors.background.danger};
+  margin:0.5rem 0.1rem;
 `
 
 export const BackToStore = Styled(Button)`

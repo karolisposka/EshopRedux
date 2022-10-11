@@ -42,7 +42,7 @@ const AddAddressForm = ({ handleClose, handleSubmit, className }) => {
                     name="first_name"
                     label="First Name"
                     handleChange={formik.handleChange}
-                    comment={formik.errors.first_name}
+                    comment={formik.touched.first_name && formik.errors.first_name}
                     onBlur={formik.handleBlur}
                     value={formik.values.first_name}
                 />
@@ -50,7 +50,7 @@ const AddAddressForm = ({ handleClose, handleSubmit, className }) => {
                     placeholder="Last Name"
                     name="last_name"
                     label="Last Name"
-                    comment={formik.errors.last_name}
+                    comment={formik.touched.last_name ? formik.errors.last_name : null}
                     handleChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.last_name}
@@ -59,7 +59,7 @@ const AddAddressForm = ({ handleClose, handleSubmit, className }) => {
                     placeholder="+370 XXXXXXXX"
                     name="mobile"
                     label="Mobile number"
-                    comment={formik.errors.mobile}
+                    comment={formik.touched.mobile ? formik.errors.mobile : null}
                     handleChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.mobile}
@@ -68,7 +68,7 @@ const AddAddressForm = ({ handleClose, handleSubmit, className }) => {
                     placeholder="Address"
                     name="address"
                     label="Address"
-                    comment={formik.errors.address}
+                    comment={formik.touched.address && formik.errors.address}
                     handleChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.address}
@@ -77,7 +77,7 @@ const AddAddressForm = ({ handleClose, handleSubmit, className }) => {
                     placeholder="City"
                     name="city"
                     label="City"
-                    comment={formik.errors.city}
+                    comment={formik.touched.city && formik.errors.city}
                     handleChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.city}
@@ -87,7 +87,7 @@ const AddAddressForm = ({ handleClose, handleSubmit, className }) => {
                     type="text"
                     name="post_code"
                     label="Post Code"
-                    comment={formik.errors.post_code}
+                    comment={formik.touched.post_code && formik.errors.post_code}
                     handleChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.post_code}

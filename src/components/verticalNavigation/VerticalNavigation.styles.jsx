@@ -24,6 +24,7 @@ export const AdminBtn = Styled(Link)`
   font-family:${(props) => props.theme.fonts.names.secondary};
   font-weight:700;
   padding:1rem;
+  width:100%;
   text-transform:uppercase;
   color:${(props) => props.theme.colors.background.warning};
   font-weight:700;

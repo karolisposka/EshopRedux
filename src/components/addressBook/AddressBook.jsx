@@ -20,8 +20,17 @@ const AddressBook = () => {
     const handleSubmit = (values) => {
         dispatch(PostAddress(values))
     }
+
     const handleDelete = (value) => {
         dispatch(deleteAddress(value))
+    }
+
+    const ChangeCheckBoxValue = (status) => {
+        if (status === 1) {
+            return 0
+        } else {
+            return 1
+        }
     }
     const handleChange = (values) => {
         const activeItems = data.address.filter((item) => item.default_status === 1)
@@ -46,14 +55,6 @@ const AddressBook = () => {
         }
     }
 
-    const ChangeCheckBoxValue = (status) => {
-        if (status === 1) {
-            return 0
-        } else {
-            return 1
-        }
-    }
-
     return (
         <S.Container>
             <S.TitleWrapper>
@@ -63,7 +64,7 @@ const AddressBook = () => {
                     {!showForm && (
                         <CSSTransition on={!showForm} timeout={200} classNames="opacity">
                             <S.DisplayFormBtn
-                                onClick={() => {
+                                handleClick={() => {
                                     setShowForm(true)
                                 }}
                             >
@@ -109,7 +110,7 @@ const AddressBook = () => {
                         />
                     ))
                 ) : (
-                    <NoData />
+                    <NoData text="No Data Found" />
                 )}
             </S.AddressBook>
         </S.Container>

@@ -51,7 +51,6 @@ const Cart = () => {
                                     }}
                                 />
                             </CartContainer>
-                            {!userKey ? <AccountPageInfo flex="flex" /> : null}
                         </>
                     )}
                 </Container>

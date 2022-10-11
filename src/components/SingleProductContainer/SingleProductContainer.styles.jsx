@@ -25,11 +25,18 @@ export const ProductSection = Styled.section`
   max-width:1000px;
   min-width:400px;
   margin:1rem auto;
-  min-height:70vh;
+  min-height:55vh;
   border-radius:0.25rem;
   display:Flex;
-  @media(max-width:567px){
+  @media(max-width:768px){
     flex-direction:column;
+    min-height:75vh;
+  }
+  @media(min-width:768px) and (max-width:1366px){
+    min-height:65vh;
+  }
+  @media(min-width:1366px) and (max-width:1920px){
+    min-height:80vh;
   }
 `
 
@@ -51,9 +58,8 @@ export const ExitBtn = Styled(HiOutlineX)`
   margin:1rem;
   transition: transform 0.1s ease-in-out;
   &:hover{
-  transform: scale(1.25);
+    transform: scale(1.25);
   }
-
 `
 
 export const ProductImage = Styled.img`
@@ -78,6 +84,7 @@ export const SizeLine = Styled.div`
 export const ProductInfoWrapper = Styled.div`
   flex:1;
   margin:1rem;
+  position:relative;
 `
 
 export const Title = Styled.h4`
@@ -145,41 +152,31 @@ export const IngredientsWrapper = Styled.div`
   
 
 `
+export const ButtonWrapper = Styled.div`
+  position:absolute;
+  bottom:0;
+  left:3.5rem;
+`
 
 export const StyledButton = Styled(Button)`
-    border-radius:0.5rem;
-    padding:0.5rem 1.25rem;
-    transition: ease-in-out 0.5s ease;
-    display:flex;
-    margin:0.5rem 0;
-    width:100%;
-    align-items:center;
-    display:flex;
-    font-weight:700;
-    justify-content:Center;
-    transition: all 0.3s ease-in-out;
-    &:hover{
-        background:${(props) => props.theme.colors.background.info};
-        color:white;
-    }
-    @media(max-width:768px){
-      padding:0.25 0.5rem;
-      font-size:0.8rem;
-    }
+  border-radius:0.5rem;
+  padding:0.5rem 1.25rem;
+  margin:0.5rem 0;
+  width:100%;
+  font-weight:700;
+  transition: all 0.3s ease-in-out;
+  @media(max-width:768px){
+    padding:0.25 0.5rem;
+    font-size:0.8rem;
+  }
 
 `
-export const StyledQuantityReducer = Styled(QuantityReducer)`
-  margin:1rem 0;
-
-`
-
 export const StyledAdditives = Styled(Additives)`
-    width:20rem;
-    padding:1rem 0;
-    @media(max-width:567px){
-      display:none;
-    }
-   
+  width:20rem;
+  padding:1rem 0;
+  @media(max-width:567px){
+    display:none;
+  } 
 `
 
 export const ChooseAddivites = Styled(Button)`

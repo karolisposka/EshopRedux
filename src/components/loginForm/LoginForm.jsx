@@ -27,7 +27,9 @@ const LoginForm = () => {
         }),
         onSubmit: (values) => {
             dispatch(loggin(values))
-            navigate("/")
+            if (data.key) {
+                return navigate("/userDetails")
+            }
         },
     })
 
@@ -56,7 +58,7 @@ const LoginForm = () => {
                 />
                 <S.StyledButton type="submit"> Login </S.StyledButton>
                 <S.SmallText>
-                    Dont have an account?{" "}
+                    Dont have an account?
                     <S.Span
                         to="/account/register"
                         onClick={() => {

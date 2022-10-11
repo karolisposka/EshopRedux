@@ -1,6 +1,6 @@
 import Styled from "styled-components"
 import { FaLock } from "react-icons/fa"
-import ErrorNotification from "../errorNotification/ErrorNotification"
+import Notification from "../notification/Notification"
 
 export const Container = Styled.div`
     width:100%;
@@ -29,8 +29,9 @@ export const Title = Styled.h4`
     margin:0.5rem 0;
 `
 
-export const StyledErrorNotification = Styled(ErrorNotification)`
+export const StyledNotification = Styled(Notification)`
     transform: translateX(0);
+    margin:1rem 0rem;
    
     &&.show-enter {
         transform: translateX(0);

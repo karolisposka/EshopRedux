@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { apiCallBegan } from "./api"
-import moment from "moment"
 
 const slice = createSlice({
     name: "userOrders",
@@ -9,6 +8,7 @@ const slice = createSlice({
         history: [],
         loading: false,
         error: "",
+        message: "",
     },
     reducers: {
         dataRequested: (state, action) => {
@@ -20,9 +20,9 @@ const slice = createSlice({
         userOrdersRecieved: (state, action) => {
             return {
                 ...state,
-                orders: action.payload.data ? action.payload : [],
+                orders: action.payload,
                 loading: false,
-                error: action.payload.err ? action.payload.err : "",
+                error: "",
             }
         },
         errorRecieved: (state, action) => {

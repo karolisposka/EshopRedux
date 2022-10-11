@@ -1,4 +1,5 @@
 import Styled from "styled-components"
+import Button from "../Button/Button"
 
 export const Form = Styled.form`
     border:1px solid rgba(0,0,0,0.3);
@@ -7,9 +8,9 @@ export const Form = Styled.form`
     border-radius:0.25rem;
 `
 
-export const SubmitButton = Styled.button`
+export const SubmitButton = Styled(Button)`
     padding:0.5rem 2rem;
     margin: 0 0 1rem 1rem;
-    background:Transparent;
+   
 
 `

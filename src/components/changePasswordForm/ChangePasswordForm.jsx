@@ -2,9 +2,17 @@ import React from "react"
 import * as S from "./ChangePasswordForm.styles"
 import * as Yup from "yup"
 import Input from "../Input/Input"
+import { useDispatch } from "react-redux"
+import { changePassword } from "../../store/users"
 import { useFormik } from "formik"
 
-const ChangePasswordForm = ({ handleSubmit }) => {
+const ChangePasswordForm = () => {
+    const dispatch = useDispatch()
+
+    const handleChangePassword = (values) => {
+        return dispatch(changePassword(values))
+    }
+
     const formik = useFormik({
         initialValues: {
             currentPassword: "",
@@ -14,7 +22,10 @@ const ChangePasswordForm = ({ handleSubmit }) => {
             newPassword: Yup.string().min(8).required(),
             currentPassword: Yup.string().min(8).required(),
         }),
-        onSubmit: handleSubmit,
+        onSubmit: (values) => {
+            console.log(values)
+            handleChangePassword(values)
+        },
     })
 
     return (
@@ -25,7 +36,11 @@ const ChangePasswordForm = ({ handleSubmit }) => {
                 value={formik.values.currentPassword}
                 label="Password"
                 placeholder="Password"
-                comment={formik.errors.currentPassword ? formik.errors.currentPassword : null}
+                comment={
+                    formik.errors.currentPassword
+                        ? formik.touched.currentPassword && formik.errors.currentPassword
+                        : null
+                }
                 handleChange={formik.handleChange}
                 handleBlur={formik.handleBlur}
             />
@@ -35,7 +50,7 @@ const ChangePasswordForm = ({ handleSubmit }) => {
                 value={formik.values.newPassword}
                 label="New Password"
                 placeholder="New Password"
-                comment={formik.errors.newPassword ? formik.errors.newPassword : null}
+                comment={formik.errors.newPassword && formik.touched.newPassword && formik.errors.newPassword}
                 handleChange={formik.handleChange}
                 handleBlur={formik.handleBlur}
             />

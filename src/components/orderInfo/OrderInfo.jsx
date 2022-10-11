@@ -39,6 +39,7 @@ const OrderInfo = ({ quantity, totalPrice, handleChange, options, deliveryOption
                         handleChange(e)
                     }}
                 />
+                {deliveryOption !== "0" && <S.Error>Not available at this moment</S.Error>}
             </S.TextWrapper>
             <S.TextWrapper>
                 <S.SmallText>Total:</S.SmallText>

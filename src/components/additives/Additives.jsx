@@ -7,6 +7,7 @@ import "swiper/css/pagination"
 
 const Additives = ({ additives, className, handleAdd }) => {
     const sliderRef = useRef(null)
+    console.log(sliderRef)
 
     const handlePrev = useCallback(() => {
         if (!sliderRef.current) return
@@ -14,6 +15,7 @@ const Additives = ({ additives, className, handleAdd }) => {
     }, [])
 
     const handleNext = useCallback(() => {
+        console.log("next")
         if (!sliderRef.current) return
         sliderRef.current.swiper.slideNext()
     }, [])

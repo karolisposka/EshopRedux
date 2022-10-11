@@ -28,7 +28,7 @@ export const Overlay = Styled.div`
     clip-path: ellipse(80% 24% at 51% 0%);
     display:flex;
     flex-direction:column;
-    height:100vh;
+    height:70vh;
     z-index:3;
     justify-content:flex-start;
     left:0;
@@ -39,7 +39,7 @@ export const Overlay = Styled.div`
     transition:1s ease-in-out;
     &.overlay-enter {
         width:100%;
-        height: 100vh;  
+        height: 70vh;  
     }
     &.overlay-enter-active {
         width:100%;
@@ -52,7 +52,7 @@ export const Overlay = Styled.div`
     }
     &.overlay-exit-active {
         width:100%;
-        height:100vh;
+        height:70vh;
     }
 `
 

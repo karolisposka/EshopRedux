@@ -1,9 +1,8 @@
 import React from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
-import Tab from "../tab/Tab"
 
-const Carousel = ({ items, className }) => {
+const Carousel = ({ className }) => {
     return (
         <Swiper
             className={className}
@@ -19,12 +18,7 @@ const Carousel = ({ items, className }) => {
                 },
             }}
         >
-            {items &&
-                items.map((item, index) => (
-                    <SwiperSlide key={index}>
-                        <Tab onClick={item.handleClick()}>{item.text}</Tab>
-                    </SwiperSlide>
-                ))}
+            <SwiperSlide>{children}</SwiperSlide>
         </Swiper>
     )
 }

@@ -25,11 +25,9 @@ const rootPersistConfig = {
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer)
 
-export const configureAppStore = () => {
-    return configureStore({
-        reducer: persistedReducer,
-        middleware: [api, thunk],
-    })
-}
+export const store = configureStore({
+    reducer: persistedReducer,
+    middleware: [api, thunk],
+})
 
-export const persistor = persistStore(configureAppStore())
+export const persistor = persistStore(store)

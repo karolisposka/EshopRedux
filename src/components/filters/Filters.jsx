@@ -14,10 +14,10 @@ const Filters = ({ handleClick, handleSelect, handleChange, spin }) => {
     return (
         <>
             <S.FiltersContainer>
-                <CSSTransition in={spin} timeout={200} classNames="fade">
-                    <S.RefreshIcon onClick={handleClick} />
-                </CSSTransition>
                 <S.FiltersWrapper>
+                    <CSSTransition in={spin} timeout={200} classNames="fade">
+                        <S.RefreshIcon onClick={handleClick} />
+                    </CSSTransition>
                     <S.StyledSearchBox placeholder="...Search" handleChange={handleChange} name="search" />
                     <S.Select
                         options={options}

@@ -84,6 +84,8 @@ const slice = createSlice({
             return {
                 ...users,
                 loading: true,
+                error: "",
+                message: "",
             }
         },
         userDetailsRecieved: (users, action) => {
@@ -107,7 +109,7 @@ const slice = createSlice({
                 loading: false,
                 address: users.address.map((add) => {
                     if (add.id === Number(action.payload.id)) {
-                        return { ...add, status: action.payload.status }
+                        return { ...add, default_status: action.payload.status }
                     }
                     return add
                 }),
@@ -129,18 +131,19 @@ const slice = createSlice({
         addressPostResponseRecieved: (users, action) => {
             return {
                 ...users,
-                address: [...users.address, action.payload],
+                address: users.address.concat(action.payload),
                 loading: false,
             }
         },
         userKeyDeleted: (users, action) => {
             return {
                 ...users,
-                key: "",
+                key: null,
                 status: "login",
                 error: "",
                 success: false,
                 roles: [],
+                address: [],
             }
         },
     },
@@ -239,7 +242,7 @@ export const changePassword = (data) => (dispatch, getState) => {
             url: process.env.REACT_APP_CHANGE_PASSWORD,
             method: "post",
             headers: {
-                "Content-type": "multipart/form-data",
+                "Content-type": "application/json",
                 authorization: `Bearer ${getState().users.key}`,
             },
             data: data,

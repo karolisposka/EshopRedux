@@ -10,10 +10,12 @@ export const FormContainer = Styled.div`
     margin:1rem auto;
     border:1px solid rgba(0,0,0,0.3);
     background:white;
+    border-radius:0.25rem;
+    box-shadow: ${(props) => props.theme.shadows.primary};
 `
 
 export const Form = Styled.form`
-
+    
 `
 
 export const TitleWrapper = Styled.div`

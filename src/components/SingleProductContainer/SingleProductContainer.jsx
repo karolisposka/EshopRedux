@@ -171,20 +171,22 @@ const SingleProductContainer = ({ handleExit, item, additives }) => {
                         {data.cart.filter(
                             (product) => product.title === item.title && product.description === ingredients
                         ) && (
-                            <S.StyledButton
-                                handleClick={() =>
-                                    dispatch(
-                                        increment({
-                                            id: item.id,
-                                            title: item.title,
-                                            description: ingredients.toString(),
-                                            price: finalPrice,
-                                        })
-                                    )
-                                }
-                            >
-                                Add to Cart for {finalPrice} €
-                            </S.StyledButton>
+                            <S.ButtonWrapper>
+                                <S.StyledButton
+                                    handleClick={() =>
+                                        dispatch(
+                                            increment({
+                                                id: item.id,
+                                                title: item.title,
+                                                description: ingredients.toString(),
+                                                price: finalPrice,
+                                            })
+                                        )
+                                    }
+                                >
+                                    Add to Cart for {finalPrice} €
+                                </S.StyledButton>
+                            </S.ButtonWrapper>
                         )}
                     </S.ProductInfoWrapper>
                 </S.ProductSection>

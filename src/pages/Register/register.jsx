@@ -10,7 +10,6 @@ const Register = () => {
     const handleRegister = (values) => {
         return dispatch(reegister(values))
     }
-
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -63,7 +62,7 @@ const Register = () => {
                     handleBlur={formik.handleBlur}
                 />
                 <S.SmallText>
-                    Already have account?{" "}
+                    Already have account?
                     <S.Span
                         to="/account"
                         onClick={() => {

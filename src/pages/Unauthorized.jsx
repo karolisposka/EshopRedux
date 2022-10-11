@@ -3,6 +3,7 @@ import Container from "../components/Container/Container"
 import Title from "../components/title/Title"
 import Button from "../components/Button/Button"
 import Footer from "../components/footer/Footer"
+import FlexContainer from "../components/accountContainer/flexContainer/FlexContainer"
 import { useNavigate } from "react-router-dom"
 
 const Unauthorized = () => {
@@ -11,14 +12,15 @@ const Unauthorized = () => {
         <>
             <Container>
                 <Title>Unauthorized</Title>
-                <Button
-                    handleClick={() => {
-                        navigate("/")
-                    }}
-                >
-                    {" "}
-                    Back to main page
-                </Button>
+                <FlexContainer>
+                    <Button
+                        handleClick={() => {
+                            navigate("/")
+                        }}
+                    >
+                        Back to main page
+                    </Button>
+                </FlexContainer>
             </Container>
             <Footer />
         </>

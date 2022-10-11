@@ -8,7 +8,7 @@ export const FiltersContainer = Styled.div`
     padding-top:1rem;
     display:grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 1.2fr 0.1fr 3.9fr;
+    grid-template-columns: 1fr 4fr;
     align-items:center;
     gap:0;
     @media(max-width:768px){
@@ -20,15 +20,17 @@ export const FiltersWrapper = Styled.div`
     width:100%;
     display:flex;
     margin-right:1rem;
+    grid-column: 2;
+    align-items:Center;
     justify-content:flex-end;
     @media(max-width:768px){
-        grid-columns: 1;
+        grid-columns: 1/2;
     }
 
 `
 
 export const StyledSearchBox = Styled(SearchBox)`
-    grid-columns: 1/3;
+   
    
     
 `
@@ -36,7 +38,6 @@ export const StyledSearchBox = Styled(SearchBox)`
 export const RefreshIcon = Styled(BiRefresh)`
     color: ${(props) => props.theme.colors.fonts.info};
     font-size: ${(props) => props.theme.fonts.size.strong};
-    grid-column: 2;
     margin-left:1rem;
     cursor: pointer;
     &&.fade-enter {
@@ -60,7 +61,7 @@ export const RefreshIcon = Styled(BiRefresh)`
 
 export const Select = Styled(SelectDropDown)`
    @media(max-width:768px){
-        grid-columns:2 / 3;
+        
    }
 `
 

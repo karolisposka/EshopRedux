@@ -36,7 +36,7 @@ const slice = createSlice({
                 loading: false,
                 orders: state.orders.map((selectedOrder) => {
                     if (selectedOrder.id === Number(action.payload)) {
-                        return { ...selectedOrder, status: 1 }
+                        return { ...selectedOrder, status: 1, completed_at: new Date().getTime() }
                     }
                     return selectedOrder
                 }),
@@ -60,25 +60,6 @@ export const loadOrders = () => (dispatch, getState) => {
     )
 }
 
-// export const placeOrder = (token, data) => (dispatch, getState) => {
-//     dispatch(
-//         apiCallBegan({
-//             url: process.env.REACT_APP_MAKE_ORDER,
-//             method: "post",
-//             headers: {
-//                 "Content-type": "application/json",
-//                 Authorization: `Bearer ${getState().users.key}`,
-//             },
-//             data: {
-//                 products: data,
-//                 token,
-//             },
-//             onStart: ordersRequested.type,
-//             onSuccess: orderDispatched.type,
-//         })
-//     )
-// }
-
 export const changeStatus = (data) => (dispatch, getState) => {
     dispatch(
         apiCallBegan({
@@ -88,9 +69,7 @@ export const changeStatus = (data) => (dispatch, getState) => {
                 "Content-type": "application/json",
                 Authorization: `Bearer ${getState().users.key}`,
             },
-            data: {
-                id: data,
-            },
+            data: data,
             onStart: ordersRequested.type,
             onSuccess: setAsCompleted.type,
             onError: errorRecieved.type,

@@ -1,6 +1,7 @@
 import Styled from "styled-components"
 import { FaAddressBook } from "react-icons/fa"
 import AddAddressForm from "../addAddressForm/AddAddressForm"
+import Button from "../Button/Button"
 
 export const Container = Styled.div`
     width:100%;
@@ -25,23 +26,9 @@ export const Title = Styled.h4`
     margin:0.5rem 0;
 `
 
-export const DisplayFormBtn = Styled.button`
+export const DisplayFormBtn = Styled(Button)`
     padding:0.5rem 2rem;
-    background:Transparent;
-    &&.opacity-enter {
-        opacity:0;
-    }
-    &&.opacity-enter-active {
-        opacity:0.5;
-        transition: opacity 200ms ease-in-out;
-    }
-    &&.opacity-exit {
-        opacity:0.5;
-    }
-    &&.opacity-exit-active {
-        opacity:0;
-        transition: opacity 200ms ease-in-out;
-    }
+
 `
 
 export const AddressBook = Styled.section`
