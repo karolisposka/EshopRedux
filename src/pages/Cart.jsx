@@ -27,7 +27,13 @@ const Cart = () => {
         <MainContainer>
             <Container>
                 {cart.length === 0 ? (
-                    <BackToStore>Back to</BackToStore>
+                    <BackToStore
+                        handleClick={() => {
+                            navigate("/")
+                        }}
+                    >
+                        Back to
+                    </BackToStore>
                 ) : (
                     <CartContainer>
                         <CartTable items={cart} />
