@@ -11,10 +11,10 @@ export const NavigationContainer = Styled.div`
     z-index:1;
     top:0;
     left:0;
-    @media(max-width:768px){
+    @media(max-width:576px){
         height:8vh;
     }
-    @media(min-width:768px){
+    @media(min-width:576px){
         height:12vh;
     }
 `
