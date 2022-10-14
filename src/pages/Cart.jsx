@@ -8,12 +8,11 @@ import OrderInfo from "../components/orderInfo/OrderInfo"
 import BackToStore from "../components/backToStore/BackToStore"
 import Footer from "../components/footer/Footer"
 import MainContainer from "../components/mainContainer/MainContainer"
-import MobileSideMenu from "../components/mobileSideMenu/MobileSideMenu"
 
 const Cart = () => {
     const navigate = useNavigate()
     const [deliveryOption, setDeliveryOption] = useState()
-    const { cart, loading, url } = useSelector((state) => state.cart)
+    const { cart } = useSelector((state) => state.cart)
     console.log(cart)
     const userKey = useSelector((state) => state.users.key)
     const totalQuantity = cart.reduce((current, value) => current + value.quantity, 0)
