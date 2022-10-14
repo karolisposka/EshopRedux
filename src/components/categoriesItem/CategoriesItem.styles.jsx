@@ -1,5 +1,4 @@
 import Styled from "styled-components"
-import { FaArrowRight } from "react-icons/fa"
 import { Link } from "react-router-dom"
 
 export const ListItem = Styled.div`

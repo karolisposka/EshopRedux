@@ -11,7 +11,6 @@ const ProductsList = () => {
     const dispatch = useDispatch()
     const { category } = useParams()
     const [searchParams] = useSearchParams()
-    const [sortParams] = useSearchParams()
     const sort = searchParams.get("sort") || ""
     const title = searchParams.get("title") || ""
 

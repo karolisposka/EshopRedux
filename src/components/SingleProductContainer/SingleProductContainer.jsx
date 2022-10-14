@@ -17,7 +17,7 @@ const SingleProductContainer = ({ handleExit, item }) => {
         dispatch(getAdditives())
     }, [])
 
-    const { additives, loading } = useSelector((state) => state.products)
+    const { additives } = useSelector((state) => state.products)
 
     const transformDescriptionIntoArray = (des) => {
         return des
@@ -43,7 +43,7 @@ const SingleProductContainer = ({ handleExit, item }) => {
     const calculateTotalPrice = (additives, product) => {
         return (additives + Number(product)).toFixed(2)
     }
-
+    SingleProductContainer
     const AddAdditionalIngredient = (selection) => {
         if (ingredients.includes(selection.title.toLowerCase())) {
             return
@@ -99,7 +99,7 @@ const SingleProductContainer = ({ handleExit, item }) => {
                                 <S.ProductImage
                                     src={item.imageurl}
                                     alt="alt"
-                                    expand={size == item.big ? true : false}
+                                    expand={size === item.big ? true : false}
                                 />
                             </S.SizeLine>
                         ) : (
