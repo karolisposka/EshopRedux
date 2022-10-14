@@ -6,13 +6,12 @@ import * as S from "./Filters.styles"
 const options = [
     { value: "lowest price", label: "Lowest price" },
     { value: "highest price", label: "Highest price" },
-    { value: "popularity", label: "the most popular" },
 ]
 
-const Filters = ({ handleClick, handleSelect, handleChange, spin }) => {
+const Filters = React.forwardRef(({ handleClick, handleSelect, handleChange, spin }, ref) => {
     return (
         <>
-            <S.FiltersContainer>
+            <S.FiltersContainer ref={ref}>
                 <S.FiltersWrapper>
                     <CSSTransition in={spin} timeout={200} classNames="fade">
                         <S.RefreshIcon onClick={handleClick} />
@@ -28,7 +27,7 @@ const Filters = ({ handleClick, handleSelect, handleChange, spin }) => {
             </S.FiltersContainer>
         </>
     )
-}
+})
 
 Filters.propTypes = {
     handleClick: PropTypes.func.isRequired,

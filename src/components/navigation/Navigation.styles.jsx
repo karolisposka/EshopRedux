@@ -1,14 +1,20 @@
 import Styled from "styled-components"
-import Container from "../Container/Container"
-import Loader from "../loader/Loader"
 import { FaCartArrowDown, FaUser } from "react-icons/fa"
 import { HiMenu } from "react-icons/hi"
 import { RiAdminFill } from "react-icons/ri"
 
 export const NavigationContainer = Styled.div`
-  border-bottom:1px solid rgba(0,0,0,0.3);
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  max-height:6rem;  
+    border-bottom:1px solid rgba(0,0,0,0.3);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    height:12vh;  
+    position:sticky;
+    background:white;
+    z-index:1;
+    top:0;
+    left:0;
+    @media(max-width:768px){
+        height:8vh;
+    }
 `
 
 export const Section = Styled.section`

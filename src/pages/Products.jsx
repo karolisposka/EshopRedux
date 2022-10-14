@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import Container from "../components/Container/Container"
 import Hero from "../components/hero/Hero"
 import Menu from "../components/menu/Menu"
@@ -18,11 +18,11 @@ const Products = () => {
     const navigate = useNavigate()
     const [searchParams, setSearchParams] = useSearchParams()
     const [selectParams, setSelectParams] = useSearchParams()
+    const [display, setDisplay] = useState(false)
+    const ref = useRef(null)
     const [spin, setSpin] = useState(false)
     const dispatch = useDispatch()
     const { list, categories } = useSelector((state) => state.products)
-
-    console.log(list)
 
     useEffect(() => {
         if (list.length !== 0) {
@@ -31,8 +31,6 @@ const Products = () => {
             dispatch(loadProducts())
         }
     }, [list])
-
-    console.log(categories)
 
     useEffect(() => {
         if (categories.length !== 0) {
@@ -67,6 +65,13 @@ const Products = () => {
         }
     }
 
+    const handleClick = () => {
+        setDisplay(true)
+        setTimeout(() => {
+            ref.current.scrollIntoView({ behavior: "smooth", block: "start" })
+        }, 500)
+    }
+
     const cartData = useSelector((state) => state.cart)
     const mobileSideBarStatus = cartData.status
     const totalQuantity = cartData.cart.reduce((a, b) => a + b.quantity, 0)
@@ -74,46 +79,55 @@ const Products = () => {
     return (
         <>
             <MainContainer>
-                <Container>
-                    <MobileSideMenu
-                        open={mobileSideBarStatus}
-                        routes={mapCategories(categories)}
-                        handleExit={() => {
-                            dispatch(open(false))
-                        }}
-                        handleClick={() => {
-                            navigate("/account")
-                        }}
-                    />
-                    <Hero />
-                    <Filters
-                        handleClick={() => {
-                            setSpin(true)
-                            dispatch(loadProducts())
-                            setTimeout(() => {
-                                setSpin(false)
-                            }, 200)
-                        }}
-                        spin={spin}
-                        handleSelect={(value) => {
-                            handleSelect(value)
-                        }}
-                        handleChange={(value) => {
-                            handleChange(value)
-                        }}
-                    ></Filters>
-                    <Menu>
-                        <CategoriesList routes={mapCategories(categories)} />
-                        <MobileCartIcon
-                            quantity={totalQuantity}
-                            handleClick={() => {
-                                navigate("/cart")
-                            }}
-                        />
-                        <Outlet />
-                    </Menu>
-                </Container>
-                <Footer />
+                <MobileSideMenu
+                    open={mobileSideBarStatus}
+                    routes={mapCategories(categories)}
+                    handleExit={() => {
+                        dispatch(open(false))
+                    }}
+                    handleClick={() => {
+                        navigate("/account")
+                    }}
+                />
+                <Hero
+                    handleClick={() => {
+                        handleClick()
+                    }}
+                />
+                {display && (
+                    <>
+                        <Container>
+                            <Filters
+                                ref={ref}
+                                handleClick={() => {
+                                    setSpin(true)
+                                    dispatch(loadProducts())
+                                    setTimeout(() => {
+                                        setSpin(false)
+                                    }, 200)
+                                }}
+                                spin={spin}
+                                handleSelect={(value) => {
+                                    handleSelect(value)
+                                }}
+                                handleChange={(value) => {
+                                    handleChange(value)
+                                }}
+                            ></Filters>
+                            <Menu>
+                                <CategoriesList routes={mapCategories(categories)} />
+                                <MobileCartIcon
+                                    quantity={totalQuantity}
+                                    handleClick={() => {
+                                        navigate("/cart")
+                                    }}
+                                />
+                                <Outlet />
+                            </Menu>
+                        </Container>
+                        <Footer />
+                    </>
+                )}
             </MainContainer>
         </>
     )

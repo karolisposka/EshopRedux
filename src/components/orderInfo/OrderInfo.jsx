@@ -54,7 +54,7 @@ const OrderInfo = ({ quantity, totalPrice, handleChange, options, deliveryOption
                         handleChange(e)
                     }}
                 />
-                {deliveryOption === 5 && <S.Error>Not available at this moment</S.Error>}
+                {deliveryOption === 1 && <S.Error>Not available at this moment</S.Error>}
             </S.TextWrapper>
             <S.TextWrapper>
                 <S.SmallText>Total:</S.SmallText>
@@ -63,13 +63,6 @@ const OrderInfo = ({ quantity, totalPrice, handleChange, options, deliveryOption
                 </S.Span>
             </S.TextWrapper>
             {deliveryOption === "0" ? (
-                // <StripeCheckout
-                //     stripeKey={process.env.REACT_APP_STRIPE_SECRET_KEY}
-                //     token={}
-                //     currency="EUR"
-                //     name={"checkout"}
-                //     amount={Number(totalPrice) * 100}
-                // >
                 <S.CheckOutButton
                     handleClick={() => {
                         fetch(products.cart, key, deliveryOption)

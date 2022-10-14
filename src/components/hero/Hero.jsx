@@ -1,16 +1,24 @@
 import React from "react"
 import * as S from "./Hero.styles"
 
-const Hero = () => {
+const Hero = ({ handleClick }) => {
     return (
         <S.MainContainer>
-            <S.ContentSection>
-                <S.TextWrapper>
-                    <S.Text>
-                        <S.Span>Free delivery from 25 €</S.Span> don't wait and order now!
-                    </S.Text>
-                </S.TextWrapper>
-            </S.ContentSection>
+            <S.Overlay>
+                <S.ContentSection>
+                    <S.TextWrapper>
+                        <S.Title>
+                            Welcome to <S.Span>FOOD STORE!</S.Span>
+                        </S.Title>
+                        <S.Text>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere tenetur excepturi est.
+                        </S.Text>
+                    </S.TextWrapper>
+                    <S.Button onClick={handleClick}>
+                        <S.Arrow />
+                    </S.Button>
+                </S.ContentSection>
+            </S.Overlay>
         </S.MainContainer>
     )
 }

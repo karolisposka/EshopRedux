@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux/es/exports"
 import Container from "../components/Container/Container"
@@ -27,32 +27,21 @@ const Cart = () => {
     return (
         <MainContainer>
             <Container>
-                <MobileSideMenu />
-                {cart.length === 0 ? (
-                    <BackToStore
-                        handleClick={() => {
+                <CartContainer>
+                    <CartTable items={cart} />
+                    <OrderInfo
+                        totalPrice={totalAmount.toFixed(2)}
+                        quantity={totalQuantity}
+                        options={options}
+                        handleBackToStore={() => {
                             navigate("/")
                         }}
+                        deliveryOption={deliveryOption}
+                        handleChange={(value) => {
+                            setDeliveryOption(value)
+                        }}
                     />
-                ) : (
-                    <>
-                        <CartContainer>
-                            <CartTable items={cart} />
-                            <OrderInfo
-                                totalPrice={totalAmount.toFixed(2)}
-                                quantity={totalQuantity}
-                                options={options}
-                                handleBackToStore={() => {
-                                    navigate("/")
-                                }}
-                                deliveryOption={deliveryOption}
-                                handleChange={(value) => {
-                                    setDeliveryOption(value)
-                                }}
-                            />
-                        </CartContainer>
-                    </>
-                )}
+                </CartContainer>
             </Container>
             <Footer />
         </MainContainer>
