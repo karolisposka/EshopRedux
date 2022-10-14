@@ -43,7 +43,7 @@ const SingleProductContainer = ({ handleExit, item }) => {
     const calculateTotalPrice = (additives, product) => {
         return (additives + Number(product)).toFixed(2)
     }
-    SingleProductContainer
+
     const AddAdditionalIngredient = (selection) => {
         if (ingredients.includes(selection.title.toLowerCase())) {
             return
