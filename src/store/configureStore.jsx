@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware, combineReducers } from "@reduxjs/toolkit"
+import { configureStore, combineReducers } from "@reduxjs/toolkit"
 import storage from "redux-persist/lib/storage"
 import { persistStore, persistReducer } from "redux-persist"
 import api from "../store/middleware/api"
@@ -21,6 +21,7 @@ const rootPersistConfig = {
     key: "primary",
     storage,
     version: 1,
+    blacklist: ["products", "orders", "userOrders", "cart.url"],
 }
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer)

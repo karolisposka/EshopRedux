@@ -8,22 +8,20 @@ import Loader from "../components/loader/Loader"
 const Product = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const params = useParams()
+    const { title } = useParams()
 
     useEffect(() => {
         dispatch(loadProducts())
         dispatch(getAdditives())
     }, [])
 
-    const data = useSelector((state) => state.products.list).filter((item) => item.title === params.title)
-    const additives = useSelector((state) => state.products.additives)
+    const data = useSelector((state) => state.products.list).filter((item) => item.title === title)
 
     return (
         <>
             {data[0] ? (
                 <SingleProductContainer
                     item={data[0]}
-                    additives={additives}
                     handleExit={() => {
                         navigate(-1)
                     }}

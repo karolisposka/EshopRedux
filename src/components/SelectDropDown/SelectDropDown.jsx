@@ -1,6 +1,6 @@
-import React, { useState } from "react"
+import React from "react"
 import * as S from "./SelectDropDown.styles"
-import Select from "react-select"
+import PropTypes from "prop-types"
 
 const SelectDropDown = ({ handleChange, options, className }) => {
     return (
@@ -14,6 +14,16 @@ const SelectDropDown = ({ handleChange, options, className }) => {
             />
         </>
     )
+}
+
+SelectDropDown.propTypes = {
+    handleChange: PropTypes.func.isRequired,
+    options: PropTypes.arrayOf(
+        PropTypes.shape({
+            label: PropTypes.string,
+            value: PropTypes.string,
+        })
+    ),
 }
 
 export default SelectDropDown

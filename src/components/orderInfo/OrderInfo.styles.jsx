@@ -1,7 +1,6 @@
 import Styled from "styled-components"
 import SelectDropDown from "../SelectDropDown/SelectDropDown"
 import Button from "../Button/Button"
-import CheckoutButton from "../checkoutButton/CheckoutButton"
 
 export const Container = Styled.div`
   flex:1;
@@ -68,15 +67,13 @@ export const BackToStore = Styled(Button)`
   padding:0.5rem 1rem;
   transition: all 0.3s ease-in-out;
   font-weight:700;
-  &:hover{
-    background:${(props) => props.theme.colors.background.info};
-    color:white;
-    
-  }
-  
 `
-export const CheckOut = Styled(CheckoutButton)`
-  flex:1; 
-  background:transparent; 
+export const CheckOutButton = Styled(Button)`
+  flex:1;
+  padding:0.5rem 1rem;
+  transition: all 0.3s ease-in-out;
+  font-weight:700;
+  margin:0rem 0rem 1rem 1rem;
+  width:calc(100% - 2rem)
 
 `

@@ -6,7 +6,6 @@ import Notification from "../components/notification/Notification"
 
 const Auth = () => {
     const { status, error, message } = useSelector((state) => state.users)
-    console.log(message)
 
     return (
         <AccountContainer state={status}>

@@ -15,25 +15,45 @@ const ProductsList = () => {
     const sort = searchParams.get("sort") || ""
     const title = searchParams.get("title") || ""
 
-    useEffect(() => {
-        dispatch(loadProducts())
-    }, [])
+    const { list, loading, mount } = useSelector((state) => state.products)
 
-    let data = useSelector((state) => state.products)
+    useEffect(() => {
+        if (list !== undefined) {
+            return
+        } else {
+            dispatch(loadProducts())
+        }
+    }, [list])
 
     const filterProducts = (url, title, sort) => {
-        if ((title, url)) {
-            return data.list
+        if (title && url) {
+            return list
                 .filter((product) => product.category.toLowerCase() === url.toLowerCase())
                 .filter((filteredProducts) => filteredProducts.title.toLowerCase().includes(title))
         }
-        if (url) {
-            return data.list.filter((product) => product.category.toLowerCase() === url.toLowerCase())
+        if (url && sort === "lowest price") {
+            return list
+                .filter((product) => product.category.toLowerCase().includes(url.toLowerCase()))
+                .sort((a, b) => Number(a.small) - Number(b.small))
+        }
+        if (url && sort === "highest price") {
+            return list
+                .filter((product) => product.category.toLowerCase().includes(url.toLowerCase()))
+                .sort((a, b) => Number(b.small) - Number(a.small))
+        }
+        if (sort === "lowest price") {
+            return [...list].sort((a, b) => Number(a.small) - Number(b.small))
+        }
+        if (sort === "highest price") {
+            return [...list].sort((a, b) => Number(b.small) - Number(a.small))
         }
         if (title) {
-            return data.list.filter((product) => product.title.toLowerCase().includes(title.toLowerCase()))
+            return list.filter((product) => product.title.toLowerCase().includes(title))
+        }
+        if (url) {
+            return list.filter((product) => product.category.toLowerCase() === url.toLowerCase())
         } else {
-            return data.list
+            return list
         }
     }
 
@@ -43,25 +63,25 @@ const ProductsList = () => {
 
     return (
         <>
-            <S.ProductsList>
-                {data.list ? (
-                    filterProducts(category, title, sort).map((item) => (
-                        <CSSTransition in={data.mount} classNames="fade" timeout={2000} key={item.id}>
+            {loading ? (
+                <Loader />
+            ) : (
+                <S.ProductsList>
+                    {filterProducts(category, title, sort).map((item) => (
+                        <CSSTransition in={mount} classNames="fade" timeout={2000} key={item.id}>
                             <S.StyledProductCard
                                 description={item.description}
-                                id={item.id}
+                                id={Number(item.id)}
                                 title={item.title}
                                 price={item.price}
                                 image={item.imageurl}
-                                smallPrice={item.small}
+                                smallPrice={Number(item.small)}
                                 category={item.category}
                             />
                         </CSSTransition>
-                    ))
-                ) : (
-                    <Loader />
-                )}
-            </S.ProductsList>
+                    ))}
+                </S.ProductsList>
+            )}
         </>
     )
 }

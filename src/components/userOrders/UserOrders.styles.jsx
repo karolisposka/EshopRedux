@@ -8,6 +8,8 @@ export const Container = Styled.div`
     padding:1rem;
     font-family:${(props) => props.theme.fonts.names.primary};
     box-sizing:border-box;
+    min-height:62vh;
+    overflow:hidden;
 
 
 `
@@ -20,13 +22,4 @@ export const OrderIcon = Styled(FaBox)`
 export const Title = Styled.h4`
     text-transform: uppercase;
     margin:0.5rem 0;
-`
-
-export const List = Styled.div`
-    display:Flex;
-    flex-wrap: wrap;
-    gap:1rem;
-    width:100%;
-    height:100%;
-    box-sizing:border-box;
 `

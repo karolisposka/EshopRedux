@@ -1,9 +1,19 @@
-import Styled from "styled-components"
-import { HiOutlineX, HiBackspace } from "react-icons/hi"
+import Styled, { keyframes } from "styled-components"
+import { HiOutlineX } from "react-icons/hi"
 import { ReactComponent as Pizza } from "../../assets/pizza.svg"
 import Button from "../Button/Button"
-import QuantityReducer from "../quantityReducer/QuantityReducer"
 import Additives from "../additives/Additives"
+
+const render = keyframes`
+  0% {
+    transform: translateY(-500px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+  
+`
 
 export const ProductContainer = Styled.section`
   position:fixed;
@@ -14,7 +24,7 @@ export const ProductContainer = Styled.section`
   background:rgba(0,0,0,0.2);
   font-family:${(props) => props.theme.fonts.names.primary};
   z-index:5;
-  @media(max-width:576px){
+  @media(max-width:768px){
     height:100%;
   }
 
@@ -28,16 +38,17 @@ export const ProductSection = Styled.section`
   min-height:55vh;
   border-radius:0.25rem;
   display:Flex;
-  @media(max-width:768px){
+  opacity: 1;
+  transform:translateY(0);
+  animation: ${render} 0.5s ease-in-out;
+  @media(max-width:576px){
     flex-direction:column;
     min-height:75vh;
   }
-  @media(min-width:768px) and (max-width:1366px){
-    min-height:65vh;
+  @media(max-width:768px){
+
   }
-  @media(min-width:1366px) and (max-width:1920px){
-    min-height:80vh;
-  }
+
 `
 
 export const ImageWrapper = Styled.div`
@@ -47,6 +58,9 @@ export const ImageWrapper = Styled.div`
   display:flex;
   justify-content:Center;
   align-items:center;
+  @media(max-width:576px){
+    height:33%;
+  }
 `
 
 export const ExitBtn = Styled(HiOutlineX)`
@@ -68,6 +82,9 @@ export const ProductImage = Styled.img`
   background-size:cover;
   background-position:center;
   background-repeat: no-repeat;
+  @media(max-width:768px){
+    width:${(props) => (props.expand ? "10rem" : "9rem")};
+  }
 `
 
 export const SizeLine = Styled.div`
@@ -79,12 +96,20 @@ export const SizeLine = Styled.div`
   height:20rem;
   margin:1rem;
   border:2px dotted rgba(0,0,0,0.3);
+  @media(max-width:768px){
+    width:9rem;
+    height:9rem;
+    margin:0.25rem;
+  }
 `
 
-export const ProductInfoWrapper = Styled.div`
+export const ProductInfoWrapper = Styled.section`
   flex:1;
   margin:1rem;
   position:relative;
+  @media(max-width:768px){
+    margin:0rem 1rem;
+  }
 `
 
 export const Title = Styled.h4`
@@ -108,6 +133,9 @@ export const description = Styled.p`
 
 export const TypeWrapper = Styled.div`
   padding:1rem 0;
+  @media(max-width:576px){
+    padding:0.5rem 0;
+  }
  
 `
 
@@ -154,8 +182,13 @@ export const IngredientsWrapper = Styled.div`
 `
 export const ButtonWrapper = Styled.div`
   position:absolute;
-  bottom:0;
+  bottom:-1rem;
   left:3.5rem;
+  @media(max-width:576px){
+    position:static;
+    padding:0.5rem;
+    width:calc(100% - 1rem) ;
+  }
 `
 
 export const StyledButton = Styled(Button)`
@@ -165,23 +198,20 @@ export const StyledButton = Styled(Button)`
   width:100%;
   font-weight:700;
   transition: all 0.3s ease-in-out;
-  @media(max-width:768px){
-    padding:0.25 0.5rem;
+  @media(max-width:576px){
+    padding:0.5rem 0.5rem;
+    margin:0;
     font-size:0.8rem;
   }
 
 `
 export const StyledAdditives = Styled(Additives)`
-  width:20rem;
   padding:1rem 0;
-  @media(max-width:567px){
-    display:none;
-  } 
-`
-
-export const ChooseAddivites = Styled(Button)`
-  display:none;
+  width:20rem;
   @media(max-width:576px){
-    display:block;
+    padding:0rem;
+    width: 100%;
   }
+
+  
 `

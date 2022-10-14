@@ -3,14 +3,21 @@ import * as S from "./SingleProductContainer.styles"
 import { increment } from "../../store/cart"
 import { useSelector, useDispatch } from "react-redux"
 import IngredientTag from "../ingredientTag/IngredientTag"
+import { getAdditives } from "../../store/products"
 
-const SingleProductContainer = ({ handleExit, item, additives }) => {
+const SingleProductContainer = ({ handleExit, item }) => {
     const dispatch = useDispatch()
     const data = useSelector((state) => state.cart)
     const [ingredients, setIngredients] = useState(item.description ? item.description.split(",") : "")
     const [size, setSize] = useState(item.small)
     const [type, setType] = useState("italian")
     const [finalPrice, setFinalPrice] = useState()
+
+    useEffect(() => {
+        dispatch(getAdditives())
+    }, [])
+
+    const { additives, loading } = useSelector((state) => state.products)
 
     const transformDescriptionIntoArray = (des) => {
         return des
@@ -83,7 +90,7 @@ const SingleProductContainer = ({ handleExit, item, additives }) => {
 
     return (
         <>
-            <S.ProductContainer id={item.id}>
+            <S.ProductContainer id={item.id} className="here">
                 <S.ProductSection>
                     <S.ImageWrapper>
                         <S.ExitBtn onClick={handleExit} />
@@ -92,7 +99,7 @@ const SingleProductContainer = ({ handleExit, item, additives }) => {
                                 <S.ProductImage
                                     src={item.imageurl}
                                     alt="alt"
-                                    expand={size === item.big ? true : false}
+                                    expand={size == item.big ? true : false}
                                 />
                             </S.SizeLine>
                         ) : (
@@ -111,6 +118,7 @@ const SingleProductContainer = ({ handleExit, item, additives }) => {
                                 ? ingredientsState.map((product, index) => (
                                       <IngredientTag
                                           id={index}
+                                          key={index}
                                           deleted={product.deleted}
                                           handleDelete={() => {
                                               deleteIgredient(product)
@@ -128,7 +136,7 @@ const SingleProductContainer = ({ handleExit, item, additives }) => {
                             <>
                                 <S.description>Choose size:</S.description>
                                 <S.StyledPizza
-                                    big={true}
+                                    big="true"
                                     onClick={() => {
                                         setSize(item.big)
                                     }}

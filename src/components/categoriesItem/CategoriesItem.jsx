@@ -9,9 +9,9 @@ const CategoriesItem = ({ path, text, className }) => {
         </S.ListItem>
     )
 }
-CategoriesItem.propTypes = {
-    path: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-}
+// CategoriesItem.propTypes = {
+//     path: PropTypes.string.isRequired,
+//     text: PropTypes.string.isRequired,
+// }
 
 export default CategoriesItem

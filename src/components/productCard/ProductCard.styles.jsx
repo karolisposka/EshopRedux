@@ -1,12 +1,24 @@
-import Styled from "styled-components"
+import Styled, { keyframes } from "styled-components"
 import Button from "../Button/Button"
 import { FaCartPlus } from "react-icons/fa"
+
+const visible = keyframes`
+  0% {
+    opacity:0;
+  }
+  50% {
+    opacity:0.5;
+  }
+  100% {
+    opacity:1;
+  }
+
+`
 
 export const Card = Styled.div`
     border: 1px solid rgba(0,0,0,0.3);
     border-radius:0.75rem;
-    min-height:24.5rem;
-    max-height:30rem;
+    height:24.5rem;
     position:relative;
     justify-content:Space-between;
     align-items:center;
@@ -14,6 +26,8 @@ export const Card = Styled.div`
     position:relative;
     box-sizing:border-box;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    opacity:1;
+    animation: ${visible} 0.5s ease-in-out;
     font-family: ${(props) => props.theme.fonts.names.primary};
    `
 

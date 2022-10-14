@@ -4,6 +4,7 @@ export const Container = Styled.div`
     max-width:600px;
     margin:0 auto;
     padding:1rem;
+    font-family: ${(props) => props.theme.fonts.names.primary};
 `
 
 export const Section = Styled.section`
@@ -20,7 +21,6 @@ export const Section = Styled.section`
 `
 
 export const Overlay = Styled.div`
-    font-family:${(props) => props.theme.fonts.names.primary};
     align-items:flex-start;
     background: ${(props) => props.theme.colors.background.info};
     background-repeat: no-repeat;
@@ -77,5 +77,5 @@ export const Text = Styled.p`
 export const FormContainer = Styled.div`
     align-self:flex-end;
     width:80%;
-    padding-bottom:4rem;
+    padding-bottom:2rem;
 `

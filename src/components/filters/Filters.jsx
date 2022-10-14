@@ -1,6 +1,5 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { useSearchParams } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
 import * as S from "./Filters.styles"
 
@@ -29,6 +28,13 @@ const Filters = ({ handleClick, handleSelect, handleChange, spin }) => {
             </S.FiltersContainer>
         </>
     )
+}
+
+Filters.propTypes = {
+    handleClick: PropTypes.func.isRequired,
+    handleSelect: PropTypes.func.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    spin: PropTypes.bool,
 }
 
 export default Filters

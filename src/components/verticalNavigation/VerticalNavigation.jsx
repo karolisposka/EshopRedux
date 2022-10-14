@@ -10,7 +10,8 @@ const VerticalNavigation = ({ items, handleClick }) => {
         <S.Container>
             {roles.includes("5015") && <S.AdminBtn to="/admin">admin</S.AdminBtn>}
             <S.UserDetailsList>
-                {items && items.map((item, index) => <NavigationComponent key={index} text={item.text} to={item.to} />)}
+                {items &&
+                    items.map((item, index) => <NavigationComponent key={index} text={item.text} to={item.path} />)}
                 <S.LogoutBtn onClick={handleClick}>LOGOUT</S.LogoutBtn>
             </S.UserDetailsList>
         </S.Container>

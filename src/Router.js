@@ -19,6 +19,7 @@ import ChangePassword from "./components/changePassword/ChangePassword";
 import OrdersHistory from "./components/ordersHistory/OrdersHistory";
 import UserOrders from "./components/userOrders/UserOrders";
 import CompletedOrders from "./pages/CompletedOrders";
+import Success from "./pages/Success";
 
 const Router = () => {
   return (
@@ -34,6 +35,7 @@ const Router = () => {
           </Route>
           <Route path='/unauthorized' element={<Unauthorized/>}/>
           <Route exact path='/cart' element={<Cart/>}/>
+          <Route exact path='/success' element={<Success/>}/>
           <Route exact path="/" element={<Products/>}>
             <Route  index element={<ProductsList />}/>
             <Route  path=':category' element={<ProductsList />}/>

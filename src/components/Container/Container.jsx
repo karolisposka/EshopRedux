@@ -4,8 +4,8 @@ import * as S from "./Container.styles"
 
 const Container = ({ children, className }) => {
     return (
-        <S.Container className={className}>
-            <S.Section>{children}</S.Section>
+        <S.Container>
+            <S.Section className={className}>{children}</S.Section>
         </S.Container>
     )
 }

@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom"
 const Navigation = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const loadersState = useSelector((state) => state.products.loading)
     const key = useSelector((state) => state.users.key)
     const status = useSelector((state) => state.cart.status)
     const data = useSelector((state) => state.cart)
@@ -24,7 +23,6 @@ const Navigation = () => {
                         }}
                     >
                         <S.LogoImg src={Logo} alt="logo" />
-                        {(loadersState || data.loading) && <S.StyledLoader />}
                     </S.LogoWrapper>
                     <S.BurgerMenu
                         onClick={() => {

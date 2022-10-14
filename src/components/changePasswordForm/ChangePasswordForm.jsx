@@ -23,7 +23,6 @@ const ChangePasswordForm = () => {
             currentPassword: Yup.string().min(8).required(),
         }),
         onSubmit: (values) => {
-            console.log(values)
             handleChangePassword(values)
         },
     })

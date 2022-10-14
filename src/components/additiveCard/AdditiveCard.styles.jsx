@@ -16,11 +16,17 @@ export const Image = Styled.div`
   background-repeat: no-repeat;
   width:100%;
   height:7rem;
+  @media(max-width:576px){
+    height:5rem;
+  }
 `
 
 export const ContentWrapper = Styled.div`
   padding:0.5rem;
   text-align:center;
+  @media(max-width:576px){
+    padding:0.25rem;
+  }
 
 `
 
@@ -31,7 +37,9 @@ export const Title = Styled.h5`
 `
 
 export const Price = Styled.p`
-  
+  @media(max-width:576px){
+    margin:0.25rem;
+  }  
 
 `
 

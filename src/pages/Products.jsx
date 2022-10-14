@@ -8,7 +8,7 @@ import MainContainer from "../components/mainContainer/MainContainer"
 import CategoriesList from "../components/categoriesList/CategoriesList"
 import { open } from "../store/cart"
 import { Outlet, useSearchParams } from "react-router-dom"
-import { loadProducts } from "../store/products"
+import { loadProducts, loadCategories } from "../store/products"
 import { useSelector, useDispatch } from "react-redux"
 import MobileCartIcon from "../components/mobileCartIcon/MobileCartIcon"
 import { useNavigate } from "react-router-dom"
@@ -20,13 +20,37 @@ const Products = () => {
     const [selectParams, setSelectParams] = useSearchParams()
     const [spin, setSpin] = useState(false)
     const dispatch = useDispatch()
+    const { list, categories } = useSelector((state) => state.products)
+
+    console.log(list)
 
     useEffect(() => {
-        dispatch(loadProducts())
-    }, [])
+        if (list.length !== 0) {
+            return
+        } else {
+            dispatch(loadProducts())
+        }
+    }, [list])
+
+    console.log(categories)
+
+    useEffect(() => {
+        if (categories.length !== 0) {
+            return
+        } else {
+            dispatch(loadCategories())
+        }
+    }, [categories])
+
+    const mapCategories = (categories) => {
+        return categories.map((item) => ({
+            path: "/" + item,
+            text: item,
+        }))
+    }
 
     const handleChange = (value) => {
-        const title = value
+        const title = value.toLowerCase()
         if (title) {
             setSearchParams({ title })
         } else {
@@ -53,6 +77,7 @@ const Products = () => {
                 <Container>
                     <MobileSideMenu
                         open={mobileSideBarStatus}
+                        routes={mapCategories(categories)}
                         handleExit={() => {
                             dispatch(open(false))
                         }}
@@ -78,7 +103,7 @@ const Products = () => {
                         }}
                     ></Filters>
                     <Menu>
-                        <CategoriesList />
+                        <CategoriesList routes={mapCategories(categories)} />
                         <MobileCartIcon
                             quantity={totalQuantity}
                             handleClick={() => {

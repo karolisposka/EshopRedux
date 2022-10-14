@@ -1,16 +1,21 @@
-import React from "react"
+import React, { useEffect } from "react"
 import * as S from "./OrdersHistory.styles"
-import NoData from "../noData/NoData"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { getUserHistoricOrders } from "../../store/userOrders"
 import Loader from "../loader/Loader"
+import HistoricOrdersTable from "../historicOrdersTable/HistoricOrdersTable"
 
 const OrdersHistory = () => {
-    const orders = useSelector((state) => state.userOrders.orders)
-    const products = useSelector((state) => state.products.list)
+    const dispatch = useDispatch()
+    const { history } = useSelector((state) => state.userOrders)
 
-    const transformUnixTimeToDate = (unix) => {
-        return new Date(unix).toLocaleDateString("en-US", { hour12: false, hour: "2-digit", minute: "2-digit" })
-    }
+    useEffect(() => {
+        if (history !== null) {
+            return
+        } else {
+            dispatch(getUserHistoricOrders())
+        }
+    }, [history])
 
     return (
         <S.Container>
@@ -18,37 +23,7 @@ const OrdersHistory = () => {
                 <S.OrdersIcon />
                 <S.Title>Previous Orders</S.Title>
             </S.TitleWrapper>
-            {orders.length > 0 ? (
-                <S.Table>
-                    <S.TableHead>
-                        <S.Row>
-                            <S.Cell>Order ID</S.Cell>
-                            <S.Cell>Order date</S.Cell>
-                            <S.Cell>Ordered items</S.Cell>
-                            <S.Cell>Total amount</S.Cell>
-                        </S.Row>
-                    </S.TableHead>
-                    <S.TableBody>
-                        {orders &&
-                            orders.map((item) => {
-                                return (
-                                    <S.Row>
-                                        <S.Cell> {item.id}</S.Cell>
-                                        <S.Cell> {transformUnixTimeToDate(item.created_at)}</S.Cell>
-                                        <S.Cell>
-                                            {item.product_id.split(",").map((item) => {
-                                                return <S.Product>{item}</S.Product>
-                                            })}
-                                        </S.Cell>
-                                        <S.Cell> {item.amount} €</S.Cell>
-                                    </S.Row>
-                                )
-                            })}
-                    </S.TableBody>
-                </S.Table>
-            ) : (
-                <NoData text="No data found" />
-            )}
+            {history ? <HistoricOrdersTable data={history} /> : <Loader />}
         </S.Container>
     )
 }

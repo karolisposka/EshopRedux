@@ -3,10 +3,8 @@ import AdditiveCard from "../additiveCard/AdditiveCard"
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa"
 
 export const Container = Styled.div`
-    width:16rem;
     padding:1rem 0;
-
-    
+    width:calc(100% - 2rem);
 `
 
 export const StyledAdditiveCard = Styled(AdditiveCard)`

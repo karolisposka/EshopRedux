@@ -5,5 +5,6 @@ export const Container = Styled.div`
   display:flex;
   justify-content:Center;
   align-items:center;
+  min-height:42vh;
 
 `

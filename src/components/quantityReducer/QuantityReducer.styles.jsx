@@ -15,9 +15,10 @@ export const DecrementBtn = Styled.button`
   font-weight:700;
   color:${(props) => props.theme.colors.fonts.light};
   background:${(props) => props.theme.colors.background.info};
-  @media(max-width:768px){
-    width:1.5rem;
+  @media(max-width:576px){
+    width:0.5rem;
     height:1.5rem;
+    font-size:0.8rem;
   }
 `
 
@@ -31,6 +32,7 @@ export const QuantitySpan = Styled.span`
   box-sizing:border-box;
   @media(max-width:768px){
     height:1.5rem;
+    padding:0.4rem;
   }
   
 `
@@ -46,7 +48,8 @@ export const IncrementBtn = Styled.button`
   color:${(props) => props.theme.colors.fonts.light};
   background:${(props) => props.theme.colors.background.info};
   @media(max-width:768px){
-    width:1.5rem;
+    width:0.5rem;
     height:1.5rem;
+    font-size:0.8rem;
   }
 `

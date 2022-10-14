@@ -3,22 +3,21 @@ import * as S from "./CartTable.styles"
 import PropTypes from "prop-types"
 import CartTableItem from "../cartTableItem/CartTableItem"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
-
 const CartTable = ({ items }) => {
     return (
-        <S.Table>
-            <S.TableHeaders>
-                <S.TableRow>
-                    <S.HeaderCell></S.HeaderCell>
-                    <S.HeaderCell>Title</S.HeaderCell>
-                    <S.HeaderCell>Price</S.HeaderCell>
-                    <S.HeaderCell>Quantity</S.HeaderCell>
-                    <S.HeaderCell>Total</S.HeaderCell>
-                </S.TableRow>
-            </S.TableHeaders>
-            <TransitionGroup component="tbody">
-                {items &&
-                    items.map((item, index) => (
+        <>
+            <S.Table>
+                <S.TableHeaders>
+                    <S.TableRow>
+                        <S.HeaderCell></S.HeaderCell>
+                        <S.HeaderCell>Title</S.HeaderCell>
+                        <S.HeaderCell>Price</S.HeaderCell>
+                        <S.HeaderCell>Quantity</S.HeaderCell>
+                        <S.HeaderCell>Total</S.HeaderCell>
+                    </S.TableRow>
+                </S.TableHeaders>
+                <TransitionGroup component="tbody">
+                    {items.map((item, index) => (
                         <CSSTransition key={index} timeout={200} classNames="fade">
                             <CartTableItem
                                 index={index + 1 + "."}
@@ -31,8 +30,9 @@ const CartTable = ({ items }) => {
                             />
                         </CSSTransition>
                     ))}
-            </TransitionGroup>
-        </S.Table>
+                </TransitionGroup>
+            </S.Table>
+        </>
     )
 }
 

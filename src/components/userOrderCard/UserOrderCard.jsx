@@ -1,22 +1,10 @@
-import React, { useRef, useCallback } from "react"
+import React from "react"
 import * as S from "./UserOrderCard.styles"
-import { Swiper, SwiperSlide } from "swiper/react"
+
 import "swiper/css"
 import "swiper/css/navigation"
 
-const UserOrderCard = ({ created_at, completed_at, products, status, order_id }) => {
-    const sliderRef = useRef(null)
-
-    const handlePrev = useCallback(() => {
-        if (!sliderRef.current) return
-        sliderRef.current.swiper.slidePrev()
-    }, [])
-
-    const handleNext = useCallback(() => {
-        if (!sliderRef.current) return
-        sliderRef.current.swiper.slideNext()
-    }, [])
-
+const UserOrderCard = ({ created_at, completed_at, products, status, amount, className }) => {
     const convertUnixTimestamp = (unix) => {
         const date = new Date(unix)
         return {
@@ -25,36 +13,42 @@ const UserOrderCard = ({ created_at, completed_at, products, status, order_id })
         }
     }
 
+    const changeFormatOfAmount = (amount) => {
+        return amount / 100 + " €"
+    }
+
     return (
-        <S.Container>
-            <S.ContentSection>
-                <S.Text>Order ID: {order_id}</S.Text>
-                <S.Text>
-                    Order recieved: {created_at && <S.Recieved>{convertUnixTimestamp(created_at).time}</S.Recieved>}
-                </S.Text>
-                <S.Text>
-                    <S.Status status={status}>{status === 0 ? "in Progress" : "completed"}</S.Status>
-                    {completed_at && <S.Completed> {convertUnixTimestamp(completed_at).time}</S.Completed>}
-                </S.Text>
-            </S.ContentSection>
-            <Swiper ref={sliderRef}>
+        <S.Container className={className}>
+            <S.orderInformation>
+                <S.Info>
+                    <S.Key>Amount:</S.Key> {changeFormatOfAmount(amount)}
+                </S.Info>
+                <S.Info>
+                    <S.Key>Order status: </S.Key>
+                    <S.Status status={status}>{status === 0 ? "Processing" : "Completed"}</S.Status>
+                </S.Info>
+                <S.Info>
+                    <S.Key>Order recieved at: </S.Key>
+                    {convertUnixTimestamp(created_at).time}
+                </S.Info>
+                {status === 1 && (
+                    <S.Info>
+                        <S.Key>Order completed at: </S.Key>
+                        {convertUnixTimestamp(completed_at).time}
+                    </S.Info>
+                )}
+            </S.orderInformation>
+            <S.ProductsContainer>
                 {products &&
-                    products.map((photo) => (
-                        <SwiperSlide>
-                            <S.Image image={photo.imageurl} />
-                            <S.ContentSection>
-                                <S.Title>{photo.title}</S.Title>
-                                <S.Description>{photo.description}</S.Description>
-                            </S.ContentSection>
-                        </SwiperSlide>
+                    products.map((item, index) => (
+                        <S.ProductContainer key={index}>
+                            <S.Quantity>{item.quantity}x </S.Quantity>
+                            <S.Title>{item.title}</S.Title>
+                            <S.Price>{item.price} €</S.Price>
+                            <S.Description>{item.description}</S.Description>
+                        </S.ProductContainer>
                     ))}
-            </Swiper>
-            {products.length > 1 && (
-                <S.NavigationArrowsWrapper>
-                    <S.NavigationArrowLeft onClick={handlePrev} />
-                    <S.NavigationArrowRight onClick={handleNext} />
-                </S.NavigationArrowsWrapper>
-            )}
+            </S.ProductsContainer>
         </S.Container>
     )
 }

@@ -1,5 +1,6 @@
 import React from "react"
 import { useFormik } from "formik"
+import PropTypes from "prop-types"
 import * as Yup from "yup"
 import * as S from "./AddAddressForm.styles"
 
@@ -96,6 +97,12 @@ const AddAddressForm = ({ handleClose, handleSubmit, className }) => {
             </S.Form>
         </S.FormContainer>
     )
+}
+
+AddAddressForm.propTypes = {
+    handleClose: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    className: PropTypes.string.isRequired,
 }
 
 export default AddAddressForm

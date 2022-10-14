@@ -9,7 +9,7 @@ export const Container = Styled.div`
     padding:1rem;
     font-family:${(props) => props.theme.fonts.names.primary};
     box-sizing:border-box;
-    min-height:50vh;
+    min-height:62vh;
 `
 
 export const TitleWrapper = Styled.div`

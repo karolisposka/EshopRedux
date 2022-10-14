@@ -37,9 +37,6 @@ export const LogoImg = Styled.img`
     height:3rem;
 
 `
-export const StyledLoader = Styled(Loader)`
-    margin-left:1rem;  
-`
 
 export const CartWrapper = Styled.div`
     margin: 1rem;

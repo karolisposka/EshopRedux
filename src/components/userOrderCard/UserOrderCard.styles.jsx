@@ -1,8 +1,20 @@
-import Styled from "styled-components"
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa"
+import Styled, { keyframes } from "styled-components"
+
+const render = keyframes`
+    0%{
+        transform: translateY(-200px);
+        opacity:0
+    }
+    100%{
+        transform: translateY(0px);
+        opacity:1
+
+    }
+
+
+`
 
 export const Container = Styled.div`
-    width:calc(33% - 1rem);
     border:1px solid rgba(0,0,0,0.3);
     font-family:${(props) => props.theme.fonts.names.primary};
     border-radius:0.25rem;
@@ -10,84 +22,59 @@ export const Container = Styled.div`
     box-shadow:${(props) => props.theme.shadows.primary};
     box-sizing:border-box;
     position:relative;
-    @media(max-width:567px){
-        width:calc(100% - 1rem);
-    }
-    @media(min-width:567px) and (max-width:900px){
-        width:calc(50% - 1rem);
-    }
-
-`
-export const Image = Styled.div`
-    width:100%;
-    height:10rem;
-    background-size:contain !important;
-    background-repeat:no-repeat !important;
-    background-position:center !important;
-    background:url(${(props) => props.image});
+    animation:${render} 0.3s ease-in;
 `
 
-export const ContentSection = Styled.section`
+export const orderInformation = Styled.div`
     margin:1rem;
-  
-
-`
-export const Title = Styled.h4`
-    
-    
-`
-
-export const ContentWrapper = Styled.div`
-    
-
-`
-
-export const Text = Styled.h6`
-    
-
-`
-
-export const Description = Styled.p`
-    
-
-`
-
-export const Status = Styled.span`
     border:1px solid rgba(0,0,0,0.3);
+    box-shadow:${(props) => props.theme.shadows.primary};
     border-radius:0.25rem;
     padding:0.25rem;
-    color:White;
+`
+export const Key = Styled.span`
+    font-weight:700;
+`
+export const Info = Styled.p`
+    margin:0.25rem 0;
+`
+export const ProductsContainer = Styled.div`
+    margin:1rem;
+`
+export const Status = Styled.p`
     background:${(props) => (props.status === 0 ? "red" : "green")};
-
-`
-export const Recieved = Styled.span`
-    color:${(props) => props.theme.colors.background.primary};
-
-`
-
-export const StatusWrapper = Styled.div`
-    position:absolute;
-    bottom:0;
+    color:white;
+    border-radius:0.5rem;
+    display:inline;
+    padding:0.25rem 0.5rem; 
 `
 
-export const Completed = Styled.span`
+export const ProductContainer = Styled.div`
+    border:1px solid rgba(0,0,0,0.3);
+    border-radius:0.25rem;
+    box-shadow:${(props) => props.theme.shadows.primary};
+    padding:0.25rem;
+    margin:0.25rem 0;
+`
+
+export const Title = Styled.h5`
+    margin:0.5rem 0;
+    display:inline-block;
+    text-transform: uppercase;
+    font-family:${(props) => props.theme.fonts.names.secondary};
+
+`
+
+export const Quantity = Styled.span`
     
-
 `
 
-export const NavigationArrowsWrapper = Styled.div`
-    display:flex;
-    justify-content:space-between;
-    margin: 0.5rem;
-`
+export const Price = Styled.p`
+    margin:0.25rem 0;
 
-export const NavigationArrowLeft = Styled(FaArrowLeft)`
-    font-size:1.5rem;
-    color:${(props) => props.theme.colors.background.info};
-    cursor:pointer;
 `
-export const NavigationArrowRight = Styled(FaArrowRight)`
-    font-size:1.5rem;
-    color:${(props) => props.theme.colors.background.info};
-    cursor:pointer;
+export const Description = Styled.p`
+    text-transform: capitalize;
+    margin:0.25rem 0;
+
 `

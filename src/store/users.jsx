@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { apiCallBegan } from "./api"
-import { useNavigate } from "react-router-dom"
 
 const slice = createSlice({
     name: "users",
@@ -183,8 +182,8 @@ export const getUserDetails = () => (dispatch, getState) => {
                 Authorization: `Bearer ${getState().users.key}`,
             },
             onStart: userDetailsRequested.type,
-            onError: errorRecieved.type,
             onSuccess: userDetailsRecieved.type,
+            onError: errorRecieved.type,
         })
     )
 }

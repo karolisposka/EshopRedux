@@ -9,6 +9,7 @@ const Slice = createSlice({
         loading: false,
         status: false,
         completed: false,
+        url: null,
     },
     reducers: {
         increment: (state, action) => {
@@ -61,6 +62,7 @@ const Slice = createSlice({
             return {
                 ...state,
                 cart: [...state.cart, action.payload],
+                loading: false,
             }
         },
         changeStatus: (state, action) => {
@@ -82,7 +84,7 @@ const Slice = createSlice({
                 cart: [],
                 loading: false,
                 completed: true,
-                error: action.payload.err ? action.payload.err : "",
+                url: action.payload,
             }
         },
     },
@@ -100,18 +102,18 @@ export const LoadCartItems = (products) => (dispatch, getState) => {
     )
 }
 
-export const placeOrder = (token, data) => (dispatch, getState) => {
+export const placeOrder = (data, key, delivery) => (dispatch, getState) => {
     dispatch(
         apiCallBegan({
             url: process.env.REACT_APP_MAKE_ORDER,
             method: "post",
             headers: {
                 "Content-type": "application/json",
-                Authorization: `Bearer ${getState().users.key}`,
             },
             data: {
                 products: data,
-                token,
+                userKey: key,
+                delivery: delivery,
             },
             onStart: orderPlaced.type,
             onSuccess: orderDispatched.type,

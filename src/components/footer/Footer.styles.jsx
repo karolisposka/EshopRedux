@@ -1,24 +1,28 @@
-import Styled from "styled-components"
+import Styled, { keyframes } from "styled-components"
 import Input from "../Input/Input"
 import Button from "../Button/Button"
 import { FaMobile, FaGlobe, FaMailchimp } from "react-icons/fa"
+
+const render = keyframes`
+    0%{
+        transform: translateX(-100px);
+        opacity:0;
+    }
+    50%{
+        opacity:0.5;
+    }
+    100%{
+        transform: translateX(0);
+        opacity:1;
+    }
+
+`
 
 export const StyledContainer = Styled.div`
     border-top:1px solid rgba(0,0,0,0.3);
     min-height:8rem;
     width:100%;
     font-family:${(props) => props.theme.fonts.names.primary};
-`
-
-export const NavigationContainer = Styled.div`
-    display:Flex;
-    flex-direction:column;
-
-`
-
-export const Title = Styled.h5`
-    text-transform: uppercase;
-    margin:0 0.5rem;
 `
 
 export const Section = Styled.section`
@@ -31,12 +35,26 @@ export const Section = Styled.section`
         flex-direction:column;
     }
 `
+
+export const NavigationContainer = Styled.div`
+    display:Flex;
+    flex-direction:column;
+
+`
+
 export const ItemsListContainer = Styled.div`
       
    
 `
+
+export const Title = Styled.h5`
+    text-transform: uppercase;
+    margin:0 0.5rem;
+`
+
 export const ItemsList = Styled.nav`
     display:flex;
+    margin-top:1rem;
     
 `
 
@@ -47,7 +65,7 @@ export const PlainText = Styled.p`
 `
 
 export const NavSection = Styled.section`
-    width:100%;
+    
 
 `
 export const InputContainer = Styled.div`
@@ -62,8 +80,25 @@ export const Text = Styled.h4`
     margin:0.5rem 1rem;
 `
 
-export const SectionText = Styled.p`
+export const SectionText1 = Styled.p`
     margin-left:0.25rem;
+    min-height:6rem;
+    width:15rem;
+    animation: ${render} 0.25s ease-in;
+
+`
+export const SectionText2 = Styled.p`
+    margin-left:0.25rem;
+    min-height:6rem;
+    width:15rem;
+    animation: ${render} 0.25s ease-in;
+
+`
+export const SectionText3 = Styled.p`
+    margin-left:0.25rem;
+    min-height:6rem;
+    width:15rem;
+    animation: ${render} 0.25s ease-in;
 
 `
 
@@ -92,11 +127,6 @@ export const StyledButton = Styled(Button)`
     padding:0.25rem 1rem;
     margin-left: -0.9rem;
     font-weight:700;
-    transition: all 0.3s ease-in-out;
-    &:hover{
-        background:${(props) => props.theme.colors.background.info};
-        color:white;
-    }
 `
 
 export const MobileIcon = Styled(FaMobile)`

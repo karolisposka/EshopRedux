@@ -16,6 +16,7 @@ QuantityReducer.propTypes = {
     quantity: PropTypes.number.isRequired,
     handleDecrement: PropTypes.func.isRequired,
     handleIncrement: PropTypes.func.isRequired,
+    className: PropTypes.string,
 }
 
 export default QuantityReducer

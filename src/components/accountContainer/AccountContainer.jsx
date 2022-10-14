@@ -5,14 +5,14 @@ import { useLocation } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
 import { useSelector } from "react-redux"
 
-const AccountContainer = ({ children, state }) => {
+const AccountContainer = ({ children }) => {
     const path = useLocation()
-    const test = useSelector((state) => state.users.expanded)
+    const { expanded } = useSelector((state) => state.users)
 
     return (
         <S.Container>
             <S.Section>
-                <CSSTransition in={test} timeout={500} classNames="overlay">
+                <CSSTransition in={expanded} timeout={500} classNames="overlay">
                     {path.pathname === "/account" ? (
                         <S.Overlay classNames="overlay">
                             <S.TextWrapper>

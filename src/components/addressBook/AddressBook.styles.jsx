@@ -31,11 +31,6 @@ export const DisplayFormBtn = Styled(Button)`
 
 `
 
-export const AddressBook = Styled.section`
-   width:100%;
-
-`
-
 export const StyledAddAddressForm = Styled(AddAddressForm)`
     height:32rem;
     &&.display-enter {

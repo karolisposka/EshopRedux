@@ -3,13 +3,13 @@ import * as S from "./Footer.styles"
 import FooterListItem from "../footerListItem/FooterListItem"
 
 const Footer = () => {
-    const list = ["services", "about", "contacts"]
+    const list = ["contacts", "about", "services"]
     const [section, setSection] = useState(list[0])
 
     const footerSections = (section) => {
-        if (section === "services") {
+        if (section === "contacts") {
             return (
-                <S.SectionText>
+                <S.SectionText1>
                     <S.PlainText>
                         <S.MobileIcon /> +370 67462267
                     </S.PlainText>
@@ -20,21 +20,26 @@ const Footer = () => {
                         <S.GlobeIcon />
                         Seskines sodu 12, Vilnius
                     </S.PlainText>
-                </S.SectionText>
+                </S.SectionText1>
             )
         }
         if (section === "about") {
             return (
-                <S.SectionText>
-                    <S.Title>About</S.Title>
-                </S.SectionText>
+                <S.SectionText2>
+                    <S.PlainText>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione in harum?
+                    </S.PlainText>
+                </S.SectionText2>
             )
         }
-        if (section === "contacts") {
+        if (section === "services") {
             return (
-                <S.SectionText>
-                    <S.Title>Contacts</S.Title>
-                </S.SectionText>
+                <S.SectionText3>
+                    <S.PlainText>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis facilis quia itaque rem
+                        accusamus qui quasi minus quo ratione maxime.
+                    </S.PlainText>
+                </S.SectionText3>
             )
         }
     }
@@ -53,7 +58,7 @@ const Footer = () => {
                                         handleClick={() => {
                                             setSection(item)
                                         }}
-                                    ></FooterListItem>
+                                    />
                                 ))}
                         </S.ItemsList>
                     </S.ItemsListContainer>

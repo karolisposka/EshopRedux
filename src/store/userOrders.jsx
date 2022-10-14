@@ -4,8 +4,8 @@ import { apiCallBegan } from "./api"
 const slice = createSlice({
     name: "userOrders",
     initialState: {
-        orders: [],
-        history: [],
+        orders: null,
+        history: null,
         loading: false,
         error: "",
         message: "",
@@ -25,10 +25,28 @@ const slice = createSlice({
                 error: "",
             }
         },
+        userHistoricOrdersRecieved: (state, action) => {
+            return {
+                ...state,
+                history: action.payload,
+                loading: false,
+                error: "",
+            }
+        },
         errorRecieved: (state, action) => {
             return {
                 ...state,
                 error: action.payload,
+            }
+        },
+        allDataDeleted: (state, action) => {
+            return {
+                ...state,
+                orders: null,
+                history: null,
+                loading: false,
+                error: "",
+                message: "",
             }
         },
     },
@@ -49,5 +67,21 @@ export const getUserOrders = () => (dispatch, getState) => {
     )
 }
 
-export const { dataRequested, userOrdersRecieved, errorRecieved } = slice.actions
+export const getUserHistoricOrders = () => (dispatch, getState) => {
+    dispatch(
+        apiCallBegan({
+            url: process.env.REACT_APP_HISTORIC_ORDERS,
+            headers: {
+                "Content-type": "application/json",
+                Authorization: `Bearer ${getState().users.key}`,
+            },
+            onStart: dataRequested.type,
+            onSuccess: userHistoricOrdersRecieved.type,
+            onError: errorRecieved.type,
+        })
+    )
+}
+
+export const { dataRequested, userOrdersRecieved, errorRecieved, userHistoricOrdersRecieved, allDataDeleted } =
+    slice.actions
 export default slice.reducer

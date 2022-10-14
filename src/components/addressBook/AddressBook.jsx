@@ -1,58 +1,25 @@
 import React, { useState, useEffect } from "react"
 import * as S from "./AddressBook.styles"
-import AddressCard from "../addressCard/AddressCard"
-import ErrorNotification from "../errorNotification/ErrorNotification"
-import { PostAddress, deleteAddress, setAddressAsDefault, getUserDetails } from "../../store/users"
+import Loader from "../loader/Loader"
+import { PostAddress, getUserDetails } from "../../store/users"
 import { useDispatch, useSelector } from "react-redux"
-import NoData from "../noData/NoData"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
+import AddressBookList from "../addressBookList/AddressBookList"
 
 const AddressBook = () => {
     const dispatch = useDispatch()
     const [showForm, setShowForm] = useState(false)
+    const { address, loading } = useSelector((state) => state.users)
 
     useEffect(() => {
+        if (address.length !== 0) {
+            return
+        }
         dispatch(getUserDetails())
-    }, [])
-
-    const data = useSelector((state) => state.users)
+    }, [address])
 
     const handleSubmit = (values) => {
         dispatch(PostAddress(values))
-    }
-
-    const handleDelete = (value) => {
-        dispatch(deleteAddress(value))
-    }
-
-    const ChangeCheckBoxValue = (status) => {
-        if (status === 1) {
-            return 0
-        } else {
-            return 1
-        }
-    }
-    const handleChange = (values) => {
-        const activeItems = data.address.filter((item) => item.default_status === 1)
-        if (activeItems.length === 0 && values.status === 0) {
-            dispatch(
-                setAddressAsDefault({
-                    id: values.id,
-                    status: ChangeCheckBoxValue(values.status),
-                })
-            )
-        }
-        if (values.status === 1) {
-            dispatch(
-                setAddressAsDefault({
-                    id: values.id,
-                    status: ChangeCheckBoxValue(values.status),
-                })
-            )
-        }
-        if (activeItems.length >= 1 && values.status === 0) {
-            return alert("invalid selection")
-        }
     }
 
     return (
@@ -89,30 +56,7 @@ const AddressBook = () => {
                     </CSSTransition>
                 )}
             </TransitionGroup>
-            <S.AddressBook>
-                {data.address.length > 0 ? (
-                    data.address.map((item, index) => (
-                        <AddressCard
-                            key={index}
-                            lastName={item.last_name}
-                            firstName={item.first_name}
-                            city={item.city}
-                            address={item.address}
-                            mobile={item.mobile}
-                            postCode={item.post_node}
-                            checked={item.default_status}
-                            handleDelete={() => {
-                                handleDelete(item.id)
-                            }}
-                            handleChange={() => {
-                                handleChange({ id: item.id, status: item.default_status })
-                            }}
-                        />
-                    ))
-                ) : (
-                    <NoData text="No Data Found" />
-                )}
-            </S.AddressBook>
+            {loading ? <Loader /> : <AddressBookList data={address} />}
         </S.Container>
     )
 }

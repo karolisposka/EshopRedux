@@ -56,6 +56,9 @@ ProductCard.propTypes = {
     className: PropTypes.string,
     title: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
+    smallPrice: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
 }
 
 export default ProductCard

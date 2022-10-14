@@ -1,17 +1,12 @@
 import React from "react"
 import * as S from "./OrderCard.styles"
 import TimeAgo from "react-timeago"
+import PropTypes from "prop-types"
 import { useSelector, useDispatch } from "react-redux"
 import { changeStatus } from "../../store/orders"
 
-const OrderCard = ({ id, product_id, status, time, description }) => {
-    const products = useSelector((state) => state.products.list)
+const OrderCard = ({ id, products, amount, status, time, session_id, shipping }) => {
     const dispatch = useDispatch()
-    console.log(products)
-
-    const changeTimeFormat = (time) => {
-        return new Date(time).toLocaleTimeString("en-US", { hour12: false, hour: "2-digit", minute: "2-digit" })
-    }
 
     const setOrderAsCompleted = (orderId) => {
         return dispatch(changeStatus(orderId))
@@ -20,27 +15,42 @@ const OrderCard = ({ id, product_id, status, time, description }) => {
     return (
         <S.OrdersCard>
             <S.OrderDetails>
-                {products
-                    .filter((item) => product_id.split(",").includes(item.id.toString()))
-                    .map((product) => (
-                        <>
-                            <S.Title> {product.title}</S.Title>
-                        </>
-                    ))}
-                <div>{description && description.split(",").map((item) => <S.Description>{item}</S.Description>)}</div>
                 <S.Time>
                     <TimeAgo date={time} />
                 </S.Time>
                 <S.ButtonWrapper
                     onClick={() => {
-                        setOrderAsCompleted({ id: id, completed_at: new Date().getTime() })
+                        setOrderAsCompleted({ id: session_id, completed_at: new Date().getTime() })
                     }}
                 >
                     <S.CompletedBtn completed={status} />
                 </S.ButtonWrapper>
+                <S.FlexWrapper>
+                    <S.Price>{amount / 100} € </S.Price>
+                    <S.ShippingIcon status={shipping} />
+                </S.FlexWrapper>
+            </S.OrderDetails>
+
+            <S.OrderDetails>
+                {products.map((product) => (
+                    <S.ProductWrapper>
+                        <S.textWrapper>
+                            <S.Title> {product.title}</S.Title>
+                            <S.Description>{product.description}</S.Description>
+                        </S.textWrapper>
+                    </S.ProductWrapper>
+                ))}
             </S.OrderDetails>
         </S.OrdersCard>
     )
+}
+
+OrderCard.propTypes = {
+    id: PropTypes.number.isRequired,
+    product_id: PropTypes.string.isRequired,
+    status: PropTypes.number.isRequired,
+    time: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
 }
 
 export default OrderCard

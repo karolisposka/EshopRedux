@@ -4,7 +4,7 @@ import { apiCallBegan } from "./api"
 const slice = createSlice({
     name: "orders",
     initialState: {
-        orders: [],
+        orders: null,
         loading: false,
         error: "",
     },

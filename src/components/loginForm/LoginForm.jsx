@@ -1,10 +1,10 @@
-import React from "react"
+import React, { useEffect } from "react"
 import * as S from "./LoginForm.styles"
 import { useFormik } from "formik"
 import { useDispatch } from "react-redux"
 import { loggin, formChanged, formChanged2, formDisplayed } from "../../store/users"
 import * as yup from "yup"
-import Loader from "../loader/Loader"
+import SmallLoader from "../smallLoader/SmallLoader"
 import { useSelector } from "react-redux"
 import { useNavigate, useLocation } from "react-router-dom"
 
@@ -12,8 +12,10 @@ const LoginForm = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()
-    const data = useSelector((state) => state.users)
+    const { loading, key } = useSelector((state) => state.users)
     const from = location.state?.from?.pathname || "/"
+
+    console.log(key)
 
     const formik = useFormik({
         initialValues: {
@@ -27,11 +29,16 @@ const LoginForm = () => {
         }),
         onSubmit: (values) => {
             dispatch(loggin(values))
-            if (data.key) {
-                return navigate("/userDetails")
-            }
         },
     })
+
+    useEffect(() => {
+        if (!key) {
+            return
+        } else {
+            navigate("/userDetails")
+        }
+    }, [key])
 
     return (
         <S.LoginFormContainer>
@@ -56,7 +63,7 @@ const LoginForm = () => {
                     handleBlur={formik.handleBlur}
                     value={formik.values.password}
                 />
-                <S.StyledButton type="submit"> Login </S.StyledButton>
+                {!loading ? <S.StyledButton type="submit"> Login </S.StyledButton> : <SmallLoader />}
                 <S.SmallText>
                     Dont have an account?
                     <S.Span

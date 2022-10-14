@@ -1,18 +1,12 @@
-import React, { useEffect } from "react"
+import React from "react"
 import * as S from "./MobileSideMenu.styles"
-import { useSelector, useDispatch } from "react-redux/es/exports"
-import { loadCategories } from "../../store/products"
+import { useSelector } from "react-redux/es/exports"
 import { useNavigate } from "react-router-dom"
+import PropTypes from "prop-types"
 
-const MobileSideMenu = ({ open, handleExit }) => {
+const MobileSideMenu = ({ open, handleExit, routes }) => {
     const key = useSelector((state) => state.users.key)
     const navigate = useNavigate()
-    const categories = useSelector((state) => state.products.categories)
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(loadCategories())
-    }, [])
 
     return (
         <S.SideMenuContainer open={open}>
@@ -24,9 +18,13 @@ const MobileSideMenu = ({ open, handleExit }) => {
             >
                 {key ? "Account" : "Login"}
             </S.AccountBtn>
-            <S.StyledCategoriesList />
+            {routes ? <S.StyledCategoriesList routes={routes} /> : <div>loading </div>}
         </S.SideMenuContainer>
     )
+}
+
+MobileSideMenu.propTypes = {
+    open: PropTypes.bool.isRequired,
 }
 
 export default MobileSideMenu
