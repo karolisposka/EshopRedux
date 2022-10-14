@@ -14,7 +14,6 @@ const Cart = () => {
     const [deliveryOption, setDeliveryOption] = useState()
     const { cart } = useSelector((state) => state.cart)
     console.log(cart)
-    const userKey = useSelector((state) => state.users.key)
     const totalQuantity = cart.reduce((current, value) => current + value.quantity, 0)
     const totalAmount = cart.reduce((current, value) => current + value.price * value.quantity, 0)
     const deliveryAtHome = 1
