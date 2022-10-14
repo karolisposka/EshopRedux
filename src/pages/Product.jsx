@@ -16,6 +16,7 @@ const Product = () => {
     }, [])
 
     const data = useSelector((state) => state.products.list).filter((item) => item.title === title)
+    console.log(data)
 
     return (
         <>
