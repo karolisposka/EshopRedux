@@ -10,8 +10,6 @@ const render = keyframes`
         opacity:1
 
     }
-
-
 `
 
 export const Container = Styled.div`

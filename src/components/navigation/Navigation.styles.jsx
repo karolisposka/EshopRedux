@@ -6,7 +6,6 @@ import { RiAdminFill } from "react-icons/ri"
 export const NavigationContainer = Styled.div`
     border-bottom:1px solid rgba(0,0,0,0.3);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    height:12vh;  
     position:sticky;
     background:white;
     z-index:1;
@@ -14,6 +13,9 @@ export const NavigationContainer = Styled.div`
     left:0;
     @media(max-width:768px){
         height:8vh;
+    }
+    @media(min-width:768px){
+        height:12vh;
     }
 `
 
