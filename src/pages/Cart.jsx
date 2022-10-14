@@ -14,6 +14,7 @@ const Cart = () => {
     const navigate = useNavigate()
     const [deliveryOption, setDeliveryOption] = useState()
     const { cart, loading, url } = useSelector((state) => state.cart)
+    console.log(cart)
     const userKey = useSelector((state) => state.users.key)
     const totalQuantity = cart.reduce((current, value) => current + value.quantity, 0)
     const totalAmount = cart.reduce((current, value) => current + value.price * value.quantity, 0)
@@ -27,21 +28,25 @@ const Cart = () => {
     return (
         <MainContainer>
             <Container>
-                <CartContainer>
-                    <CartTable items={cart} />
-                    <OrderInfo
-                        totalPrice={totalAmount.toFixed(2)}
-                        quantity={totalQuantity}
-                        options={options}
-                        handleBackToStore={() => {
-                            navigate("/")
-                        }}
-                        deliveryOption={deliveryOption}
-                        handleChange={(value) => {
-                            setDeliveryOption(value)
-                        }}
-                    />
-                </CartContainer>
+                {cart.length === 0 ? (
+                    <BackToStore>Back to</BackToStore>
+                ) : (
+                    <CartContainer>
+                        <CartTable items={cart} />
+                        <OrderInfo
+                            totalPrice={totalAmount.toFixed(2)}
+                            quantity={totalQuantity}
+                            options={options}
+                            handleBackToStore={() => {
+                                navigate("/")
+                            }}
+                            deliveryOption={deliveryOption}
+                            handleChange={(value) => {
+                                setDeliveryOption(value)
+                            }}
+                        />
+                    </CartContainer>
+                )}
             </Container>
             <Footer />
         </MainContainer>
