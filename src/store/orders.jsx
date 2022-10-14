@@ -35,7 +35,7 @@ const slice = createSlice({
                 ...state,
                 loading: false,
                 orders: state.orders.map((selectedOrder) => {
-                    if (selectedOrder.session_id === Number(action.payload.id)) {
+                    if (selectedOrder.session_id === Number(action.payload)) {
                         return { ...selectedOrder, status: 1, completed_at: new Date().getTime() }
                     }
                     return selectedOrder
