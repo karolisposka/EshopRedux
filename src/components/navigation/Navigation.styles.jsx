@@ -8,7 +8,7 @@ export const NavigationContainer = Styled.div`
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     position:sticky;
     background:white;
-    z-index:1;
+    z-index:4;
     top:0;
     left:0;
     @media(max-width:576px){

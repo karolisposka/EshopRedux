@@ -29,7 +29,7 @@ export const Overlay = Styled.div`
     display:flex;
     flex-direction:column;
     height:70vh;
-    z-index:3;
+    z-index:2;
     justify-content:flex-start;
     left:0;
     padding:2rem;
