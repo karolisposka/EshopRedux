@@ -24,8 +24,8 @@ const MobileSideMenu = ({ open, handleExit, routes }) => {
             {key && (
                 <S.AccountBtn
                     onClick={() => {
-                        dispatch(allDataDeleted)
-                        dispatch(userKeyDeleted)
+                        dispatch(allDataDeleted())
+                        dispatch(userKeyDeleted())
                         setTimeout(() => {
                             navigate("/")
                         }, [])
