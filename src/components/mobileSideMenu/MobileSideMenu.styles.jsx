@@ -13,7 +13,7 @@ export const SideMenuContainer = Styled.div`
     overflow:hidden;
     background:white;
     min-height:74vh;
-    z-index:3;
+    z-index:5;
     border-right:2px solid rgba(0,0,0,0.3);
     @media(min-width:768px){
         display:none;

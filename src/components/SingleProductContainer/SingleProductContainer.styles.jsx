@@ -23,7 +23,7 @@ export const ProductContainer = Styled.section`
   height:100vh;
   background:rgba(0,0,0,0.2);
   font-family:${(props) => props.theme.fonts.names.primary};
-  z-index:5;
+  z-index:10;
   @media(max-width:768px){
     height:100%;
   }
