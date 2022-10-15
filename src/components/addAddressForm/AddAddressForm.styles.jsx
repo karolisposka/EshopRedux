@@ -44,5 +44,6 @@ export const StyledInput = Styled(Input)`
 export const StyledButton = Styled(Button)`
     margin:0 0 1rem 1rem;
     padding:0.5rem 4rem;
+    color:${(props) => props.theme.colors.background.info};
     
 `
