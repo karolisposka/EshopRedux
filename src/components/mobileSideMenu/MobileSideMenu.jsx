@@ -1,11 +1,14 @@
 import React from "react"
 import * as S from "./MobileSideMenu.styles"
+import { useLocation } from "react-router-dom"
 import { useSelector } from "react-redux/es/exports"
 import { useNavigate } from "react-router-dom"
 import PropTypes from "prop-types"
 
 const MobileSideMenu = ({ open, handleExit, routes }) => {
     const key = useSelector((state) => state.users.key)
+    const { pathname } = useLocation()
+    console.log(pathname)
     const navigate = useNavigate()
 
     return (
