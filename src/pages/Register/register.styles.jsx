@@ -31,9 +31,7 @@ export const Span = Styled(Link)`
 `
 export const StyledButton = Styled(Button)`
     margin: 1rem auto;
-    border: 1px solid rgba(0,0,0,0.3);
     padding:0.5rem 4rem;
-    margin
     text-align:Center;
-    display:block;
+    color:${(props) => props.theme.colors.background.info};
 `
