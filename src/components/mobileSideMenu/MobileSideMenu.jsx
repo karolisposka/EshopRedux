@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { allDataDeleted } from "../../store/userOrders"
 import { userKeyDeleted } from "../../store/users"
 import PropTypes from "prop-types"
+import Loader from "../loader/Loader"
 
 const MobileSideMenu = ({ open, handleExit, routes }) => {
     const key = useSelector((state) => state.users.key)
@@ -28,13 +29,13 @@ const MobileSideMenu = ({ open, handleExit, routes }) => {
                         dispatch(userKeyDeleted())
                         setTimeout(() => {
                             navigate("/")
-                        }, [])
+                        }, [500])
                     }}
                 >
                     LOGOUT
                 </S.AccountBtn>
             )}
-            {routes ? <S.StyledCategoriesList routes={routes} /> : <div>loading </div>}
+            {routes ? <S.StyledCategoriesList routes={routes} /> : <Loader />}
         </S.SideMenuContainer>
     )
 }

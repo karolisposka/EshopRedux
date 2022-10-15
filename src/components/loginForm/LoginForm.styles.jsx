@@ -23,6 +23,7 @@ export const StyledButton = Styled(Button)`
     margin: 1rem auto;
     text-align:Center;
     display:block;
+    color:${(props) => props.theme.colors.background.info};
 `
 
 export const SmallText = Styled.p`
