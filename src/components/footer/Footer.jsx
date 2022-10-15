@@ -64,21 +64,6 @@ const Footer = () => {
                     </S.ItemsListContainer>
                     <S.NavSection>{footerSections(section)}</S.NavSection>
                 </S.NavigationContainer>
-                <S.InputContainer>
-                    <S.Text>JOIN OUR NEWSLETTER</S.Text>
-                    <S.Span>10% off for new subscribers</S.Span>
-                    <S.Form>
-                        <S.StyledInput
-                            type="email"
-                            placeholder="Enter your email address"
-                            name="newsletter"
-                            handleChange={() => {
-                                alert("news letter")
-                            }}
-                        />
-                        <S.StyledButton type="submit">Sign up</S.StyledButton>
-                    </S.Form>
-                </S.InputContainer>
             </S.Section>
         </S.StyledContainer>
     )
