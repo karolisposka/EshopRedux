@@ -15,8 +15,6 @@ const LoginForm = () => {
     const { loading, key } = useSelector((state) => state.users)
     const from = location.state?.from?.pathname || "/"
 
-    console.log(key)
-
     const formik = useFormik({
         initialValues: {
             email: "",

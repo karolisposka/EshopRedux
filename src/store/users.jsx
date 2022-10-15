@@ -20,6 +20,7 @@ const slice = createSlice({
             return {
                 ...users,
                 status: action.payload,
+                loading: false,
             }
         },
         userTokenRequested: (users, action) => {
@@ -52,6 +53,7 @@ const slice = createSlice({
                 ...users,
                 expanded: true,
                 error: "",
+                loading: false,
                 message: "",
             }
         },
@@ -130,7 +132,7 @@ const slice = createSlice({
         addressPostResponseRecieved: (users, action) => {
             return {
                 ...users,
-                address: users.address.concat(action.payload),
+                address: [...users.address, action.payload],
                 loading: false,
             }
         },
@@ -166,6 +168,9 @@ export const reegister = (data) => (dispatch, getState) => {
         apiCallBegan({
             url: process.env.REACT_APP_REGISTER,
             method: "post",
+            headers: {
+                "Content-type": "application/json",
+            },
             data: data,
             onStart: userRegistationStarted.type,
             onSuccess: userRegistered.type,
@@ -179,6 +184,7 @@ export const getUserDetails = () => (dispatch, getState) => {
         apiCallBegan({
             url: process.env.REACT_APP_USERDETAILS,
             headers: {
+                "Content-type": "application/json",
                 Authorization: `Bearer ${getState().users.key}`,
             },
             onStart: userDetailsRequested.type,
@@ -194,6 +200,7 @@ export const deleteAddress = (id) => (dispatch, getState) => {
             url: process.env.REACT_APP_DELETEADDRESS + id,
             method: "delete",
             headers: {
+                "Content-type": "application/json",
                 Authorization: `Bearer ${getState().users.key}`,
             },
             onStart: userDetailsRequested.type,
@@ -209,6 +216,7 @@ export const PostAddress = (data) => (dispatch, getState) => {
             url: process.env.REACT_APP_POST_NEW_ADDRESS,
             method: "post",
             headers: {
+                "Content-type": "application/json",
                 Authorization: `Bearer ${getState().users.key}`,
             },
             data: data,
@@ -225,6 +233,7 @@ export const setAddressAsDefault = (data) => (dispatch, getState) => {
             url: process.env.REACT_APP_DEFAULTADDRESS,
             method: "post",
             headers: {
+                "Content-type": "application/json",
                 Authorization: `Bearer ${getState().users.key}`,
             },
             data: data,

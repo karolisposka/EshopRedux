@@ -122,11 +122,7 @@ export const StyledInput = Styled(Input)`
 `
 
 export const StyledButton = Styled(Button)`
-    border:1px solid rgba(0,0,0,0.3);
-    border-radius:0.25rem;
-    padding:0.25rem 1rem;
     margin-left: -0.9rem;
-    font-weight:700;
 `
 
 export const MobileIcon = Styled(FaMobile)`
