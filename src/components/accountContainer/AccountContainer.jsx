@@ -3,17 +3,24 @@ import PropTypes from "prop-types"
 import * as S from "./AccountContainer.styles"
 import { useLocation } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { open } from "../../store/cart"
 import MobileSideMenu from "../mobileSideMenu/MobileSideMenu"
 
 const AccountContainer = ({ children }) => {
+    const dispatch = useDispatch()
     const path = useLocation()
     const { expanded } = useSelector((state) => state.users)
     const routes = []
 
     return (
         <S.Container>
-            <MobileSideMenu routes={routes} />
+            <MobileSideMenu
+                routes={routes}
+                handleExit={() => {
+                    dispatch(open(false))
+                }}
+            />
             <S.Section>
                 <CSSTransition in={expanded} timeout={500} classNames="overlay">
                     {path.pathname === "/account" ? (
