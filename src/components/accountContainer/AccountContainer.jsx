@@ -4,13 +4,16 @@ import * as S from "./AccountContainer.styles"
 import { useLocation } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
 import { useSelector } from "react-redux"
+import MobileSideMenu from "../mobileSideMenu/MobileSideMenu"
 
 const AccountContainer = ({ children }) => {
     const path = useLocation()
     const { expanded } = useSelector((state) => state.users)
+    const routes = []
 
     return (
         <S.Container>
+            <MobileSideMenu routes={routes} />
             <S.Section>
                 <CSSTransition in={expanded} timeout={500} classNames="overlay">
                     {path.pathname === "/account" ? (

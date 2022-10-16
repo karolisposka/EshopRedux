@@ -39,6 +39,7 @@ export const Section = Styled.section`
 export const NavigationContainer = Styled.div`
     display:Flex;
     flex-direction:column;
+    margin:2rem;
 
 `
 

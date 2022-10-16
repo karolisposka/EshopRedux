@@ -1,6 +1,7 @@
 import Styled from "styled-components"
 import CategoriesList from "../categoriesList/CategoriesList"
 import { AiOutlineClose } from "react-icons/ai"
+import { FaArrowLeft } from "react-icons/fa"
 
 export const SideMenuContainer = Styled.div`
     position:fixed;
@@ -36,16 +37,23 @@ export const Exit = Styled(AiOutlineClose)`
     
 `
 
-export const AccountBtn = Styled.button`
+export const Back = Styled(FaArrowLeft)`
+    color:${(props) => props.theme.colors.background.info};
+    font-size:1.5rem;
+    margin:1rem;
+    float: left;
+    
+`
+
+export const MobileMenuBtn = Styled.button`
     width:100%;
     padding:0.75rem 1rem;
     background:transparent;
     box-sizing:border-box;
     border:none;
-    text-align:Center;
+    text-align:left;
     border-top:1px solid rgba(0,0,0,0.3);
     border-bottom:1px solid rgba(0,0,0,0.3);
     color:${(props) => props.theme.colors.background.warning};
     text-transform:uppercase;
-    
 `
