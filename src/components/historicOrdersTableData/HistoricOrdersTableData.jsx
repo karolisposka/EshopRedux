@@ -14,7 +14,7 @@ const HistoricOrdersTableData = ({ id, created_at, amount, productsInfo, classNa
                 <S.Cell>
                     {productsInfo.map((item, index) => {
                         return (
-                            <S.ProductInfoWrapper key={index} index={index}>
+                            <S.ProductInfoWrapper key={index}>
                                 <S.ProductTitle>{item.title.toUpperCase()}</S.ProductTitle>
                                 <S.ProductDescription>{item.description}</S.ProductDescription>
                             </S.ProductInfoWrapper>
@@ -30,7 +30,6 @@ const HistoricOrdersTableData = ({ id, created_at, amount, productsInfo, classNa
 HistoricOrdersTableData.propTypes = {
     id: PropTypes.number.isRequired,
     created_at: PropTypes.number.isRequired,
-    product_id: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
 }
 

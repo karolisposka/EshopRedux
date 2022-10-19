@@ -21,7 +21,7 @@ export const TableRow = Styled.tr`
 `
 
 export const TableCell = Styled.td`
-    padding:1rem;
+    padding:0.25rem;
     @media(max-width:768px){
         &:first-child{
             display:none;
@@ -39,7 +39,9 @@ export const Span = Styled.span`
     color:rgba(0,0,0,0.5);
     display:block;
     font-size:0.8rem;
-
+    @media(max-width:768px){
+        font-size:0.5rem;
+    }
 `
 
 export const StyledQuantityReducer = Styled(QuantityReducer)`

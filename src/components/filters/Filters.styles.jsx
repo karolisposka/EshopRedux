@@ -24,7 +24,7 @@ export const FiltersWrapper = Styled.div`
     align-items:Center;
     justify-content:flex-end;
     @media(max-width:768px){
-        grid-columns: 1/2;
+        grid-column: 1;
     }
 
 `

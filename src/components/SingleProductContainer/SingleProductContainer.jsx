@@ -90,115 +90,121 @@ const SingleProductContainer = ({ handleExit, item }) => {
 
     return (
         <>
-            <S.ProductContainer id={item.id} className="here">
-                <S.ProductSection>
-                    <S.ImageWrapper>
-                        <S.ExitBtn onClick={handleExit} />
-                        {item.category.toLowerCase() === "pica" ? (
-                            <S.SizeLine>
+            {item && (
+                <S.ProductContainer id={item.id} className="here">
+                    <S.ProductSection>
+                        <S.ImageWrapper>
+                            <S.ExitBtn onClick={handleExit} />
+                            {item.category.toLowerCase() === "pica" ? (
+                                <S.SizeLine>
+                                    <S.ProductImage
+                                        src={item.imageurl}
+                                        alt="alt"
+                                        expand={size === item.big ? true : false}
+                                    />
+                                </S.SizeLine>
+                            ) : (
                                 <S.ProductImage
                                     src={item.imageurl}
                                     alt="alt"
                                     expand={size === item.big ? true : false}
                                 />
-                            </S.SizeLine>
-                        ) : (
-                            <S.ProductImage src={item.imageurl} alt="alt" expand={size === item.big ? true : false} />
-                        )}
-                    </S.ImageWrapper>
-                    <S.ProductInfoWrapper>
-                        <S.Title>{item.title}</S.Title>
-                        {item.category.toLowerCase() === "pica" && (
-                            <S.SmallText>
-                                Size {size === item.small ? "30cm" : "42cm"}, {type}
-                            </S.SmallText>
-                        )}
-                        <S.IngredientsWrapper>
-                            {ingredientsState !== null
-                                ? ingredientsState.map((product, index) => (
-                                      <IngredientTag
-                                          id={index}
-                                          key={index}
-                                          deleted={product.deleted}
-                                          handleDelete={() => {
-                                              deleteIgredient(product)
-                                          }}
-                                          handleUndo={() => {
-                                              moveIngredientBack(product)
-                                          }}
-                                      >
-                                          {product.ingredient}
-                                      </IngredientTag>
-                                  ))
-                                : null}
-                        </S.IngredientsWrapper>
-                        {item.category.toLowerCase() === "pica" && (
-                            <>
-                                <S.description>Choose size:</S.description>
-                                <S.StyledPizza
-                                    big="true"
-                                    onClick={() => {
-                                        setSize(item.big)
+                            )}
+                        </S.ImageWrapper>
+                        <S.ProductInfoWrapper>
+                            <S.Title>{item.title}</S.Title>
+                            {item.category.toLowerCase() === "pica" && (
+                                <S.SmallText>
+                                    Size {size === item.small ? "30cm" : "42cm"}, {type}
+                                </S.SmallText>
+                            )}
+                            <S.IngredientsWrapper>
+                                {ingredientsState !== null
+                                    ? ingredientsState.map((product, index) => (
+                                          <IngredientTag
+                                              id={index}
+                                              key={index}
+                                              deleted={product.deleted}
+                                              handleDelete={() => {
+                                                  deleteIgredient(product)
+                                              }}
+                                              handleUndo={() => {
+                                                  moveIngredientBack(product)
+                                              }}
+                                          >
+                                              {product.ingredient}
+                                          </IngredientTag>
+                                      ))
+                                    : null}
+                            </S.IngredientsWrapper>
+                            {item.category.toLowerCase() === "pica" && (
+                                <>
+                                    <S.description>Choose size:</S.description>
+                                    <S.StyledPizza
+                                        big="true"
+                                        onClick={() => {
+                                            setSize(item.big)
+                                        }}
+                                    />
+                                    <S.StyledPizza
+                                        onClick={() => {
+                                            setSize(item.small)
+                                        }}
+                                    />
+                                </>
+                            )}
+                            {item.category.toLowerCase() === "pica" && (
+                                <S.TypeWrapper>
+                                    <S.TypeButtons
+                                        active={type === "italian" ? true : false}
+                                        handleClick={() => {
+                                            setType("italian")
+                                        }}
+                                    >
+                                        Italian
+                                    </S.TypeButtons>
+                                    <S.TypeButtons
+                                        handleClick={() => {
+                                            setType("american")
+                                        }}
+                                        active={type === "american" ? true : false}
+                                    >
+                                        American
+                                    </S.TypeButtons>
+                                </S.TypeWrapper>
+                            )}
+                            {item.category === "pica" && (
+                                <S.StyledAdditives
+                                    additives={additives}
+                                    handleAdd={(selection) => {
+                                        AddAdditionalIngredient(selection)
                                     }}
                                 />
-                                <S.StyledPizza
-                                    onClick={() => {
-                                        setSize(item.small)
-                                    }}
-                                />
-                            </>
-                        )}
-                        {item.category.toLowerCase() === "pica" && (
-                            <S.TypeWrapper>
-                                <S.TypeButtons
-                                    active={type === "italian" ? true : false}
-                                    handleClick={() => {
-                                        setType("italian")
-                                    }}
-                                >
-                                    Italian
-                                </S.TypeButtons>
-                                <S.TypeButtons
-                                    handleClick={() => {
-                                        setType("american")
-                                    }}
-                                    active={type === "american" ? true : false}
-                                >
-                                    American
-                                </S.TypeButtons>
-                            </S.TypeWrapper>
-                        )}
-                        {item.category === "pica" && (
-                            <S.StyledAdditives
-                                additives={additives}
-                                handleAdd={(selection) => {
-                                    AddAdditionalIngredient(selection)
-                                }}
-                            />
-                        )}
-                        {data.cart.filter(
-                            (product) => product.title === item.title && product.description === ingredients
-                        ) && (
-                            <S.ButtonWrapper>
-                                <S.StyledButton
-                                    handleClick={() =>
-                                        dispatch(
-                                            increment({
-                                                id: item.id,
-                                                title: item.title,
-                                                description: ingredients.toString(),
-                                                price: finalPrice,
-                                            })
-                                        )
-                                    }
-                                >
-                                    Add to Cart for {finalPrice} €
-                                </S.StyledButton>
-                            </S.ButtonWrapper>
-                        )}
-                    </S.ProductInfoWrapper>
-                </S.ProductSection>
-            </S.ProductContainer>
+                            )}
+                            {data.cart.filter(
+                                (product) => product.title === item.title && product.description === ingredients
+                            ) && (
+                                <S.ButtonWrapper>
+                                    <S.StyledButton
+                                        handleClick={() =>
+                                            dispatch(
+                                                increment({
+                                                    id: item.id,
+                                                    title: item.title,
+                                                    description: ingredients.toString(),
+                                                    price: finalPrice,
+                                                })
+                                            )
+                                        }
+                                    >
+                                        Add to Cart for {finalPrice} €
+                                    </S.StyledButton>
+                                </S.ButtonWrapper>
+                            )}
+                        </S.ProductInfoWrapper>
+                    </S.ProductSection>
+                </S.ProductContainer>
+            )}
         </>
     )
 }

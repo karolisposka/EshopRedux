@@ -20,6 +20,7 @@ import OrdersHistory from "./components/ordersHistory/OrdersHistory";
 import UserOrders from "./components/userOrders/UserOrders";
 import CompletedOrders from "./pages/CompletedOrders";
 import Success from "./pages/Success";
+import Layout from "./pages/Layout";
 
 const Router = () => {
   return (
@@ -37,8 +38,8 @@ const Router = () => {
           <Route exact path='/cart' element={<Cart/>}/>
           <Route exact path='/success' element={<Success/>}/>
           <Route exact path="/" element={<Products/>}>
-            <Route  index element={<ProductsList />}/>
-            <Route  path=':category' element={<ProductsList />}/>
+            <Route  index element={<Layout />}/>
+            <Route  path=':category' element={<Layout />}/>
             <Route path='/:category/:title' element={<Product/>}/>
           </Route>
 

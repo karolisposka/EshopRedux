@@ -3,6 +3,7 @@ import Styled from "styled-components"
 export const Container = Styled.div`
   width:100%;
   min-height:74vh;
+  flex:4;
     
 `
 

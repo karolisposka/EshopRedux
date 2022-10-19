@@ -1,13 +1,17 @@
 import Styled from "styled-components"
 import ProductCard from "../productCard/ProductCard"
+import Notification from "../notification/Notification"
 
 export const ProductsList = Styled.div`
-    width:100%;
     min-height:62vh;
-    padding:1rem;
+    width:100%;
     display:flex;
     flex-wrap:wrap;
-    flex:4;
+`
+export const StyledNotification = Styled(Notification)`
+    width:80%;
+    margin:2rem auto;
+    text-align:center;
 `
 
 export const StyledProductCard = Styled(ProductCard)`

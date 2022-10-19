@@ -3,7 +3,6 @@ import * as S from "./UserOrdersList.styles"
 import NoData from "../noData/NoData"
 
 const UserOrdersList = ({ data }) => {
-    console.log(data)
     return (
         <S.List>
             {data.length > 0 ? (

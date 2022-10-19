@@ -37,14 +37,15 @@ const CartTable = ({ items }) => {
 }
 
 CartTable.propTypes = {
-    items: PropTypes.shape({
-        index: PropTypes.number.isRequired,
-        className: PropTypes.string,
-        title: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        quantity: PropTypes.number.isRequired,
-        id: PropTypes.number.isRequired,
-    }),
+    items: PropTypes.arrayOf(
+        PropTypes.shape({
+            className: PropTypes.string,
+            title: PropTypes.string.isRequired,
+            price: PropTypes.number.isRequired,
+            quantity: PropTypes.number.isRequired,
+            id: PropTypes.number.isRequired,
+        })
+    ),
 }
 
 export default CartTable

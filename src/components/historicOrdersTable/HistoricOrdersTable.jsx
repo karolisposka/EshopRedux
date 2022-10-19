@@ -22,7 +22,6 @@ const HistoricOrdersTable = ({ data }) => {
                                 key={index}
                                 id={item.id}
                                 created_at={item.created_at}
-                                product_id={item.product_id}
                                 amount={item.amount}
                                 productsInfo={item.products}
                             />

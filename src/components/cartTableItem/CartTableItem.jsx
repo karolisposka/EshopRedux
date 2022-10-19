@@ -46,7 +46,7 @@ CartTableItem.propTypes = {
     quantity: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
     classNames: PropTypes.string.isRequired,
-    index: PropTypes.number.isRequired,
+    index: PropTypes.string.isRequired,
 }
 
 export default CartTableItem

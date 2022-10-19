@@ -48,6 +48,7 @@ export const Back = Styled(FaArrowLeft)`
 export const MobileMenuBtn = Styled.button`
     width:100%;
     padding:0.75rem 1rem;
+    margin-left:0.25rem;
     background:transparent;
     box-sizing:border-box;
     border:none;

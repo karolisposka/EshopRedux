@@ -4,8 +4,10 @@ import { apiCallBegan } from "./api"
 const slice = createSlice({
     name: "products",
     initialState: {
-        list: [],
+        list: null,
+        error: null,
         additives: [],
+        filteredData: null,
         categories: [],
         loading: false,
     },
@@ -16,7 +18,6 @@ const slice = createSlice({
                 list: [...products, action.payload],
             }
         },
-
         productsRequested: (products, action) => {
             return {
                 ...products,
@@ -33,15 +34,51 @@ const slice = createSlice({
         filterProducts: (products, action) => {
             return {
                 ...products,
-                filteredList: products.list.filter((product) => product.category === action.payload),
-                mount: true,
+                filteredData: products.list.filter((product) => product.category === action.payload),
+            }
+        },
+        filterByTitle: (products, action) => {
+            const filteredProducts = products.list.filter((item) => item.title.toLowerCase().includes(action.payload))
+            if (action.payload.length === 1) {
+                return {
+                    ...products,
+                    filteredData: products.list,
+                    error: null,
+                }
+            }
+            if (filteredProducts.length > 0) {
+                return {
+                    ...products,
+                    filteredData: filteredProducts,
+                    error: null,
+                }
+            } else {
+                return {
+                    ...products,
+                    filteredData: products.list,
+                    error: "No data found",
+                }
+            }
+        },
+        sortLowestPrice: (products, action) => {
+            return {
+                ...products,
+                filteredData: products.filteredData.slice().sort((a, b) => Number(a.small) - Number(b.small)),
+            }
+        },
+        sortHighestPrice: (products, action) => {
+            return {
+                ...products,
+                filteredData: products.filteredData.slice().sort((a, b) => Number(b.small) - Number(a.small)),
             }
         },
         productsRecieved: (products, action) => {
             return {
                 ...products,
                 list: action.payload,
+                filteredData: action.payload,
                 loading: false,
+                error: null,
             }
         },
         additivesRecieved: (products, action) => {
@@ -60,6 +97,7 @@ const slice = createSlice({
         singleProductRequested: (products, action) => {
             return {
                 ...products,
+                error: null,
                 list: [...products.list, action.payload],
             }
         },
@@ -146,6 +184,9 @@ export const {
     additivesRecieved,
     filterProducts,
     singleProductRequested,
+    filterByTitle,
+    sortLowestPrice,
+    sortHighestPrice,
 } = slice.actions
 
 export default slice.reducer

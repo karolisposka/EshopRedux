@@ -83,7 +83,12 @@ OrderInfo.propTypes = {
     quantity: PropTypes.number.isRequired,
     totalPrice: PropTypes.number.isRequired,
     handleChange: PropTypes.func.isRequired,
-    options: PropTypes.shape({}),
+    options: PropTypes.arrayOf(
+        PropTypes.shape({
+            label: PropTypes.string.isRequired,
+            value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+        })
+    ),
     deliveryOption: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 

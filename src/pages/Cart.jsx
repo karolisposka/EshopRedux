@@ -13,9 +13,8 @@ const Cart = () => {
     const navigate = useNavigate()
     const [deliveryOption, setDeliveryOption] = useState()
     const { cart } = useSelector((state) => state.cart)
-    console.log(cart)
-    const totalQuantity = cart.reduce((current, value) => current + value.quantity, 0)
-    const totalAmount = cart.reduce((current, value) => current + value.price * value.quantity, 0)
+    const totalQuantity = Number(cart.reduce((current, value) => current + value.quantity, 0))
+    const totalAmount = Number(cart.reduce((current, value) => current + value.price * value.quantity, 0).toFixed(2))
     const deliveryAtHome = 1
 
     const options = [
@@ -38,7 +37,7 @@ const Cart = () => {
                     <CartContainer>
                         <CartTable items={cart} />
                         <OrderInfo
-                            totalPrice={totalAmount.toFixed(2)}
+                            totalPrice={totalAmount}
                             quantity={totalQuantity}
                             options={options}
                             handleBackToStore={() => {

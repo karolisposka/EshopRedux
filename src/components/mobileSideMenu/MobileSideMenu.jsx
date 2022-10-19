@@ -8,10 +8,10 @@ import PropTypes from "prop-types"
 import Loader from "../loader/Loader"
 
 const MobileSideMenu = ({ open, handleExit, routes }) => {
-    const key = useSelector((state) => state.users.key)
-    const { pathname } = useLocation()
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const key = useSelector((state) => state.users.key)
+    const { pathname } = useLocation()
 
     return (
         <S.SideMenuContainer open={open}>
@@ -51,6 +51,13 @@ const MobileSideMenu = ({ open, handleExit, routes }) => {
 
 MobileSideMenu.propTypes = {
     open: PropTypes.bool.isRequired,
+    handleExit: PropTypes.func.isRequired,
+    routes: PropTypes.arrayOf(
+        PropTypes.shape({
+            path: PropTypes.string.isRequired,
+            text: PropTypes.string.isRequired,
+        })
+    ),
 }
 
 export default MobileSideMenu

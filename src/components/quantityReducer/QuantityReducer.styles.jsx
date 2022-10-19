@@ -17,7 +17,6 @@ export const DecrementBtn = Styled.button`
   background:${(props) => props.theme.colors.background.info};
   @media(max-width:768px){
     height:1.5rem !important;
-    font-size:0.5rem;
   }
 `
 
@@ -33,7 +32,6 @@ export const QuantitySpan = Styled.span`
     height:1.5rem;
     padding:0.4rem;
   }
-  
 `
 
 export const IncrementBtn = Styled.button`
@@ -48,6 +46,6 @@ export const IncrementBtn = Styled.button`
   background:${(props) => props.theme.colors.background.info};
   @media(max-width:768px){
     height:1.5rem !important;
-    font-size:0.5rem;
+  
   }
 `

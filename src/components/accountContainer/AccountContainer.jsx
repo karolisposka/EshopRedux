@@ -11,11 +11,18 @@ const AccountContainer = ({ children }) => {
     const dispatch = useDispatch()
     const path = useLocation()
     const { expanded } = useSelector((state) => state.users)
-    const routes = []
+    const { status } = useSelector((state) => state.cart)
+    const routes = [
+        {
+            path: "/cart",
+            text: "Cart",
+        },
+    ]
 
     return (
         <S.Container>
             <MobileSideMenu
+                open={status}
                 routes={routes}
                 handleExit={() => {
                     dispatch(open(false))

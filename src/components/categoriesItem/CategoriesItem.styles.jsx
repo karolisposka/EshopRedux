@@ -5,7 +5,10 @@ export const ListItem = Styled.div`
     display:flex;
     align-items:center;
     width:100%;
-    border-bottom:1px solid rgba(0,0,0,0.3);
+    &&:not(:last-child){
+        border-bottom:1px solid rgba(0,0,0,0.3);
+    }
+   
 `
 
 export const Item = Styled(Link)`
